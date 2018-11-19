@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>FB12E586-BBD1-4D33-B381-A33C9286BF24</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Dashboard---Configurar-Integracion" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Desktop---configurarintegracion1" transform="translate(-24.000000, -432.000000)" stroke="#9AA9B9">
+            <g id="side-nav" transform="translate(0.000000, 32.000000)">
+                <g id="list" transform="translate(24.000000, 160.000000)">
+                    <g id="icons">
+                        <g id="cerrarsesion" transform="translate(0.000000, 240.000000)">
+                            <path d="M9.94359343,5.73765889 L9.94359343,4 L21,4 L21,19 L9.94359343,19 L9.94359343,17.131959 M6.2072084,14.7150151 L3,11.4517125 L6.2072084,8.18869829 M15.7527995,11.4997404 L3.0002268,11.4997404 M15.7527995,9.87042557 L15.7527995,13.1294014" id="Logout"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
