@@ -8125,6 +8125,11 @@ react-confirm-alert@^2.0.5:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/react-confirm-alert/-/react-confirm-alert-2.0.6.tgz#99067e47adb61615ea0d52026931442cee6f4114"
 
+react-confirm@^0.1.18:
+  version "0.1.18"
+  resolved "https://registry.yarnpkg.com/react-confirm/-/react-confirm-0.1.18.tgz#687ba3449112de2673ad1f67cd8930f17fe5a559"
+  integrity sha512-fHLvVj4uFrxQofEuJCQmQ7zRxANk6plyM9iWAHdnAml0o2ohR8oZNgYUoo9iSghRiW/KkVwRJoRBIaPEsAjlVw==
+
 react-custom-scrollbars@^4.2.0:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/react-custom-scrollbars/-/react-custom-scrollbars-4.2.1.tgz#830fd9502927e97e8a78c2086813899b2a8b66db"
