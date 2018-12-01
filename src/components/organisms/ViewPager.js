@@ -1,7 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 
-const ViewPager = ({ children }) => <Grid container>{children}</Grid>;
+const ViewPager = ({ children, page, style }) => <Grid container style={style}>{children[page]}</Grid>;
 
 export default ViewPager;

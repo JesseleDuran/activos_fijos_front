@@ -9,38 +9,40 @@ import AuthRoute from "./AuthRoute";
 import { getHostname } from "utils/functions";
 import config from "config";
 import PageLoader from "PageLoader";
+import CrearActivos from "./CrearActivos";
 
 class App extends Component {
-  componentWillMount = () => {
-    this.props.autoAuth();
-  };
+    componentWillMount = () => {
+        this.props.autoAuth();
+    };
 
-  render() {
-    return (
-      <Router>
-        <React.Fragment>
-          <Switch>
-            <AuthRoute exact path="/activos" component={Activos}/>
-            <Route exact path="/" component={LoginPage} />
-            <Route
-              path="/logout"
-              component={() => {
-                this.props.logout();
-                window.location = `/`;
-                return <PageLoader active />;
-              }}
-            />
-          </Switch>
-        </React.Fragment>
-      </Router>
-    );
-  }
+    render() {
+        return (
+            <Router>
+                <React.Fragment>
+                    <Switch>
+                        <AuthRoute exact path="/activos" component={Activos}/>
+                        <AuthRoute exact path="/crearActivo" component={CrearActivos}/>
+                        <Route exact path="/" component={LoginPage}/>
+                        <Route
+                            path="/logout"
+                            component={() => {
+                                this.props.logout();
+                                window.location = `/`;
+                                return <PageLoader active/>;
+                            }}
+                        />
+                    </Switch>
+                </React.Fragment>
+            </Router>
+        );
+    }
 }
 
 export default connect(
-  null,
-  {
-    autoAuth,
-    logout,
-  },
+    null,
+    {
+        autoAuth,
+        logout,
+    },
 )(App);
