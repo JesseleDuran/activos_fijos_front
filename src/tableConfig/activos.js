@@ -1,6 +1,7 @@
 import React from "react";
 import Search from "@material-ui/icons/Search";
 import Delete from "@material-ui/icons/Close";
+import Add from "@material-ui/icons/AddCircleOutline";
 import IconButton from "@material-ui/core/IconButton";
 
 export default (show, remove) => [
@@ -31,6 +32,7 @@ export default (show, remove) => [
             {
                 Header: "Vida Util (Meses)",
                 accessor: "vida_util_meses",
+                width: 50,
             },
             {
                 Header: "Clasificacion",
@@ -47,8 +49,11 @@ export default (show, remove) => [
             },
             {
                 Header: "Nombre",
-                id: "properName",
-                accessor: d => `${d.nomper} ${d.apeper}`,
+                accessor: "nomper",
+            },
+            {
+                Header: "Apellido",
+                accessor: "apeper",
             },
         ],
     },
@@ -86,10 +91,14 @@ export default (show, remove) => [
             {
                 Header: "",
                 accessor: "options",
+                filterable: false,
+                sortable: false,
+                minWidth: 150,
+                resizable: false,
                 Cell: ({ original }) => (
                     <div>
                         <IconButton onClick={() => show(original)}>
-                            <Search style={{ cursor: "pointer" }} />
+                            <Search style={{ cursor: "pointer" }}/>
                         </IconButton>
                         <IconButton onClick={() => remove(original)}>
                             <Delete

@@ -37,10 +37,7 @@ const SideMenu = ({ user, classes, history }) => {
         <Drawer variant="permanent" classes={{ paper: classes.root }} anchor="left">
             <ListItem style={{ height: "120px", padding: "16px" }}>
                 <Avatar
-                    alt="Adelle Charles"
-                    src={
-                        "https://www.androidcentral.com/sites/androidcentral.com/files/topic_images/2014/materialdesign_principles_metaphor.png"
-                    }
+                    src="http://www.cvg.gob.ve/sites/default/files/Loago%20azul%20cvg.jpg"
                     style={{
                         width: 60,
                         height: 60,

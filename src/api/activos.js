@@ -40,3 +40,13 @@ export const deleteActivo = id =>
 export const getOrdenes = () => request().get("/ordenescompra").then(({ data }) => data);
 
 export const getUbications = () => request().get("/ubicacionfisica").then(({ data }) => data);
+
+export const getPersonal = query => request().get("/personal", {
+    params: {
+        query,
+    },
+}).then(({ data }) => data);
+
+export const createMovimiento = movimiento => request().post("/movimiento", movimiento).then(({ data }) => data);
+
+export const getMovimiento = id => request().get("/movimiento/" + id).then(({ data }) => data);

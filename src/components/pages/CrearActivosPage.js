@@ -39,7 +39,7 @@ const CrearActivosPage = ({ step, clasificaciones, marcas, ubicaciones, ordenes,
                 height: "65vh",
             }}>
                 <OrdenesSelector
-                    orden={activo.id_soc_ordencompra}
+                    orden={activo.numero_orden_compra}
                     ordenes={ordenes}
                     onSelect={onSelectOrden}/>
                 <ActivosForm activo={activo}

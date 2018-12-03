@@ -18,7 +18,7 @@ const Logo = styled.img`
 `;
 
 const BarContainer = props => (
-  <Bar {...props} background={props.theme.palette.primary.light} />
+    <Bar {...props} background={props.theme.palette.primary.main}/>
 );
 
 export default withTheme()(BarContainer);

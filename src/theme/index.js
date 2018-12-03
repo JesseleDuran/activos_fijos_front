@@ -2,7 +2,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: "#009688" },
+    primary: { main: "#255B99" },
     secondary: { main: "#30638E" },
     // Used by `getContrastText()` to maximize the contrast between the background and
     // the text.

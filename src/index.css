@@ -1,15 +1,22 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    height: 100vh;
 }
 
 #root {
-  height: 100vh;
-  background: #e1e1e1de;
+    height: 100vh;
+    background: #e1e1e1de;
 }
 
+#pdfroot {
+    padding: 0 30px;
+    width: 595px;
+    height: 842px;
+}
+
+
 :focus {
-  outline: none;
+    outline: none;
 }

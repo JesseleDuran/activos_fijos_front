@@ -18,18 +18,33 @@ class ActivosContainer extends Component {
         page: 0,
         size: 10,
         activos: [],
-        query: {},
-        sorted: {},
+        query: null,
+        sorted: null,
         loading: false,
+        activo: null,
+        movement: null,
     };
 
-    componentWillMount() {
+    componentDidMount() {
         this.getActivos();
     }
 
-    show = item => {
-        console.log("SHOW", item);
+    show = activo => {
+        this.setState({ activo });
     };
+
+    close = () => {
+        this.setState({ activo: null });
+    };
+
+    showMovementModal = (activo) => {
+        this.setState({ movement: activo });
+    };
+
+    closeMovement = () => {
+        this.setState({ movement: null });
+    };
+
 
     remove = item => {
         confirm("Estas Seguro?").then(
@@ -37,7 +52,6 @@ class ActivosContainer extends Component {
                 deleteActivo(item.n_activo)
                     .then(this.getActivos)
                     .catch(() => {
-                        console.log("ERR");
                         this.props.showError(
                             "Error al Borrar, Intente de nuevo",
                         );
@@ -69,12 +83,11 @@ class ActivosContainer extends Component {
     };
 
     onChange = ({ pageSize, page, sorted, filtered }) => {
-        console.log("HEY", pageSize, page, sorted, filtered);
         this.setState({ size: pageSize, page, sorted, filtered }, this.fetch);
     };
 
     render = () => {
-        const { activos, page, size, query, sorted, loading } = this.state;
+        const { activos, page, size, query, sorted, loading, activo } = this.state;
         return (
             <ActivosPage
                 activos={activos}
@@ -86,6 +99,10 @@ class ActivosContainer extends Component {
                 loading={loading}
                 show={this.show}
                 remove={this.remove}
+                activo={activo}
+                close={this.close}
+                showMovementModal={this.showMovementModal}
+                closeMovement={this.closeMovement}
             />
         );
     };

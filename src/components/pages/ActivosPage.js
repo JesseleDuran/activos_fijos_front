@@ -1,16 +1,15 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
-import translate, { translateKey } from "utils/translate";
+import { translateKey } from "utils/translate";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import tableConfig from "../../tableConfig/activos";
+import ActivoModal from "../organisms/ActivoModal";
 
 const styles = theme => ({});
 
-const ActivosPage = ({ activos, page, size, pages = 100, loading = false, onChange, show, remove }) => (
+const ActivosPage = ({ activos, page, size, pages = 100, loading = false, onChange, show, remove, activo, close }) => (
     <Grid container>
         <div style={{ width: "100%" }}>
             <ReactTable
@@ -23,8 +22,8 @@ const ActivosPage = ({ activos, page, size, pages = 100, loading = false, onChan
                 onFetchData={onChange} // Request new data when things change
                 filterable
                 manual
-                className="-striped -highlight"
             />
+            <ActivoModal open={activo} activo={activo} close={close}/>
         </div>
     </Grid>
 );

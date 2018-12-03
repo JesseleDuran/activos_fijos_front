@@ -1,27 +1,14 @@
 import React from "react";
-import SearchInput from "../molecules/SearchInput";
 import Grid from "@material-ui/core/Grid/Grid";
 import Checkbox from "@material-ui/core/Checkbox";
-import styled from "styled-components";
-import { AutoSizer, List } from "react-virtualized";
-import ChoppedText from "../atoms/ChoppedText";
 import TextField from "@material-ui/core/TextField/TextField";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
-
-const ListContainer = styled.div`
-  width:100%;
-  height: ${props => props.height};
-  max-height: ${props => props.height};
-  overflow-y: auto;
-`;
-
 
 class ActivosForm extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log("PROPS", props);
         this.state = {
             ...props.activo,
         };
@@ -38,13 +25,13 @@ class ActivosForm extends React.Component {
 
     render = () => {
 
-        const { clasificaciones, marcas, ubicaciones } = this.props;
+        const { clasificaciones, marcas, ubicaciones, disabled = false } = this.props;
         return <Grid container>
             <TextField
                 id="standard-number"
                 label="# Orden de Compra"
-                value={this.state.id_soc_ordencompra}
-                onChange={this.handleChange("age")}
+                value={this.state.numero_orden_compra}
+                onChange={this.handleChange("numero_orden_compra")}
                 type="number"
                 disabled
                 InputLabelProps={{
@@ -59,6 +46,7 @@ class ActivosForm extends React.Component {
                 value={this.state.n_activo}
                 onChange={this.handleChange("n_activo")}
                 type="number"
+                disabled={disabled}
                 InputLabelProps={{
                     shrink: true,
                 }}
@@ -72,6 +60,7 @@ class ActivosForm extends React.Component {
                 value={this.state.vida_util_meses}
                 onChange={this.handleChange("vida_util_meses")}
                 type="number"
+                disabled={disabled}
                 InputLabelProps={{
                     shrink: true,
                 }}
@@ -85,6 +74,7 @@ class ActivosForm extends React.Component {
                 value={this.state.modelo}
                 onChange={this.handleChange("modelo")}
                 type="text"
+                disabled={disabled}
                 InputLabelProps={{
                     shrink: true,
                 }}
@@ -96,6 +86,7 @@ class ActivosForm extends React.Component {
                 value={this.state.serial}
                 onChange={this.handleChange("serial")}
                 type="text"
+                disabled={disabled}
                 InputLabelProps={{
                     shrink: true,
                 }}
@@ -108,6 +99,7 @@ class ActivosForm extends React.Component {
                 value={this.state.descripcion}
                 onChange={this.handleChange("descripcion")}
                 multiline
+                disabled={disabled}
                 margin="normal"
             />
 
@@ -115,9 +107,10 @@ class ActivosForm extends React.Component {
                 id="standard-select-ubic"
                 select
                 label="Ubicacion Geografica"
-                value={this.state.cod_ubicacion_geografica}
+                value={this.state.cod_ubicacion_geografica || this.state.desubifis}
                 onChange={this.handleChange("cod_ubicacion_geografica")}
                 helperText="Seleccione Ubicacion"
+                disabled={disabled}
                 margin="normal"
             >
                 {ubicaciones.map(({ codubifis, desubifis }) => (
@@ -134,6 +127,7 @@ class ActivosForm extends React.Component {
                 value={this.state.marca}
                 onChange={this.handleChange("marca")}
                 helperText="Seleccione Ubicacion"
+                disabled={disabled}
                 margin="normal"
             >
                 {marcas.map(option => (
@@ -146,6 +140,7 @@ class ActivosForm extends React.Component {
             <TextField
                 id="standard-select-cla"
                 select
+                disabled={disabled}
                 label="Clasificacion"
                 value={this.state.clasificacion}
                 onChange={this.handleChange("clasificacion")}
@@ -160,6 +155,7 @@ class ActivosForm extends React.Component {
             </TextField>
 
             <FormControlLabel
+                disabled={disabled}
                 control={
                     <Checkbox
                         checked={this.state.is_depreciable}

@@ -14,7 +14,6 @@ const styles = () => ({
   },
 });
 
-const MAX_VISIBLE_ITEMS = 7;
 
 class ControlledSelect extends React.Component {
   constructor(props) {
@@ -79,7 +78,7 @@ class ControlledSelect extends React.Component {
           disabled={disabled}
         >
           <SearchInput fullWidth onChange={this.handleSearchChange} />
-          {this.renderOptions(options.slice(0, MAX_VISIBLE_ITEMS))}
+          {this.renderOptions(options)}
         </Select>
       </FormControl>
     );
@@ -87,7 +86,7 @@ class ControlledSelect extends React.Component {
 
   renderEmpty = () => {
     const { classes, label } = this.props;
-    const theresNoOptionsString = translateKey("theresNoOptions");
+    const theresNoOptionsString = "No Hay opciones disponibles";
     return (
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="demo-controlled-open-select">{label}</InputLabel>

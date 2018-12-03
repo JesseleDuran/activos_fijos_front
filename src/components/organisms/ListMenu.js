@@ -10,7 +10,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabe
 import * as PropTypes from "prop-types";
 import { translateKey } from "../../utils/translate";
 import Divisor from "../atoms/Divisor";
-import MenuItem from "../molecules/MenuItem";
+import ActivoItem from "../molecules/ActivoItem";
 import SearchInput from "../molecules/SearchInput";
 
 const ListContainer = styled.div`
@@ -121,7 +121,7 @@ class ListMenu extends React.Component {
     const isCompounded =
       find(compoundSelected, i => item[idKey] === i[idKey]) != null;
     return (
-      <MenuItem
+      <ActivoItem
         key={key}
         data={item}
         idKey={idKey}

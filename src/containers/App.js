@@ -10,6 +10,7 @@ import { getHostname } from "utils/functions";
 import config from "config";
 import PageLoader from "PageLoader";
 import CrearActivos from "./CrearActivos";
+import Movimientos from "./Movimientos";
 
 class App extends Component {
     componentWillMount = () => {
@@ -23,6 +24,7 @@ class App extends Component {
                     <Switch>
                         <AuthRoute exact path="/activos" component={Activos}/>
                         <AuthRoute exact path="/crearActivo" component={CrearActivos}/>
+                        <AuthRoute exact path="/movimientos" component={Movimientos}/>
                         <Route exact path="/" component={LoginPage}/>
                         <Route
                             path="/logout"

@@ -13,7 +13,7 @@ const ActivoKeys = {
     "is_depreciable": true,
     "serial": "4fh5830",
     "descripcion": "un telefono",
-    "id_soc_ordencompra": 1,
+    "numero_orden_compra": 1,
     "vida_util_meses": 10,
     "clasificacion": "electronico",
     "marca": "samsung",
@@ -31,7 +31,7 @@ class CrearActivosContainer extends Component {
         ordenes: [],
         completed: {},
         activo: {
-            id_soc_ordencompra: null,
+            numero_orden_compra: null,
             is_depreciable: false,
         },
     };
@@ -48,7 +48,7 @@ class CrearActivosContainer extends Component {
         this.setState(state => ({
             activo: {
                 ...state.activo,
-                id_soc_ordencompra: orden,
+                numero_orden_compra: orden,
             },
             completed: {
                 ...state.completed,
@@ -66,7 +66,6 @@ class CrearActivosContainer extends Component {
     };
 
     isValidActivo = activo => {
-        console.log("ACTIVO!", activo);
         return Object.keys(ActivoKeys)
             .map(key => activo[key] !== undefined)
             .reduce((prev, next) => prev && next, true);
@@ -90,9 +89,9 @@ class CrearActivosContainer extends Component {
         createActivo({
             ...this.state.activo,
             cod_empresa: this.props.cod_empresa,
-        }).then(activo => {
+        }).then(() => {
             this.props.history.push("/activos");
-        });
+        }).catch(() => this.props.showError("Error al Crear Activo"));
     };
 
     render = () => {
