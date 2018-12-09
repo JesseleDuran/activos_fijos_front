@@ -11,6 +11,7 @@ import config from "config";
 import PageLoader from "PageLoader";
 import CrearActivos from "./CrearActivos";
 import Movimientos from "./Movimientos";
+import Reportes from "./Reportes";
 
 class App extends Component {
     componentWillMount = () => {
@@ -25,6 +26,7 @@ class App extends Component {
                         <AuthRoute exact path="/activos" component={Activos}/>
                         <AuthRoute exact path="/crearActivo" component={CrearActivos}/>
                         <AuthRoute exact path="/movimientos" component={Movimientos}/>
+                        <AuthRoute exact path="/reportes" component={Reportes}/>
                         <Route exact path="/" component={LoginPage}/>
                         <Route
                             path="/logout"

@@ -6,7 +6,6 @@ import { showError } from "../actions/UI";
 import MovimientosPage from "../components/pages/MovimientosPage";
 import { createMovimiento, getActivos, getMovimiento, getPersonal } from "../api/activos";
 import { getCodemp } from "../utils/state";
-import ReactPDF from "@react-pdf/renderer";
 import Asignation from "../pdf-templates/Asignation";
 import { render } from "../pdf-templates/PDFGenerator";
 

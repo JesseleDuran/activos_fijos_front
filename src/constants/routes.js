@@ -18,17 +18,16 @@ export default [
                 icon: "plus_one",
                 label: "Crear Movimiento",
             },
-        ],
-    },
-    {
-        icon: "settings",
-        label: "Reportes",
-        items: [
             {
-                to: "reportes/depreciacion",
+                to: "/reportes",
                 icon: "plus_one",
-                label: "Depreciación",
-            }
+                label: "Generar Reportes",
+            },
+            {
+                to: "/notificaciones",
+                icon: "plus_one",
+                label: "Notificaciones",
+            },
         ],
     },
     {
