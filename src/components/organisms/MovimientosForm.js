@@ -34,7 +34,6 @@ class MovimientosForm extends React.Component {
     render = () => {
         const { type, getPersonal, ubicaciones, disabled = false } = this.props;
         return <Grid container style={{ padding: "0 5%" }}>
-
             <Grid item xs={12}>
                 <TextField
                     id="standard-number3"
@@ -87,15 +86,15 @@ class MovimientosForm extends React.Component {
                     margin="normal"
                 />
             </Grid>}
-            <Grid item xs={12}>
+            {(type === 2 || type === 4 || type === 6) && <Grid item xs={12}>
                 <TextField
                     id="standard-select-ubic"
                     type="text"
                     fullWidth
-                    label="Ubicacion Geografica"
+                    label="Ubicacion Geográfica"
                     value={this.state.ubicacion}
                     onChange={this.handleChange("ubicacion")}
-                    helperText="Seleccione Ubicacion"
+                    helperText="Seleccione Ubicación"
                     disabled={disabled}
                     margin="normal"
                 >
@@ -104,9 +103,8 @@ class MovimientosForm extends React.Component {
                             {desubifis}
                         </MenuItem>
                     ))}
-                </TextField>
-            </Grid>
-
+                </TextField> 
+            </Grid>}
         </Grid>;
 
     };

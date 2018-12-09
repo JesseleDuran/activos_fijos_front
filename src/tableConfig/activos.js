@@ -7,7 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 export default (show, remove) => [
     // Follow React-Table Documentation https://react-table.js.org
     {
-        Header: "Informacion General",
+        Header: "Información General",
         columns: [
             {
                 Header: "#",
@@ -26,16 +26,16 @@ export default (show, remove) => [
                 accessor: "serial",
             },
             {
-                Header: "Descripcion",
+                Header: "Descripción",
                 accessor: "descripcion",
             },
             {
-                Header: "Vida Util (Meses)",
+                Header: "Vida Útil (Meses)",
                 accessor: "vida_util_meses",
                 width: 50,
             },
             {
-                Header: "Clasificacion",
+                Header: "Clasificación",
                 accessor: "clasificacion",
             },
         ],
@@ -44,7 +44,7 @@ export default (show, remove) => [
         Header: "Propietario",
         columns: [
             {
-                Header: "Cedula",
+                Header: "Cédula",
                 accessor: "cedper",
             },
             {
@@ -77,10 +77,10 @@ export default (show, remove) => [
         ],
     },
     {
-        Header: "Ubicacion",
+        Header: "Ubicación",
         columns: [
             {
-                Header: "Ubicacion Geografica",
+                Header: "Ubicación Geográfica",
                 accessor: "dirubifis",
             },
         ],

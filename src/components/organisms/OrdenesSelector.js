@@ -77,7 +77,7 @@ class OrdenesSelector extends React.Component {
                             rowRenderer={({ key, index, style }) => {
                                 return <Grid key={key} style={style} container title={filtered[index].obscom}>
                                     <Grid item xs={11} style={{ alignSelf: "center" }}>
-                                        <ChoppedText text={filtered[index].obscom} length={200}/>
+                                        <ChoppedText text={`${filtered[index].numordcom} - ${filtered[index].obscom}`} length={200}/>
                                     </Grid>
                                     <Grid item xs={1}>
                                         <Checkbox

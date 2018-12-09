@@ -21,9 +21,15 @@ export default [
         ],
     },
     {
-        to: "/reportes",
         icon: "settings",
-        label: "Reporte",
+        label: "Reportes",
+        items: [
+            {
+                to: "reportes/depreciacion",
+                icon: "plus_one",
+                label: "Depreciación",
+            }
+        ],
     },
     {
         to: "/transacciones",
