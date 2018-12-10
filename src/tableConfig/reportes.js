@@ -37,48 +37,21 @@ export default [
         ],
     },
     {
-        Header: "Propietario",
+        Header: "Depreciacion",
         columns: [
             {
-                Header: "Cédula",
-                accessor: "cedper",
+                Header: "Vida util Faltante en meses",
+                accessor: "vida_util_faltante_meses",
             },
             {
-                Header: "Nombre",
-                accessor: "nomper",
+                Header: "Depreciacion Acumulado en meses",
+                accessor: "depreciacion_acumulada_meses",
             },
             {
-                Header: "Apellido",
-                accessor: "apeper",
+                Header: "Depreciacion por mes",
+                accessor: "depreciacion_por_mes",
             },
         ],
     },
-    {
-        Header: "Estado Actual",
-        accessor: "estado_actual",
-        columns: [
-            {
-                Header: "Estado Actual",
-                accessor: "estado_actual",
-            },
-        ],
-    },
-    {
-        Header: "Datos de compra",
-        columns: [
-            {
-                Header: "Id Orden",
-                accessor: "id_soc_ordencompra",
-            },
-        ],
-    },
-    {
-        Header: "Ubicación",
-        columns: [
-            {
-                Header: "Ubicación Geográfica",
-                accessor: "dirubifis",
-            },
-        ],
-    },
+
 ];

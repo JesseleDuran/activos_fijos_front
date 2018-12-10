@@ -8,6 +8,8 @@ import tableConfig from "../../tableConfig/reportes";
 import MultiSelect from "../molecules/MultiSelect";
 import TextField from "@material-ui/core/TextField/TextField";
 import moment from "moment";
+import Button from "@material-ui/core/es/Button/Button";
+import { Workbook } from "react-excel-workbook";
 
 const styles = theme => ({});
 
@@ -42,6 +44,7 @@ const ReportesPage = ({
                           changeMarcas,
                           changeUbicaciones,
                           changeClasificaciones,
+                          apply,
                       }) => (
     <Grid container>
         <Grid item xs={12}>
@@ -63,13 +66,48 @@ const ReportesPage = ({
                 type="date"
                 value={fecha}
                 inputProps={{
-                    min: moment()
+                    min: moment(),
                 }}
                 onChange={evt => changeFecha(evt.target.value)}
                 InputLabelProps={{
                     shrink: true,
                 }}
             />
+
+
+            <Workbook filename="example.xlsx" element={<Button disabled={preview.length === 0}>Descargar</Button>}>
+                <Workbook.Sheet data={preview} name="Sheet A">
+                    <Workbook.Column label="# Activo" value="n_activo"/>
+                    <Workbook.Column label="Costo" value="costo"/>
+                    <Workbook.Column label="Incorporado" value="created_at"/>
+                    <Workbook.Column label="Modelo" value="modelo"/>
+                    <Workbook.Column label="Costo" value="costo"/>
+
+                    <Workbook.Column label="Es depreciable" value="is_depreciable"/>
+                    <Workbook.Column label="Serial" value="serial"/>
+                    <Workbook.Column label="Descripcion" value="descripcion"/>
+                    <Workbook.Column label="# Orden de compra" value="numero_orden_compra"/>
+                    <Workbook.Column label="Vida util (meses)" value="vida_util_meses"/>
+
+                    <Workbook.Column label="Estado" value="estado_actual"/>
+                    <Workbook.Column label="Clasificacion" value="clasificacion"/>
+                    <Workbook.Column label="Descripcion Ubicacion Fisica" value="desubifis"/>
+                    <Workbook.Column label="Direccion Ubicacion Fisica" value="dirubifis"/>
+                    <Workbook.Column label="Cedula" value="cedper"/>
+
+                    <Workbook.Column label="Nombre" value="nomper"/>
+                    <Workbook.Column label="Apellido" value="apeper"/>
+                    <Workbook.Column label="Direccion del Propietario" value="dirper"/>
+                    <Workbook.Column label="Telefono Propietario" value="telhabper"/>
+                    <Workbook.Column label="Celular Propietario" value="telmovper"/>
+
+                    <Workbook.Column label="Vida util Faltante en meses" value="vida_util_faltante_meses"/>
+                    <Workbook.Column label="Depreciacion acumulada en meses" value="depreciacion_acumulada_meses"/>
+                    <Workbook.Column label="Depreciacion por mes" value="depreciacion_por_mes"/>
+
+                </Workbook.Sheet>
+            </Workbook>
+            <Button onClick={apply} disabled={fecha === null}>Aplicar</Button>
         </Grid>
         <div style={{ width: "100%" }}>
             <ReactTable
