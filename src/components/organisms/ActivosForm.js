@@ -4,6 +4,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField/TextField";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
+import ControlledSelect from "../molecules/Select"
 
 class ActivosForm extends React.Component {
 
@@ -23,87 +24,95 @@ class ActivosForm extends React.Component {
     };
 
 
+    
+
     render = () => {
 
         const { clasificaciones, marcas, ubicaciones, disabled = false } = this.props;
-        return <Grid container>
-            <TextField
-                id="standard-number"
-                label="# Orden de Compra"
-                value={this.state.numero_orden_compra}
-                onChange={this.handleChange("numero_orden_compra")}
-                type="number"
-                disabled
-                InputLabelProps={{
-                    shrink: true,
-                }}
-                margin="normal"
-            />
-
-            <TextField
-                id="standard-number3"
-                label="# de Activo"
-                value={this.state.n_activo}
-                onChange={this.handleChange("n_activo")}
-                type="number"
-                disabled={disabled}
-                InputLabelProps={{
-                    shrink: true,
-                }}
-                margin="normal"
-            />
-
-
-            <TextField
-                id="standard-number2"
-                label="Meses de vida Util"
-                value={this.state.vida_util_meses}
-                onChange={this.handleChange("vida_util_meses")}
-                type="number"
-                disabled={disabled}
-                InputLabelProps={{
-                    shrink: true,
-                }}
-                margin="normal"
-            />
-
-
-            <TextField
-                id="standard-number4"
-                label="Modelo"
-                value={this.state.modelo}
-                onChange={this.handleChange("modelo")}
-                type="text"
-                disabled={disabled}
-                InputLabelProps={{
-                    shrink: true,
-                }}
-                margin="normal"
-            />
-            <TextField
-                id="standard-number5"
-                label="Serial"
-                value={this.state.serial}
-                onChange={this.handleChange("serial")}
-                type="text"
-                disabled={disabled}
-                InputLabelProps={{
-                    shrink: true,
-                }}
-                margin="normal"
-            />
-
-            <TextField
-                id="standard-textarea"
-                label="Descripcion"
-                value={this.state.descripcion}
-                onChange={this.handleChange("descripcion")}
-                multiline
-                disabled={disabled}
-                margin="normal"
-            />
-
-            <TextField
+        return <Grid container spacing={24}>
+            <Grid item xs={3}>
+                <TextField
+                    id="standard-number"
+                    label="# Orden de compra"
+                    value={this.state.numero_orden_compra}
+                    onChange={this.handleChange("numero_orden_compra")}
+                    type="number"
+                    disabled
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    margin="normal"
+                />
+            </Grid>
+            <Grid item xs={3}>
+                <TextField
+                    id="standard-number3"
+                    label="# de Activo"
+                    value={this.state.n_activo}
+                    onChange={this.handleChange("n_activo")}
+                    type="number"
+                    disabled={disabled}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    margin="normal"
+                />
+            </Grid>
+            <Grid item xs={3}>
+                <TextField
+                    id="standard-number2"
+                    label="Meses de vida útil"
+                    value={this.state.vida_util_meses}
+                    onChange={this.handleChange("vida_util_meses")}
+                    type="number"
+                    disabled={disabled}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    margin="normal"
+                />
+            </Grid>
+            <Grid item xs={3}>
+                <TextField
+                    id="standard-number4"
+                    label="Modelo"
+                    value={this.state.modelo}
+                    onChange={this.handleChange("modelo")}
+                    type="text"
+                    disabled={disabled}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    margin="normal"
+                />
+            </Grid>
+            <Grid item xs={3}>
+                <TextField
+                    id="standard-number5"
+                    label="Serial"
+                    value={this.state.serial}
+                    onChange={this.handleChange("serial")}
+                    type="text"
+                    disabled={disabled}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    margin="normal"
+                />
+            </Grid>
+            <Grid item xs={3}>
+                <TextField
+                    id="standard-textarea"
+                    label="Descripción"
+                    value={this.state.descripcion}
+                    onChange={this.handleChange("descripcion")}
+                    multiline
+                    disabled={disabled}
+                    margin="normal"
+                />
+            </Grid>
+            <Grid item xs={6}>
+                <TextField
                 id="standard-select-ubic"
                 select
                 label="Ubicacion Geografica"
@@ -119,41 +128,44 @@ class ActivosForm extends React.Component {
                     </MenuItem>
                 ))}
             </TextField>
-
-            <TextField
-                id="standard-select-brand"
-                select
-                label="Marca"
-                value={this.state.marca}
-                onChange={this.handleChange("marca")}
-                helperText="Seleccione Ubicacion"
-                disabled={disabled}
-                margin="normal"
-            >
-                {marcas.map(option => (
-                    <MenuItem key={option} value={option}>
-                        {option}
-                    </MenuItem>
-                ))}
-            </TextField>
-
-            <TextField
-                id="standard-select-cla"
-                select
-                disabled={disabled}
-                label="Clasificacion"
-                value={this.state.clasificacion}
-                onChange={this.handleChange("clasificacion")}
-                helperText="Seleccione Ubicacion"
-                margin="normal"
-            >
-                {clasificaciones.map(option => (
-                    <MenuItem key={option} value={option}>
-                        {option}
-                    </MenuItem>
-                ))}
-            </TextField>
-
+            </Grid>
+            
+            <Grid item xs={3}>
+                <TextField
+                    id="standard-select-brand"
+                    select
+                    label="Marca"
+                    value={this.state.marca}
+                    onChange={this.handleChange("marca")}
+                    helperText="Seleccione una marca"
+                    disabled={disabled}
+                    margin="normal"
+                >
+                    {marcas.map(option => (
+                        <MenuItem key={option} value={option}>
+                            {option}
+                        </MenuItem>
+                    ))}
+                </TextField>
+            </Grid>
+            <Grid item xs={3}>
+                <TextField
+                    id="standard-select-cla"
+                    select
+                    disabled={disabled}
+                    label="Clasificación"
+                    value={this.state.clasificacion}
+                    onChange={this.handleChange("clasificacion")}
+                    helperText="Seleccione clasificación"
+                    margin="normal"
+                >
+                    {clasificaciones.map(option => (
+                        <MenuItem key={option} value={option}>
+                            {option}
+                        </MenuItem>
+                    ))}
+                </TextField>
+            </Grid>
             <FormControlLabel
                 disabled={disabled}
                 control={

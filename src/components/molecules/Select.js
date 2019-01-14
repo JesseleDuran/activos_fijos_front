@@ -4,114 +4,75 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { translateKey } from "utils/translate";
-import * as PropTypes from "prop-types";
-import SearchInput from "./SearchInput";
+import translate from "utils/translate";
 
-const styles = () => ({
-  formControl: {
-    width: "100%",
-  },
+const styles = theme => ({
+	formControl: {
+		width: "100%",
+		padding: "1%"
+	}
 });
 
-
 class ControlledSelect extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: props.value || "",
-      open: false,
-      options: props.options,
-    };
-    this.searchField = null;
-  }
+	state = {
+		value: "",
+		open: false
+	};
 
-  componentWillReceiveProps = nextProps => {
-    this.setState({ options: nextProps.options, value: nextProps.value });
-  };
+	handleChange = event => {
+		this.setState({ value: event.target.value });
+		this.props.handleChange;
+	};
 
-  handleChange = event => {
-    this.setState({ value: event.target.value });
-    this.props.onChange(event);
-  };
+	handleClose = () => {
+		this.setState({ open: false });
+	};
 
-  handleSearchChange = text => {
-    const { options } = this.props;
-    const newOptions = options.filter(i =>
-      i.label.toLowerCase().includes(text.toLowerCase()),
-    );
+	handleOpen = () => {
+		this.setState({ open: true });
+	};
 
-    this.setState({
-      options: newOptions,
-    });
-  };
+	handleRenderOptions(nameOption, options) {
+		switch (nameOption) {
+			case 'ubicaciones':
+				return <Ubicaciones ubicaciones={options}></Ubicaciones>
+				break;
+		
+			default:
+				break;
+		}
+	}
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+	render() {
+		const { classes, label, nameOption, options } = this.props;
 
-  handleOpen = () => {
-    this.setState({ open: true }, () => {
-      if (this.searchField != null) this.searchField.focus();
-    });
-  };
-
-  renderOptions = options =>
-    options.map(option => (
-      <MenuItem value={option.value} key={option.label}>
-        {option.label}
-      </MenuItem>
-    ));
-
-  renderWithOptions = () => {
-    const { classes, label, disabled } = this.props;
-    const { options } = this.state;
-    return (
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="demo-controlled-open-select">{label}</InputLabel>
-        <Select
-          open={this.state.open}
-          onClose={this.handleClose}
-          onOpen={this.handleOpen}
-          value={this.state.value}
-          onChange={this.handleChange}
-          disabled={disabled}
-        >
-          <SearchInput fullWidth onChange={this.handleSearchChange} />
-          {this.renderOptions(options)}
-        </Select>
-      </FormControl>
-    );
-  };
-
-  renderEmpty = () => {
-    const { classes, label } = this.props;
-    const theresNoOptionsString = "No Hay opciones disponibles";
-    return (
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="demo-controlled-open-select">{label}</InputLabel>
-        <Select value={theresNoOptionsString} disabled>
-          <MenuItem value={theresNoOptionsString} key={theresNoOptionsString}>
-            {theresNoOptionsString}
-          </MenuItem>
-        </Select>
-      </FormControl>
-    );
-  };
-
-  render() {
-    const { options } = this.props;
-    return options.length > 0 ? this.renderWithOptions() : this.renderEmpty();
-  }
+		return (
+			<form autoComplete="off">
+				<FormControl className={classes.formControl}>
+					<InputLabel htmlFor="demo-controlled-open-select">{label}</InputLabel>
+					<Select
+						open={this.state.open}
+						onClose={this.handleClose}
+						onOpen={this.handleOpen}
+						value={this.state.value}
+						onChange={this.handleChange}
+					>
+						{this.handleRenderOptions(nameOption, options)}
+					</Select>
+				</FormControl>
+			</form>
+		);
+	}
 }
 
-ControlledSelect.propTypes = {
-  classes: PropTypes.any.isRequired,
-  disabled: PropTypes.bool.isRequired,
-  label: PropTypes.any.isRequired,
-  onChange: PropTypes.func.isRequired,
-  options: PropTypes.array.isRequired,
-  value: PropTypes.any.isRequired,
-};
+const Ubicaciones = ({ ubicaciones }) => {
+    return (
+        ubicaciones.map(({ codubifis, desubifis }) => (
+            <MenuItem key={codubifis} value={codubifis}>
+                {desubifis}
+            </MenuItem>
+        ))
+    )
+}
 
 export default withStyles(styles)(ControlledSelect);
