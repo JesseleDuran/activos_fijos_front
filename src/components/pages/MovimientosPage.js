@@ -11,7 +11,7 @@ import Button from "@material-ui/core/Button/Button";
 
 const styles = theme => ({});
 
-const TYPES = ["Asignacion", "Desincorporacion", "Reasignacion", "Prestacion", "Reparacion", "Salida"];
+const TYPES = ["Asignacion", "Desincorporacion", "Reasignacion", "Prestamo", "Reparacion", "Salida"];
 
 class MovimientosPage extends React.Component {
 

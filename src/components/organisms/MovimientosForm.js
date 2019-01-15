@@ -59,7 +59,7 @@ class MovimientosForm extends React.Component {
                     onChange={this.handleChange("cod_personal_involucrado")}
                 />
             </Grid>
-            {(type === 'prestacion' || type === 'salida') && <Grid item xs={12}>
+            {(type === 'prestamo' || type === 'salida') && <Grid item xs={12}>
                 <TextField
                     id="datetime-local"
                     label="Tiempo Limite"
@@ -91,10 +91,10 @@ class MovimientosForm extends React.Component {
                     id="standard-select-ubic"
                     type="text"
                     fullWidth
-                    label="Ubicacion Geográfica"
+                    label="Destino"
                     value={this.state.ubicacion}
                     onChange={this.handleChange("ubicacion")}
-                    helperText="Seleccione Ubicación"
+                    helperText="Escriba la ubicación del destino"
                     disabled={disabled}
                     margin="normal"
                 >

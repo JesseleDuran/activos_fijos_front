@@ -13,7 +13,7 @@ const fieldsFilledsByType = {
     'asignacion': 2, 
     'desincorporacion': 4, 
     'reasignacion': 2, 
-    'prestacion': 3, 
+    'prestamo': 3, 
     'reparacion': 4, 
     'salida': 4
 };
