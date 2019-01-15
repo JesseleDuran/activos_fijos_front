@@ -4,12 +4,12 @@ import { withRouter } from "react-router-dom";
 import Page from "../hocs/Page";
 import { showError } from "../actions/UI";
 import MovimientosPage from "../components/pages/MovimientosPage";
-import { createMovimiento, getActivos, getMovimiento, getPersonal } from "../api/activos";
+import { createMovimiento, getActivos, getMovimiento, getPersonal, getActivoByMovimiento } from "../api/activos";
 import { getCodemp } from "../utils/state";
 import Asignation from "../pdf-templates/Asignation";
 import { render } from "../pdf-templates/PDFGenerator";
 
-const fieldsFilledsByType = [3, 4, 3, 4, 4, 4];
+const fieldsFilledsByType = [2, 4, 3, 4, 4, 4];
 const TYPES = ["Asignacion", "Desincorporacion", "Reasignacion", "Prestacion", "Reparacion", "Salida"];
 const initialState = {
     movementType: null,
@@ -31,12 +31,12 @@ class MovimientosContainer extends Component {
     }
 
     changeType = (evt) => {
-        this.setState({ ...initialState, movementType: evt.target.value }, this.getActivos);
+        this.setState({ ...initialState, movementType: evt.target.value.toLowerCase() }, this.getActivos);
     };
 
     getActivos = () => {
         const { movementType } = this.state;
-        getActivos({ page: null, size: null }).then(activos => this.setState({ activos }));
+        getActivoByMovimiento(movementType).then(activos => this.setState({ activos }));
     };
 
     onSelectActivo = activo => {

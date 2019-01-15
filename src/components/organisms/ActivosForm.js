@@ -4,7 +4,6 @@ import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField/TextField";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
-import ControlledSelect from "../molecules/Select"
 
 class ActivosForm extends React.Component {
 
@@ -22,9 +21,6 @@ class ActivosForm extends React.Component {
     handleCheckChange = field => evt => {
         this.setState({ [field]: evt.target.checked }, () => this.props.onChange(this.state));
     };
-
-
-    
 
     render = () => {
 

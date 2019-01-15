@@ -42,7 +42,7 @@ class MovimientosPage extends React.Component {
                         margin="normal"
                     >
                         {TYPES.map((type, index) => (
-                            <MenuItem key={type} value={index}>
+                            <MenuItem key={type} value={type}>
                                 {type}
                             </MenuItem>
                         ))}

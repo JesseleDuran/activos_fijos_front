@@ -22,6 +22,15 @@ export const getActivo = id =>
         .get(`/activos/${id}`)
         .then(({ data }) => data);
 
+export const getActivoByMovimiento = tipo =>
+    request()
+        .get('/activos/movimiento', {
+            params: {
+                tipo
+            },
+        })
+        .then(({ data }) => data);
+
 export const getClasification = () =>
     request()
         .get("/activos/clasificaciones")
