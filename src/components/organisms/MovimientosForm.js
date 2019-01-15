@@ -59,7 +59,7 @@ class MovimientosForm extends React.Component {
                     onChange={this.handleChange("cod_personal_involucrado")}
                 />
             </Grid>
-            {(type === 3 || type === 5) && <Grid item xs={12}>
+            {(type === 'prestacion' || type === 'salida') && <Grid item xs={12}>
                 <TextField
                     id="datetime-local"
                     label="Tiempo Limite"
@@ -74,7 +74,7 @@ class MovimientosForm extends React.Component {
             </Grid>
             }
 
-            {(type === 1 || type === 4) && <Grid item xs={12}>
+            {(type === 'desincorporacion' || type === 'reparacion') && <Grid item xs={12}>
                 <TextField
                     id="standard-textarea"
                     label="Motivo"
@@ -86,7 +86,7 @@ class MovimientosForm extends React.Component {
                     margin="normal"
                 />
             </Grid>}
-            {(type === 2 || type === 4 || type === 6) && <Grid item xs={12}>
+            {(type === 'reparacion' || type === 'salida' || type === 'desincorporacion') && <Grid item xs={12}>
                 <TextField
                     id="standard-select-ubic"
                     type="text"

@@ -13,9 +13,9 @@ const fieldsFilledsByType = {
     'asignacion': 2, 
     'desincorporacion': 4, 
     'reasignacion': 2, 
-    "prestacion": 4, 
-    "reparacion": 4, 
-    "salida": 4
+    'prestacion': 3, 
+    'reparacion': 4, 
+    'salida': 4
 };
 const initialState = {
     movementType: null,
