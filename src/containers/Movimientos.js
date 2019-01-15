@@ -9,8 +9,14 @@ import { getCodemp } from "../utils/state";
 import Asignation from "../pdf-templates/Asignation";
 import { render } from "../pdf-templates/PDFGenerator";
 
-const fieldsFilledsByType = [2, 4, 3, 4, 4, 4];
-const TYPES = ["Asignacion", "Desincorporacion", "Reasignacion", "Prestacion", "Reparacion", "Salida"];
+const fieldsFilledsByType = {
+    'asignacion': 2, 
+    'desincorporacion': 4, 
+    'reasignacion': 2, 
+    "prestacion": 4, 
+    "reparacion": 4, 
+    "salida": 4
+};
 const initialState = {
     movementType: null,
     activos: [],
@@ -94,7 +100,7 @@ class MovimientosContainer extends Component {
         const { data, movementType } = this.state;
         const movimiento = {
             ...data,
-            tipo: TYPES[movementType].toLowerCase(),
+            tipo: movementType,
             n_activos: data.n_activos.split(","),
             cod_empresa: this.props.cod_empresa,
         };
