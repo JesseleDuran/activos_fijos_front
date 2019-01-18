@@ -62,7 +62,7 @@ class MultiSelect extends React.Component {
 
     renderOptions = options =>
         options.map(option => (
-            <MenuItem value={option.value} key={option.label}>
+            <MenuItem value={option.value} key={option.value}>
                 <Checkbox checked={this.state.values.indexOf(option.value) > -1}/>
                 <ListItemText primary={option.label}/>
             </MenuItem>

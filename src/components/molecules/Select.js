@@ -4,12 +4,10 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import translate from "utils/translate";
 
 const styles = theme => ({
 	formControl: {
-		width: "100%",
-		padding: "1%"
+		width: "100%"
 	}
 });
 
@@ -21,7 +19,7 @@ class ControlledSelect extends React.Component {
 
 	handleChange = event => {
 		this.setState({ value: event.target.value });
-		this.props.handleChange;
+		this.props.onChange(event);
 	};
 
 	handleClose = () => {
@@ -32,19 +30,8 @@ class ControlledSelect extends React.Component {
 		this.setState({ open: true });
 	};
 
-	handleRenderOptions(nameOption, options) {
-		switch (nameOption) {
-			case 'ubicaciones':
-				return <Ubicaciones ubicaciones={options}></Ubicaciones>
-				break;
-		
-			default:
-				break;
-		}
-	}
-
 	render() {
-		const { classes, label, nameOption, options } = this.props;
+		const { classes, label, options } = this.props;
 
 		return (
 			<form autoComplete="off">
@@ -57,7 +44,7 @@ class ControlledSelect extends React.Component {
 						value={this.state.value}
 						onChange={this.handleChange}
 					>
-						{this.handleRenderOptions(nameOption, options)}
+						{renderOptions(options)}
 					</Select>
 				</FormControl>
 			</form>
@@ -65,14 +52,12 @@ class ControlledSelect extends React.Component {
 	}
 }
 
-const Ubicaciones = ({ ubicaciones }) => {
-    return (
-        ubicaciones.map(({ codubifis, desubifis }) => (
-            <MenuItem key={codubifis} value={codubifis}>
-                {desubifis}
-            </MenuItem>
-        ))
-    )
-}
+const renderOptions = options => {
+	return options.map(option => (
+		<MenuItem value={option.value} key={option.value}>
+			{option.label}
+		</MenuItem>
+	));
+};
 
 export default withStyles(styles)(ControlledSelect);

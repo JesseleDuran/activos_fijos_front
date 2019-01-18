@@ -36,8 +36,7 @@ class MovimientosContainer extends Component {
 
 
     handleChangeFecha = value => {
-        const max = moment().isSameOrBefore(moment(value));
-        this.setState({ fecha: max ? value : null });
+        this.setState({ fecha: value });
     };
 
     generateFiltered = () => {

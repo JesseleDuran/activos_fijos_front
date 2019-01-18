@@ -10,20 +10,25 @@ import TextField from "@material-ui/core/TextField/TextField";
 import moment from "moment";
 import Button from "@material-ui/core/es/Button/Button";
 import { Workbook } from "react-excel-workbook";
+import ControlledSelect from "../molecules/Select"
 
 const styles = theme => ({});
 
 function ubicacionesToOptions(ubicaciones) {
     return ubicaciones.map(u => {
         return {
-            value: u.codubifis,
             label: u.desubifis,
+            value: u.codubifis,
         };
     });
 }
 
 function marcasToOptions(marcas) {
     return marcas.map(m => ({ label: m, value: m }));
+}
+
+function monthsToOptions() {
+    return moment.months().map((m, index) => ({ label: m, value: index }));
 }
 
 function clasificacionesToOptions(clasificaciones) {
@@ -49,31 +54,25 @@ const ReportesPage = ({
     <Grid container>
         <Grid item xs={12}>
             <MultiSelect
+                label={'Ubicacion geográfica'}
                 options={ubicacionesToOptions(ubicaciones)}
                 values={selectedUbicaciones}
                 onChange={changeUbicaciones}/>
-            <MultiSelect options={marcasToOptions(marcas)}
-                         values={selectedMarcas}
-                         onChange={changeMarcas}/>
+            <MultiSelect 
+                label={'Marcas'}
+                options={marcasToOptions(marcas)}
+                values={selectedMarcas}
+                onChange={changeMarcas}/>
             <MultiSelect
+                label={'Clasificaciones'}
                 options={clasificacionesToOptions(clasificaciones)}
                 values={selectedClasificaciones}
                 onChange={changeClasificaciones}/>
-            <TextField
-                id="datetime-local"
-                label="Fecha"
-                fullWidth
-                type="date"
-                value={fecha}
-                inputProps={{
-                    min: moment(),
-                }}
+            <ControlledSelect
+                label={'Meses'}
+                options={monthsToOptions()}
                 onChange={evt => changeFecha(evt.target.value)}
-                InputLabelProps={{
-                    shrink: true,
-                }}
             />
-
 
             <Workbook filename="example.xlsx" element={<Button disabled={preview.length === 0}>Descargar</Button>}>
                 <Workbook.Sheet data={preview} name="Sheet A">
