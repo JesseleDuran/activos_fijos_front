@@ -15,12 +15,12 @@ import ControlledSelect from "../molecules/Select"
 const styles = theme => ({});
 
 function ubicacionesToOptions(ubicaciones) {
-    return ubicaciones.map(u => {
-        return {
-            label: u.desubifis,
-            value: u.codubifis,
-        };
-    });
+    return ubicaciones.map(u => ({ label: u.desubifis, value: u.codubifis }));
+}
+
+function getEndOfMonth(monthNumber) {
+    var startDate = moment([moment().year(), monthNumber]);
+    return moment(startDate).endOf('month').format('YYYY-DD-MM');
 }
 
 function marcasToOptions(marcas) {
@@ -28,7 +28,7 @@ function marcasToOptions(marcas) {
 }
 
 function monthsToOptions() {
-    return moment.months().map((m, index) => ({ label: m, value: index }));
+    return moment.months().map((m, index) => ({ label: m, value: getEndOfMonth(index) }));
 }
 
 function clasificacionesToOptions(clasificaciones) {
