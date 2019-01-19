@@ -59,7 +59,7 @@ const SideMenu = ({ user, classes, history }) => {
             <Divider/>
             <SideMenuItem
                 to="/logout"
-                label="Cerrar Sesion"
+                label="Cerrar sesión"
                 icon="exit_to_app"
                 history={history}
             />
