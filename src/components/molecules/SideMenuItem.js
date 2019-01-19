@@ -41,7 +41,7 @@ const renderAsSingleItem = ({
     onClick={goTo}
     style={{ height: "6vh", paddingLeft: 8 * level + "px" }}
   >
-    <Icon color="action">{icon}</Icon>
+    <Icon color={isActive ? "primary" : "action"}>{icon}</Icon>
     <ListItemText
       primary={label}
       style={{ fontWeight: isActive ? 500 : 300 }}
@@ -73,7 +73,7 @@ class ListMenu extends Component {
         onClick={this.handleClick}
         style={{ height: "6vh", paddingLeft: 8 * level + "px" }}
       >
-        <Icon color="action">{icon}</Icon>
+        <Icon color={isActive ? "primary" : "action"}>{icon}</Icon>
         <ListItemText
           primary={label}
           style={{ fontWeight: isActive ? 500 : 300 }}
