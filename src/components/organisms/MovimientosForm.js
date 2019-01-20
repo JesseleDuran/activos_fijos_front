@@ -50,7 +50,7 @@ class MovimientosForm extends React.Component {
             </Grid>
             <Grid item xs={12}>
                 <HttpSelect
-                    label="Personal Responsable"
+                    label="Personal responsable"
                     fetch={getPersonal}
                     itemKey="codper"
                     itemLabel={d => `${d.cedper} - ${d.nomper} ${d.apeper}`}
@@ -62,7 +62,7 @@ class MovimientosForm extends React.Component {
             {(type === 'prestamo' || type === 'salida') && <Grid item xs={12}>
                 <TextField
                     id="datetime-local"
-                    label="Tiempo Limite"
+                    label="Tiempo límite"
                     fullWidth
                     type="datetime-local"
                     value={this.state.tiempo_limite}

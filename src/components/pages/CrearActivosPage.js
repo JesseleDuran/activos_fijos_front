@@ -14,7 +14,7 @@ import ActivosForm from "../organisms/ActivosForm";
 const styles = theme => ({});
 
 const steps = [
-    "Escoge la Orden de Compra",
+    "Escoger la Orden de Compra",
     "Ingresar los datos del Activo",
 ];
 
@@ -53,7 +53,7 @@ const CrearActivosPage = ({ step, clasificaciones, marcas, ubicaciones, ordenes,
                     disabled={step === 0}
                     onClick={handleBack}
                 >
-                    Atras
+                    Atrás
                 </Button>
                 {step === steps.length - 1 ?
                     <Button

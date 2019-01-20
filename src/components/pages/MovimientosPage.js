@@ -67,7 +67,7 @@ class MovimientosPage extends React.Component {
             </Grid>
             <Grid container item xs={12} justify="flex-end" style={{ padding: "1%" }}>
                 <Button disabled={!isCompleted()} onClick={create} variant="contained" color="primary">
-                    Crear Movimiento
+                    Crear movimiento
                 </Button>
             </Grid>
         </Paper>;

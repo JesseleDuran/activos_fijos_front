@@ -8,7 +8,7 @@ import { getCodemp } from "../utils/state";
 import ReportesPage from "../components/pages/ReportesPage";
 import moment from "moment";
 
-@Page({ title: "Generarador de Reportes" })
+@Page({ title: "Reportes de Depreciación" })
 class MovimientosContainer extends Component {
 
     state = {
