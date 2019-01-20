@@ -14,7 +14,7 @@ const styles = theme => ({
   },
 });
 
-function generateDetailLevelDropdown(notifications) {
+function generateNotificationsItems(notifications) {
     return notifications.map((i, ind) => [
         <ListItem button>
                 <ListItemIcon>
@@ -37,7 +37,7 @@ function NotificationList(props) {
         <div>
             <List 
                 component="nav">
-                {generateDetailLevelDropdown(notifications)}
+                {generateNotificationsItems(notifications)}
             </List>
         </div>
     );
