@@ -40,16 +40,20 @@ export default [
         Header: "Depreciacion",
         columns: [
             {
-                Header: "Vida util Faltante en meses",
-                accessor: "vida_util_faltante_meses",
+                Header: "Depreciación mensual",
+                accessor: "depreciacion_por_mes",
             },
             {
-                Header: "Depreciacion Acumulado en meses",
+                Header: "Meses depreciados",
+                accessor: "meses_depreciados",
+            },
+            {
+                Header: "Depreciacion acumulada",
                 accessor: "depreciacion_acumulada_meses",
             },
             {
-                Header: "Depreciacion por mes",
-                accessor: "depreciacion_por_mes",
+                Header: "Valor neto",
+                accessor: "valor_neto",
             },
         ],
     },

@@ -15,7 +15,7 @@ const styles = theme => ({});
 
 function getEndOfMonth(monthNumber) {
     var startDate = moment([moment().year(), monthNumber]);
-    return moment(startDate).endOf('month').format('YYYY-DD-MM');
+    return moment(startDate).endOf('month').format('YYYY-MM-DD');
 }
 
 function monthsToOptions() {
