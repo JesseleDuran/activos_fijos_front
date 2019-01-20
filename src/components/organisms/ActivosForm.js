@@ -4,6 +4,8 @@ import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField/TextField";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
+import { ubicacionesToOptions, marcasToOptions, clasificacionesToOptions } from "../../utils/functions"
+import ControlledSelect from "../molecules/Select"
 
 class ActivosForm extends React.Component {
 
@@ -108,59 +110,29 @@ class ActivosForm extends React.Component {
                 />
             </Grid>
             <Grid item xs={6}>
-                <TextField
-                id="standard-select-ubic"
-                select
-                label="Ubicacion Geografica"
-                value={this.state.cod_ubicacion_geografica || this.state.desubifis}
-                onChange={this.handleChange("cod_ubicacion_geografica")}
-                helperText="Seleccione Ubicacion"
-                disabled={disabled}
-                margin="normal"
-            >
-                {ubicaciones.map(({ codubifis, desubifis }) => (
-                    <MenuItem key={codubifis} value={codubifis}>
-                        {desubifis}
-                    </MenuItem>
-                ))}
-            </TextField>
+                <ControlledSelect
+                    id="standard-select-ubic"
+                    label={'Ubicacion geográfica'}
+                    options={ubicacionesToOptions(ubicaciones)}
+                    onChange={this.handleChange("cod_ubicacion_geografica")}
+                />
             </Grid>
             
             <Grid item xs={3}>
-                <TextField
+                <ControlledSelect
                     id="standard-select-brand"
-                    select
                     label="Marca"
-                    value={this.state.marca}
+                    options={marcasToOptions(marcas)}
                     onChange={this.handleChange("marca")}
-                    helperText="Seleccione una marca"
-                    disabled={disabled}
-                    margin="normal"
-                >
-                    {marcas.map(option => (
-                        <MenuItem key={option} value={option}>
-                            {option}
-                        </MenuItem>
-                    ))}
-                </TextField>
+                />
             </Grid>
             <Grid item xs={3}>
-                <TextField
-                    id="standard-select-cla"
-                    select
-                    disabled={disabled}
+                <ControlledSelect
+                    id="standard-select-clasificacion"
                     label="Clasificación"
-                    value={this.state.clasificacion}
+                    options={clasificacionesToOptions(clasificaciones)}
                     onChange={this.handleChange("clasificacion")}
-                    helperText="Seleccione clasificación"
-                    margin="normal"
-                >
-                    {clasificaciones.map(option => (
-                        <MenuItem key={option} value={option}>
-                            {option}
-                        </MenuItem>
-                    ))}
-                </TextField>
+                />
             </Grid>
             <FormControlLabel
                 disabled={disabled}

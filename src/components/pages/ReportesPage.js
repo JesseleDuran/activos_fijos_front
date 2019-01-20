@@ -1,38 +1,25 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
-import { translateKey } from "utils/translate";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import tableConfig from "../../tableConfig/reportes";
 import MultiSelect from "../molecules/MultiSelect";
-import TextField from "@material-ui/core/TextField/TextField";
 import moment from "moment";
 import Button from "@material-ui/core/es/Button/Button";
 import { Workbook } from "react-excel-workbook";
 import ControlledSelect from "../molecules/Select"
+import { ubicacionesToOptions, marcasToOptions, clasificacionesToOptions } from "../../utils/functions"
 
 const styles = theme => ({});
-
-function ubicacionesToOptions(ubicaciones) {
-    return ubicaciones.map(u => ({ label: u.desubifis, value: u.codubifis }));
-}
 
 function getEndOfMonth(monthNumber) {
     var startDate = moment([moment().year(), monthNumber]);
     return moment(startDate).endOf('month').format('YYYY-DD-MM');
 }
 
-function marcasToOptions(marcas) {
-    return marcas.map(m => ({ label: m, value: m }));
-}
-
 function monthsToOptions() {
     return moment.months().map((m, index) => ({ label: m, value: getEndOfMonth(index) }));
-}
-
-function clasificacionesToOptions(clasificaciones) {
-    return clasificaciones.map(m => ({ label: m, value: m }));
 }
 
 const ReportesPage = ({
