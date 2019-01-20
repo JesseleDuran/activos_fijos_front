@@ -6,8 +6,6 @@ import { autoAuth, logout } from "actions/auth";
 import Route from "./Route";
 import Activos from "./Activos";
 import AuthRoute from "./AuthRoute";
-import { getHostname } from "utils/functions";
-import config from "config";
 import PageLoader from "PageLoader";
 import CrearActivos from "./CrearActivos";
 import Movimientos from "./Movimientos";
