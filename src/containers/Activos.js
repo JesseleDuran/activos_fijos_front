@@ -10,7 +10,7 @@ import { showError } from "../actions/UI";
 
 const REQUEST_TIMEOUT = 1000;
 
-@Page({ title: "Activos" })
+@Page({ title: "Inventario" })
 class ActivosContainer extends Component {
     fetchTimeout = null;
 
