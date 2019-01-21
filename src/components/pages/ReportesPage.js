@@ -63,17 +63,19 @@ const ReportesPage = ({
 
             <Workbook filename="example.xlsx" element={<Button disabled={preview.length === 0}>Descargar</Button>}>
                 <Workbook.Sheet data={preview} name="Sheet A">
-                    <Workbook.Column label="# Activo" value="n_activo"/>
-                    <Workbook.Column label="Costo" value="costo"/>
-                    <Workbook.Column label="Incorporado" value="created_at"/>
+                    <Workbook.Column label="Activo N°" value="n_activo"/>
+                    <Workbook.Column label="Marca" value="marca"/>
                     <Workbook.Column label="Modelo" value="modelo"/>
-                    <Workbook.Column label="Costo" value="costo"/>
-
-                    <Workbook.Column label="Es depreciable" value="is_depreciable"/>
                     <Workbook.Column label="Serial" value="serial"/>
                     <Workbook.Column label="Descripcion" value="descripcion"/>
-                    <Workbook.Column label="# Orden de compra" value="numero_orden_compra"/>
+
                     <Workbook.Column label="Vida util (meses)" value="vida_util_meses"/>
+                    <Workbook.Column label="Costo" value="costo"/>
+                    <Workbook.Column label="N° Orden de Compra" value="numero_orden_compra"/>
+
+
+
+                    <Workbook.Column label="Incorporado" value="created_at"/>
 
                     <Workbook.Column label="Estado" value="estado_actual"/>
                     <Workbook.Column label="Clasificacion" value="clasificacion"/>
@@ -81,16 +83,10 @@ const ReportesPage = ({
                     <Workbook.Column label="Direccion Ubicacion Fisica" value="dirubifis"/>
                     <Workbook.Column label="Cedula" value="cedper"/>
 
-                    <Workbook.Column label="Nombre" value="nomper"/>
-                    <Workbook.Column label="Apellido" value="apeper"/>
-                    <Workbook.Column label="Direccion del Propietario" value="dirper"/>
-                    <Workbook.Column label="Telefono Propietario" value="telhabper"/>
-                    <Workbook.Column label="Celular Propietario" value="telmovper"/>
-
-                    <Workbook.Column label="Vida util Faltante en meses" value="vida_util_faltante_meses"/>
-                    <Workbook.Column label="Depreciacion acumulada en meses" value="depreciacion_acumulada_meses"/>
-                    <Workbook.Column label="Depreciacion por mes" value="depreciacion_por_mes"/>
-
+                    <Workbook.Column label="Depreciación mensual" value="depreciacion_por_mes"/>
+                    <Workbook.Column label="Meses depreciados" value="meses_depreciados"/>
+                    <Workbook.Column label="Depreciacion acumulada" value="depreciacion_acumulada_meses"/>
+                    <Workbook.Column label="Valor neto" value="valor_neto"/>
                 </Workbook.Sheet>
             </Workbook>
             <Button onClick={apply} disabled={fecha === null}>Aplicar</Button>
