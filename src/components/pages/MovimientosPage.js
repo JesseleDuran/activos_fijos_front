@@ -8,10 +8,15 @@ import Paper from "@material-ui/core/Paper/Paper";
 import ActivosSelector from "../organisms/ActivosSelector";
 import MovimientosForm from "../organisms/MovimientosForm";
 import Button from "@material-ui/core/Button/Button";
+import ControlledSelect from "../molecules/Select"
 
 const styles = theme => ({});
 
 const TYPES = ["Asignacion", "Desincorporacion", "Reasignacion", "Prestamo", "Reparacion", "Salida"];
+
+export const movementTypesToOptions = (movementTypes) => {
+    return movementTypes.map(type => ({ label: type, value: type }));
+}
 
 class MovimientosPage extends React.Component {
 
@@ -33,20 +38,12 @@ class MovimientosPage extends React.Component {
         return <Paper>
             <Grid container>
                 <Grid item xs={12}>
-                    <TextField
+                    <ControlledSelect
                         id="standard-select-movement"
-                        select
                         label="Tipo de Movimiento"
-                        value={movementType}
+                        options={movementTypesToOptions(TYPES)}
                         onChange={changeType}
-                        margin="normal"
-                    >
-                        {TYPES.map((type, index) => (
-                            <MenuItem key={type} value={type}>
-                                {type}
-                            </MenuItem>
-                        ))}
-                    </TextField>
+                    />
                 </Grid>
                 <Grid item xs={6}>
                     <ActivosSelector
