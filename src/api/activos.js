@@ -46,7 +46,7 @@ export const deleteActivo = id =>
         .delete(`/activos/${id}`)
         .then(({ data }) => data);
 
-export const getOrdenes = () => request().get("/ordenescompra").then(({ data }) => data);
+export const getOrdenes = () => request().get("/ordenescomprafactura").then(({ data }) => data);
 
 export const getUbications = () => request().get("/ubicacionfisica").then(({ data }) => data);
 

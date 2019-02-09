@@ -55,12 +55,13 @@ class OrdenesSelector extends React.Component {
     };
 
     onSelect = selected => {
-        const { onSelect, orden } = this.props;
-        onSelect(orden === selected ? null : selected);
+        console.log(selected);
+        const { onSelect, activo } = this.props;
+        onSelect((activo.numero_orden_compra === selected.orden_compra && activo.numero_factura === selected.numero_factura && activo.codigo_articulo === selected.codigo_articulo) ? null : selected);
     };
 
     render = () => {
-        const { orden } = this.props;
+        const { activo } = this.props;
         const { filtered } = this.state;
         return <Grid container>
             <Grid item style={{ height: "60px" }}>
@@ -77,16 +78,15 @@ class OrdenesSelector extends React.Component {
                             rowRenderer={({ key, index, style }) => {
                                 return <Grid key={key} style={style} container title={filtered[index].obscom}>
                                     <Grid item xs={11} style={{ alignSelf: "center" }}>
-                                        <ChoppedText text={`${filtered[index].numordcom} - ${filtered[index].obscom}`} length={200}/>
+                                        <ChoppedText text={`${filtered[index].orden_compra} - ${filtered[index].numero_factura} - ${filtered[index].unidades} unidades de ${filtered[index].descripcion_activo}`} length={200}/>
                                     </Grid>
                                     <Grid item xs={1}>
                                         <Checkbox
                                             type="checkbox"
-                                            onClick={() => this.onSelect(filtered[index].numordcom)}
-                                            checked={orden === filtered[index].numordcom}/>
+                                            onClick={() => this.onSelect(filtered[index])}
+                                            checked={activo.numero_orden_compra === filtered[index].orden_compra && activo.numero_factura === filtered[index].numero_factura && activo.codigo_articulo === filtered[index].codigo_articulo}/>
                                     </Grid>
                                 </Grid>;
-
                             }
                             }
                         />

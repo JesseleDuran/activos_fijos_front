@@ -4,8 +4,9 @@ import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField/TextField";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
-import { ubicacionesToOptions, marcasToOptions, clasificacionesToOptions } from "../../utils/functions"
+import { marcasToOptions, clasificacionesToOptions } from "../../utils/functions"
 import ControlledSelect from "../molecules/Select"
+import moment from "moment"
 
 class ActivosForm extends React.Component {
 
@@ -13,6 +14,7 @@ class ActivosForm extends React.Component {
         super(props);
         this.state = {
             ...props.activo,
+            'is_depreciable' : true
         };
     }
 
@@ -26,12 +28,12 @@ class ActivosForm extends React.Component {
 
     render = () => {
 
-        const { clasificaciones, marcas, ubicaciones, disabled = false } = this.props;
+        const { clasificaciones, marcas, disabled = false } = this.props;
         return <Grid container spacing={24}>
             <Grid item xs={3}>
                 <TextField
-                    id="standard-number"
-                    label="# Orden de compra"
+                    id="standard-orden"
+                    label="N° Orden de compra"
                     value={this.state.numero_orden_compra}
                     onChange={this.handleChange("numero_orden_compra")}
                     type="number"
@@ -42,10 +44,112 @@ class ActivosForm extends React.Component {
                     margin="normal"
                 />
             </Grid>
+
+            <Grid item xs={3}>
+                <TextField
+                    id="standard-factura"
+                    label="Factura"
+                    value={this.state.numero_factura}
+                    onChange={this.handleChange("numero_factura")}
+                    type="text"
+                    disabled
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    margin="normal"
+                />
+            </Grid>
+
+            <Grid item xs={6}>
+                <TextField
+                    id="standard-proveedor"
+                    label="Proveedor"
+                    value={this.state.nombre_proveedor}
+                    onChange={this.handleChange("codigo_proveedor")}
+                    type="text"
+                    disabled
+                    margin="normal"
+                    style={{ width: "90%" }}
+                />
+            </Grid>
+
+            <Grid item xs={3}>
+                <TextField
+                    id="standard-fecha-compra"
+                    label="Fecha de Compra"
+                    value={moment(this.state.fecha_compra).format('DD/MM/YYYY')}
+                    onChange={this.handleChange("fecha_compra")}
+                    type="text"
+                    disabled
+                    margin="normal"
+                />
+            </Grid>
+
+            <Grid item xs={3}>
+                <TextField
+                    id="standard-costo"
+                    label="Costo"
+                    value={this.state.costo_unitario}
+                    onChange={this.handleChange("costo_unitario")}
+                    type="text"
+                    disabled
+                    margin="normal"
+                />
+            </Grid>
+
+            <Grid item xs={3}>
+                <TextField
+                    id="standard-condicion-pago"
+                    label="Condición de Pago"
+                    value={this.state.condicion_pago}
+                    onChange={this.handleChange("condicion_pago")}
+                    type="text"
+                    disabled
+                    margin="normal"
+                />
+            </Grid>
+
+            <Grid item xs={3}>
+                <TextField
+                    id="standard-cuenta-presupuestaria"
+                    label="Cuenta Presupuestaria"
+                    value={this.state.cuenta_presupuestaria}
+                    onChange={this.handleChange("cuenta_presupuestaria")}
+                    type="text"
+                    disabled
+                    margin="normal"
+                />
+            </Grid>
+
+            <Grid item xs={3}>
+                <TextField
+                    id="standard-centro-costo"
+                    label="Centro de Costo"
+                    value={this.state.centro_costo.substr(6)}
+                    onChange={this.handleChange("centro_costo")}
+                    type="text"
+                    disabled
+                    margin="normal"
+                />
+            </Grid>
+
+            <Grid item xs={6}>
+                <TextField
+                    id="standard-proveedor"
+                    label="Ubicación administrativa"
+                    value={this.state.unidad_administrativa}
+                    onChange={this.handleChange("centro_costo")}
+                    type="text"
+                    disabled
+                    margin="normal"
+                    style={{ width: "90%" }}
+                />
+            </Grid>
+
             <Grid item xs={3}>
                 <TextField
                     id="standard-number3"
-                    label="# de Activo"
+                    label="N° de Activo"
                     value={this.state.n_activo}
                     onChange={this.handleChange("n_activo")}
                     type="number"
@@ -56,20 +160,7 @@ class ActivosForm extends React.Component {
                     margin="normal"
                 />
             </Grid>
-            <Grid item xs={3}>
-                <TextField
-                    id="standard-number2"
-                    label="Meses de vida útil"
-                    value={this.state.vida_util_meses}
-                    onChange={this.handleChange("vida_util_meses")}
-                    type="number"
-                    disabled={disabled}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    margin="normal"
-                />
-            </Grid>
+            
             <Grid item xs={3}>
                 <TextField
                     id="standard-number4"
@@ -102,19 +193,11 @@ class ActivosForm extends React.Component {
                 <TextField
                     id="standard-textarea"
                     label="Descripción"
-                    value={this.state.descripcion}
-                    onChange={this.handleChange("descripcion")}
+                    value={this.state.descripcion_activo}
+                    onChange={this.handleChange("descripcion_activo")}
                     multiline
                     disabled={disabled}
                     margin="normal"
-                />
-            </Grid>
-            <Grid item xs={6}>
-                <ControlledSelect
-                    id="standard-select-ubic"
-                    label={'Ubicacion geográfica'}
-                    options={ubicacionesToOptions(ubicaciones)}
-                    onChange={this.handleChange("cod_ubicacion_geografica")}
                 />
             </Grid>
             
@@ -143,8 +226,24 @@ class ActivosForm extends React.Component {
                         value={"HEY"}
                     />
                 }
-                label={"¿Es despreciable?"}
+                label={"¿Es depreciable?"}
             />
+            {this.state.is_depreciable ?
+                <Grid item xs={3}>
+                    <TextField
+                        id="standard-number2"
+                        label="Meses de vida útil"
+                        value={this.state.vida_util_meses}
+                        onChange={this.handleChange("vida_util_meses")}
+                        type="number"
+                        disabled={disabled}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        margin="normal"
+                    />
+                </Grid> : ''
+            }
 
         </Grid>;
 

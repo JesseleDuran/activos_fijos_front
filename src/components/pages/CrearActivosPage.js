@@ -14,11 +14,11 @@ import ActivosForm from "../organisms/ActivosForm";
 const styles = theme => ({});
 
 const steps = [
-    "Escoger la Orden de Compra",
+    "Escoger la Orden de Compra y la Factura",
     "Ingresar los datos del Activo",
 ];
 
-const CrearActivosPage = ({ step, clasificaciones, marcas, ubicaciones, ordenes, handleNext, handleBack, onSelectOrden, isCompleted, activo, onActivoChange, create }) => (
+const CrearActivosPage = ({ step, clasificaciones, marcas, ordenes, handleNext, handleBack, onSelectOrden, isCompleted, activo, onActivoChange, create }) => (
     <Grid container>
         <Paper style={{ width: "100%", height: "80vh" }}>
             <Stepper nonLinear activeStep={step}>
@@ -39,13 +39,12 @@ const CrearActivosPage = ({ step, clasificaciones, marcas, ubicaciones, ordenes,
                 height: "65vh",
             }}>
                 <OrdenesSelector
-                    orden={activo.numero_orden_compra}
+                    activo={activo}
                     ordenes={ordenes}
                     onSelect={onSelectOrden}/>
                 <ActivosForm activo={activo}
                              onChange={onActivoChange}
                              marcas={marcas}
-                             ubicaciones={ubicaciones}
                              clasificaciones={clasificaciones}/>
             </ViewPager>
             <div>
