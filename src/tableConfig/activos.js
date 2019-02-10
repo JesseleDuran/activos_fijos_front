@@ -3,6 +3,7 @@ import Search from "@material-ui/icons/Search";
 import Delete from "@material-ui/icons/Close";
 import Add from "@material-ui/icons/AddCircleOutline";
 import IconButton from "@material-ui/core/IconButton";
+import { displayDateRightFormat } from "../utils/dates"
 
 export default (show, remove) => [
     // Follow React-Table Documentation https://react-table.js.org
@@ -10,8 +11,13 @@ export default (show, remove) => [
         Header: "Información General",
         columns: [
             {
-                Header: "#",
+                Header: "N°",
                 accessor: "n_activo",
+            },
+            {
+                id: "created_at",
+                Header: "Incorporación al sistema",
+                accessor: created_at => displayDateRightFormat(created_at),
             },
             {
                 Header: "Marca",
@@ -28,6 +34,7 @@ export default (show, remove) => [
             {
                 Header: "Descripción",
                 accessor: "descripcion",
+                width: 150
             },
             {
                 Header: "Vida Útil (Meses)",
@@ -37,33 +44,19 @@ export default (show, remove) => [
             {
                 Header: "Clasificación",
                 accessor: "clasificacion",
-            },
-        ],
-    },
-    {
-        Header: "Propietario",
-        columns: [
-            {
-                Header: "Cédula",
-                accessor: "cedper",
-            },
-            {
-                Header: "Nombre",
-                accessor: "nomper",
-            },
-            {
-                Header: "Apellido",
-                accessor: "apeper",
-            },
+            }
         ],
     },
     {
         Header: "Estado Actual",
-        accessor: "estado_actual",
         columns: [
             {
-                Header: "Estado Actual",
-                accessor: "estado_actual",
+                Header: "Estatus",
+                accessor: "estatus",
+            },
+            {
+                Header: "Condición",
+                accessor: "condicion",
             },
         ],
     },
@@ -71,8 +64,40 @@ export default (show, remove) => [
         Header: "Datos de compra",
         columns: [
             {
-                Header: "Id Orden",
-                accessor: "id_soc_ordencompra",
+                Header: "N° Orden de Compra",
+                accessor: "numero_orden_compra",
+                width: 150
+            },
+            {
+                Header: "N° Factura",
+                accessor: "numero_factura",
+                width: 150
+            },
+            {
+                Header: "Cuenta presupuestaria",
+                accessor: "cuenta_presupuestaria",
+            },
+            {
+                Header: "Centro de costo",
+                accessor: "centro_costo",
+            },
+            {
+                id: "fecha_compra",
+                Header: "Fecha de Compra",
+                accessor: fecha_compra => displayDateRightFormat(fecha_compra),
+            },
+            {
+                Header: "Costo",
+                accessor: "costo_unitario",
+            },
+            {
+                Header: "Condición de pago",
+                accessor: "condicion_pago",
+            },
+            {
+                Header: "Proveedor",
+                accessor: "nombre_proveedor",
+                width: 150
             },
         ],
     },
@@ -80,8 +105,12 @@ export default (show, remove) => [
         Header: "Ubicación",
         columns: [
             {
-                Header: "Ubicación Geográfica",
-                accessor: "dirubifis",
+                Header: "Geográfica",
+                accessor: "ubicacion_geografica",
+            },
+            {
+                Header: "Administrativa",
+                accessor: "unidad_administrativa",
             },
         ],
     },

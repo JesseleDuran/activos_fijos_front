@@ -6,7 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
 import { marcasToOptions, clasificacionesToOptions } from "../../utils/functions"
 import ControlledSelect from "../molecules/Select"
-import moment from "moment"
+import { displayDateRightFormat } from "../../utils/dates"
 
 class ActivosForm extends React.Component {
 
@@ -77,7 +77,7 @@ class ActivosForm extends React.Component {
                 <TextField
                     id="standard-fecha-compra"
                     label="Fecha de Compra"
-                    value={moment(this.state.fecha_compra).format('DD/MM/YYYY')}
+                    value={displayDateRightFormat(this.state.fecha_compra)}
                     onChange={this.handleChange("fecha_compra")}
                     type="text"
                     disabled
@@ -130,19 +130,6 @@ class ActivosForm extends React.Component {
                     type="text"
                     disabled
                     margin="normal"
-                />
-            </Grid>
-
-            <Grid item xs={6}>
-                <TextField
-                    id="standard-proveedor"
-                    label="Ubicación administrativa"
-                    value={this.state.unidad_administrativa}
-                    onChange={this.handleChange("centro_costo")}
-                    type="text"
-                    disabled
-                    margin="normal"
-                    style={{ width: "90%" }}
                 />
             </Grid>
 
