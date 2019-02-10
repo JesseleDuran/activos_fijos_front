@@ -49,7 +49,8 @@ class CrearActivosContainer extends Component {
             numero_factura: null,
             codigo_tipo_factura: null,
             codigo_proveedor: null,
-            cedula_beneficiario: null
+            cedula_beneficiario: null,
+            vida_util_meses: null
         },
     };
 

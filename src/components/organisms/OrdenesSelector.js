@@ -32,14 +32,14 @@ class OrdenesSelector extends React.Component {
     prepareSearchableString = item => {
         const separator = "Ŗ";
         return [item.obscom]
-            .concat(item.forpagcom)
-            .concat(item.fecaprord)
-            .concat(item.fechentdesde)
-            .concat(item.fechenthasta)
-            .concat(item.cod_pro)
-            .concat(item.forpagcom)
-            .concat(item.montot)
-            .concat(item.numordcom)
+            .concat(item.orden_compra)
+            .concat(item.numero_factura)
+            .concat(item.unidades)
+            .concat(item.descripcion_activo)
+            .concat(item.nombre_proveedor)
+            .concat(item.condicion_pago)
+            .concat(item.centro_costo)
+            .concat(item.fecha_compra)
             .join(separator)
             .toLowerCase();
     };
