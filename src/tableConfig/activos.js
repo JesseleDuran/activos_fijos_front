@@ -58,6 +58,10 @@ export default (show, remove) => [
                 Header: "Condición",
                 accessor: "condicion",
             },
+            {
+                Header: "Observaciones",
+                accessor: "observaciones",
+            },
         ],
     },
     {
