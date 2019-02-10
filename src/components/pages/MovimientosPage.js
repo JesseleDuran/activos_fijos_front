@@ -37,12 +37,13 @@ class MovimientosPage extends React.Component {
         } = this.props;
         return <Paper>
             <Grid container>
-                <Grid item xs={12}>
+                <Grid item xs={12} style={{ padding: "1%" }}>
                     <ControlledSelect
                         id="standard-select-movement"
                         label="Tipo de Movimiento"
                         options={movementTypesToOptions(TYPES)}
                         onChange={changeType}
+                        value={'Asignacion'}
                     />
                 </Grid>
                 <Grid item xs={6}>

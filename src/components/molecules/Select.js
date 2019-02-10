@@ -13,7 +13,7 @@ const styles = theme => ({
 
 class ControlledSelect extends React.Component {
 	state = {
-		value: "",
+		value: this.props.value != "" ? this.props.value : "",
 		open: false
 	};
 

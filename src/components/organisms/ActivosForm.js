@@ -194,6 +194,7 @@ class ActivosForm extends React.Component {
                     label="Marca"
                     options={marcasToOptions(marcas)}
                     onChange={this.handleChange("marca")}
+                    value=""
                 />
             </Grid>
             <Grid item xs={3}>
@@ -202,6 +203,7 @@ class ActivosForm extends React.Component {
                     label="Clasificación"
                     options={clasificacionesToOptions(clasificaciones)}
                     onChange={this.handleChange("clasificacion")}
+                    value=""
                 />
             </Grid>
             <FormControlLabel

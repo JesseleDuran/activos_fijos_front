@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import Page from "../hocs/Page";
 import { showError } from "../actions/UI";
 import CrearActivosPage from "../components/pages/CrearActivosPage";
-import { createActivo, getBrands, getClasification, getOrdenes, getUbications } from "../api/activos";
+import { createActivo, getBrands, getClasification, getOrdenes } from "../api/activos";
 import { getCodemp } from "../reducers/auth";
 
 const ActivoKeys = {

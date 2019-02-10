@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import Page from "../hocs/Page";
 import { showError } from "../actions/UI";
 import MovimientosPage from "../components/pages/MovimientosPage";
-import { createMovimiento, getActivos, getMovimiento, getPersonal, getActivoByMovimiento } from "../api/activos";
+import { createMovimiento, getMovimiento, getPersonal, getActivoByMovimiento } from "../api/activos";
 import { getCodemp } from "../utils/state";
 import Asignation from "../pdf-templates/Asignation";
 import { render } from "../pdf-templates/PDFGenerator";
@@ -18,7 +18,7 @@ const fieldsFilledsByType = {
     'salida': 4
 };
 const initialState = {
-    movementType: null,
+    movementType: 'asignacion',
     activos: [],
     selected: [], // Activos!
     ubicaciones: [],
@@ -34,6 +34,7 @@ class MovimientosContainer extends Component {
     };
 
     componentWillMount() {
+        this.setState({ ...initialState }, this.getActivos);
     }
 
     changeType = (evt) => {
