@@ -50,6 +50,8 @@ export const getOrdenes = () => request().get("/ordenescomprafactura").then(({ d
 
 export const getUbications = () => request().get("/ubicacionfisica").then(({ data }) => data);
 
+export const getUbicationsAdmin = () => request().get("/ubicacionadministrativa").then(({ data }) => data);
+
 export const getPersonal = query => request().get("/personal", {
     params: {
         query,

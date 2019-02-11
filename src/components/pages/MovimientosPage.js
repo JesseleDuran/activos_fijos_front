@@ -31,7 +31,8 @@ class MovimientosPage extends React.Component {
             activos,
             selected,
             getPersonal,
-            ubicaciones,
+            ubicacionesFisicas,
+            ubicacionesAdministrativas,
             isCompleted,
             create,
         } = this.props;
@@ -60,7 +61,9 @@ class MovimientosPage extends React.Component {
                         data={data}
                         onChange={onChangeData}
                         getPersonal={getPersonal}
-                        ubicaciones={ubicaciones}/>
+                        ubicacionesFisicas={ubicacionesFisicas}
+                        ubicacionesAdministrativas={ubicacionesAdministrativas}
+                        />
                 </Grid>
             </Grid>
             <Grid container item xs={12} justify="flex-end" style={{ padding: "1%" }}>

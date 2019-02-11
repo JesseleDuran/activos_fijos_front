@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import Page from "../hocs/Page";
 import { showError } from "../actions/UI";
 import MovimientosPage from "../components/pages/MovimientosPage";
-import { createMovimiento, getMovimiento, getPersonal, getActivoByMovimiento } from "../api/activos";
+import { createMovimiento, getMovimiento, getPersonal, getActivoByMovimiento, getUbications, getUbicationsAdmin } from "../api/activos";
 import { getCodemp } from "../utils/state";
 import Asignation from "../pdf-templates/Asignation";
 import { render } from "../pdf-templates/PDFGenerator";
@@ -21,24 +21,32 @@ const initialState = {
     movementType: 'asignacion',
     activos: [],
     selected: [], // Activos!
-    ubicaciones: [],
+    ubicacionesFisicas: [],
+    ubicacionesAdministrativas: [],
     data: {},
 };
 
 @Page({ title: "Movimientos" })
 class MovimientosContainer extends Component {
 
-
     state = {
         ...initialState,
     };
 
-    componentWillMount() {
-        this.setState({ ...initialState }, this.getActivos);
+    async componentWillMount() {
+        const ubicacionesFisicas = await getUbications();
+        const ubicacionesAdministrativas = await getUbicationsAdmin();
+        this.setState({ ...initialState, ubicacionesFisicas, ubicacionesAdministrativas }, this.getActivos);
     }
 
     changeType = (evt) => {
-        this.setState({ ...initialState, movementType: evt.target.value.toLowerCase() }, this.getActivos);
+        console.log('oli')
+        this.setState({ 
+            activos: [], 
+            selected: [],
+            data: {},
+            movementType: evt.target.value.toLowerCase() 
+        }, this.getActivos);
     };
 
     getActivos = () => {
@@ -79,6 +87,9 @@ class MovimientosContainer extends Component {
 
     isCompleted = () => {
         const notNullValues = Object.keys(this.state.data).filter(key => this.state.data[key]).length;
+        if (this.state.movementType === 'asignacion') {
+            return notNullValues >= fieldsFilledsByType[this.state.movementType];
+        }
         return notNullValues === fieldsFilledsByType[this.state.movementType];
     };
 
@@ -93,7 +104,6 @@ class MovimientosContainer extends Component {
     toPdfIfNeeded = (type, movements) => {
         if (type === 0) {
             this.renderAsignacion(movements);
-        } else if (type === 5) {
         }
     };
 
@@ -108,12 +118,14 @@ class MovimientosContainer extends Component {
 
         createMovimiento(movimiento).then(res => {
             this.toPdfIfNeeded(movementType, res);
-            this.setState({ ...initialState });
+            this.setState({ activos: [], 
+                selected: [],
+                data: {}, });
         });
     };
 
     render = () => {
-        const { movementType, data, activos, selected, ubicaciones } = this.state;
+        const { movementType, data, activos, selected, ubicacionesFisicas, ubicacionesAdministrativas } = this.state;
         return (
             <MovimientosPage
                 activos={activos}
@@ -125,7 +137,8 @@ class MovimientosContainer extends Component {
                 selected={selected}
                 data={data}
                 getPersonal={getPersonal}
-                ubicaciones={ubicaciones}
+                ubicacionesFisicas={ubicacionesFisicas}
+                ubicacionesAdministrativas={ubicacionesAdministrativas}
                 isCompleted={this.isCompleted}
                 create={this.create}
             />
