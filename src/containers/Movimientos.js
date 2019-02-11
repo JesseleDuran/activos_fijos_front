@@ -21,8 +21,6 @@ const initialState = {
     movementType: 'asignacion',
     activos: [],
     selected: [], // Activos!
-    ubicacionesFisicas: [],
-    ubicacionesAdministrativas: [],
     data: {},
 };
 
@@ -31,6 +29,8 @@ class MovimientosContainer extends Component {
 
     state = {
         ...initialState,
+        ubicacionesFisicas: [],
+        ubicacionesAdministrativas: [],
     };
 
     async componentWillMount() {
@@ -41,12 +41,7 @@ class MovimientosContainer extends Component {
 
     changeType = (evt) => {
         console.log('oli')
-        this.setState({ 
-            activos: [], 
-            selected: [],
-            data: {},
-            movementType: evt.target.value.toLowerCase() 
-        }, this.getActivos);
+        this.setState({ ...initialState, movementType: evt.target.value.toLowerCase() }, this.getActivos);
     };
 
     getActivos = () => {
@@ -118,9 +113,7 @@ class MovimientosContainer extends Component {
 
         createMovimiento(movimiento).then(res => {
             this.toPdfIfNeeded(movementType, res);
-            this.setState({ activos: [], 
-                selected: [],
-                data: {}, });
+            this.setState({ ...initialState });
         });
     };
 

@@ -18,7 +18,6 @@ class MovimientosForm extends React.Component {
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-
         if (nextProps.type !== this.props.type)
             this.setState({
                 n_activos: null,
