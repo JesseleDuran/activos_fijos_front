@@ -22,9 +22,11 @@ class MovimientosForm extends React.Component {
             this.setState({
                 n_activos: null,
                 cod_personal_involucrado: null,
-                tiempo_limite: null,
-                motivo: null,
-                ubicacion: null,
+                tiempo_limite: '',
+                motivo: '',
+                ubicacion_geografica: "",
+                codigo_unidad_administrativa: "",
+                ubicacion: ''
             });
         else
             this.setState({ ...nextProps.data });

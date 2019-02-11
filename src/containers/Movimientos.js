@@ -40,7 +40,6 @@ class MovimientosContainer extends Component {
     }
 
     changeType = (evt) => {
-        console.log('oli')
         this.setState({ ...initialState, movementType: evt.target.value.toLowerCase() }, this.getActivos);
     };
 
