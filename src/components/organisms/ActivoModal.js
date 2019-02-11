@@ -1,11 +1,11 @@
 import React from "react";
-import ActivosForm from "./ActivosForm";
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import ActivosTabs from '../molecules/ActivosTabs'
 
 class ActivoModal extends React.Component {
     state = {};
@@ -22,25 +22,19 @@ class ActivoModal extends React.Component {
                 onClose={close}
                 aria-labelledby="responsive-dialog-title"
             >
-                <DialogTitle id="responsive-dialog-title">{"Activo #"}</DialogTitle>
+                {activo &&
+                    <DialogTitle id="responsive-dialog-title">{`Activo N° ${activo.n_activo}`}</DialogTitle>
+                }
                 <DialogContent>
                     <DialogContentText>
-                    Let Google help apps determine location. This means sending anonymous location data to
-                    Google, even when no apps are running.
+                        <ActivosTabs
+                            activo={activo}
+                        />
                     </DialogContentText>
-                        {activo &&
-                            <ActivosForm
-                                activo={activo}
-                                clasificaciones={[activo.clasificacion]}
-                                marcas={[activo.marca]}
-                                ubicaciones={[{ desubifis: activo.desubifis, codubifis: activo.desubifis }]}
-                                disabled
-                            />
-                        }
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={close} color="primary" autoFocus>
-                    Cerrar
+                        Cerrar
                     </Button>
                 </DialogActions>
             </Dialog>
