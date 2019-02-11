@@ -52,7 +52,7 @@ class MovimientosForm extends React.Component {
                     margin="normal"
                 />
             </Grid>   
-            {(type === 'asignacion' || type === 'reasignacion') && <Grid item xs={12}>
+            {(type === 'asignacion' || type === 'reasignacion' || type === 'prestamo') && <Grid item xs={12}>
                     <HttpSelect
                         label="Personal responsable"
                         fetch={getPersonal}
@@ -102,7 +102,7 @@ class MovimientosForm extends React.Component {
                     id="datetime-local"
                     label="Tiempo límite"
                     fullWidth
-                    type="datetime-local"
+                    type="date"
                     value={this.state.tiempo_limite}
                     onChange={this.handleChange("tiempo_limite")}
                     InputLabelProps={{
@@ -112,10 +112,10 @@ class MovimientosForm extends React.Component {
             </Grid>
             }
 
-            {(type === 'desincorporacion' || type === 'reparacion') && <Grid item xs={12}>
+            {(type === 'desincorporacion' || type === 'reparacion' || type === 'prestamo' || type === 'salida') && <Grid item xs={12}>
                 <TextField
                     id="standard-textarea"
-                    label="Motivo"
+                    label="Motivo u Observación"
                     fullWidth
                     value={this.state.motivo}
                     onChange={this.handleChange("motivo")}

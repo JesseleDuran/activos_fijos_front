@@ -11,10 +11,10 @@ import { render } from "../pdf-templates/PDFGenerator";
 
 const fieldsFilledsByType = {
     'asignacion': 2, 
-    'desincorporacion': 4, 
+    'desincorporacion': 3, 
     'reasignacion': 2, 
     'prestamo': 3, 
-    'reparacion': 4, 
+    'reparacion': 3, 
     'salida': 4
 };
 const initialState = {
