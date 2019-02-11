@@ -42,6 +42,10 @@ class ActivoItem extends Component {
                 />
                 <Typography>
                     <Text>
+                        <ChopeddText text={data.n_activo} length={30}/>
+                    </Text>
+                    <Dot>·</Dot>
+                    <Text>
                         <ChopeddText text={data.modelo} length={30}/>
                     </Text>
                     <Dot>·</Dot>
