@@ -13,7 +13,7 @@ const fieldsFilledsByType = {
     'asignacion': 2, 
     'desincorporacion': 3, 
     'reasignacion': 2, 
-    'prestamo': 3, 
+    'prestamo': 4, 
     'reparacion': 3, 
     'salida': 4
 };
@@ -101,8 +101,14 @@ class MovimientosContainer extends Component {
         }
     };
 
+    formatData(data) {
+        data.tiempo_limite = data.tiempo_limite == "" ? null : data.tiempo_limite;
+        return data;
+    }
+
     create = () => {
-        const { data, movementType } = this.state;
+        let { data, movementType } = this.state;
+        data = this.formatData(data);
         const movimiento = {
             ...data,
             tipo: movementType,
