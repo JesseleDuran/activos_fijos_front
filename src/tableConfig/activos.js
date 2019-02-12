@@ -17,7 +17,7 @@ export default (show, remove) => [
             {
                 id: "created_at",
                 Header: "Incorporación al sistema",
-                accessor: created_at => displayDateRightFormat(created_at),
+                accessor: data => displayDateRightFormat(data.created_at),
             },
             {
                 Header: "Marca",
@@ -88,7 +88,7 @@ export default (show, remove) => [
             {
                 id: "fecha_compra",
                 Header: "Fecha de Compra",
-                accessor: fecha_compra => displayDateRightFormat(fecha_compra),
+                accessor: data => displayDateRightFormat(data.fecha_compra),
             },
             {
                 Header: "Costo",

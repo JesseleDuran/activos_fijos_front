@@ -43,7 +43,7 @@ export default [
             {
                 id: "created_at",
                 Header: "Incorporación al sistema",
-                accessor: created_at => displayDateRightFormat(created_at),
+                accessor: data => displayDateRightFormat(data.created_at),
             },
             {
                 Header: "Vida Útil (Meses)",
@@ -70,12 +70,12 @@ export default [
             {
                 id: "fecha_compra",
                 Header: "Fecha de Compra",
-                accessor: fecha_compra => displayDateRightFormat(fecha_compra),
+                accessor: data => displayDateRightFormat(data.fecha_compra),
             },
             {
                 id: "fin_vida_util",
                 Header: "Fin de vida útil",
-                accessor: fin_vida_util => displayDateRightFormat(fin_vida_util),
+                accessor: data => displayDateRightFormat(data.fin_vida_util),
             },
             {
                 Header: "N° Orden de Compra",
