@@ -9,7 +9,7 @@ import moment from "moment";
 import Button from "@material-ui/core/es/Button/Button";
 import { Workbook } from "react-excel-workbook";
 import ControlledSelect from "../molecules/Select"
-import { ubicacionesToOptions, marcasToOptions, clasificacionesToOptions } from "../../utils/functions"
+import { ubicacionesToOptions, marcasToOptions, clasificacionesToOptions, ubicacionesAdministrativasToOptions } from "../../utils/functions"
 
 const styles = theme => ({});
 
@@ -26,25 +26,33 @@ const ReportesPage = ({
                           preview,
                           page, loading = false,
                           ubicaciones,
+                          ubicacionesAdministrativas,
                           clasificaciones,
                           marcas,
                           fecha,
                           selectedUbicaciones,
                           selectedMarcas,
                           selectedClasificaciones,
+                          selectedUbicacionesAdministrativas,
                           changeFecha,
                           changeMarcas,
                           changeUbicaciones,
                           changeClasificaciones,
+                          changeUbicacionesAdministrativas,
                           apply,
                       }) => (
     <Grid container>
         <Grid item xs={12}>
             <MultiSelect
-                label={'Ubicacion geográfica'}
+                label={'Ubicación geográfica'}
                 options={ubicacionesToOptions(ubicaciones)}
                 values={selectedUbicaciones}
                 onChange={changeUbicaciones}/>
+            <MultiSelect
+                label={'Ubicación Administrativa'}
+                options={ubicacionesAdministrativasToOptions(ubicacionesAdministrativas)}
+                values={selectedUbicacionesAdministrativas}
+                onChange={changeUbicacionesAdministrativas}/>    
             <MultiSelect 
                 label={'Marcas'}
                 options={marcasToOptions(marcas)}
@@ -59,6 +67,7 @@ const ReportesPage = ({
                 label={'Meses'}
                 options={monthsToOptions()}
                 onChange={evt => changeFecha(evt.target.value)}
+                value=""
             />
 
             <Workbook filename="example.xlsx" element={<Button disabled={preview.length === 0}>Descargar</Button>}>
