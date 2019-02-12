@@ -5,7 +5,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import ActivosForm from "../organisms/ActivosForm";
+import ActivosForm from "./ActivosForm";
+import HistorialMovimientosList from "./HistorialMovimientosList"
 
 function TabContainer(props) {
     return (
@@ -35,24 +36,28 @@ class ActivosTabs extends React.Component {
         return (
             <div>
                 <AppBar position="static">
-                    <Tabs value={value} onChange={this.handleChange}>
+                    <Tabs value={value} onChange={this.handleChange} centered>
                         <Tab label="Datos" />
                         <Tab label="Historial de Movimientos" />
                     </Tabs>
                 </AppBar>
                 {value === 0 && 
                 <TabContainer>
-                    {activo &&
-                        <ActivosForm
-                            activo={activo}
-                            clasificaciones={[activo.clasificacion]}
-                            marcas={[activo.marca]}
-                            ubicaciones={[{ desubifis: activo.desubifis, codubifis: activo.desubifis }]}
-                            disabled
-                        />
+                    {activo && <ActivosForm
+                        activo={activo}
+                        clasificaciones={[activo.clasificacion]}
+                        marcas={[activo.marca]}
+                        ubicaciones={[{ desubifis: activo.desubifis, codubifis: activo.desubifis }]}
+                        disabled
+                    />
                     }
                 </TabContainer>}
-                {value === 1 && <TabContainer>Item Two</TabContainer>}
+                {value === 1 && <TabContainer>
+                    {activo && <HistorialMovimientosList
+                        movimientos={activo.movimientos}
+                    />
+                    }
+                </TabContainer>}
             </div>
         );
     }
