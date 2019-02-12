@@ -7,6 +7,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import Warning from '@material-ui/icons/Warning';
+import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
   root: {
@@ -35,10 +36,14 @@ function NotificationList(props) {
 
     return (
         <div>
+        {(notifications.length > 0) ? (
             <List 
                 component="nav">
                 {generateNotificationsItems(notifications)}
-            </List>
+            </List>) : 
+            (<Grid item xs={12} style={{ padding: "1%" }}>
+                    {'No hay notificaciones por el momento.'}
+            </Grid>)} 
         </div>
     );
 }

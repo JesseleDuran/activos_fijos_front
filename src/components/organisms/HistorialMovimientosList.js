@@ -7,6 +7,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import { displayDateRightFormatWithTime, displayDateRightFormat } from "../../utils/dates"
+import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
   root: {
@@ -47,6 +48,11 @@ function returItemByMovement(movement) {
                 />         
             )
         default:
+            return (
+                <ListItemText 
+                    primary={`${displayDateRightFormatWithTime(movement.fecha_movimiento)} | El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) Realizó la siguiente acción en este activo: ${movement.tipo}.`} 
+                />         
+            )
     }
 }
 
@@ -63,10 +69,14 @@ function HistorialMovimientosList(props) {
     const { movimientos } = props;
     return (
         <div>
+        {(movimientos.length > 0) ? (
             <List 
                 component="nav">
                 {generateHistorialItems(movimientos)}
-            </List>
+            </List>) : 
+            (<Grid item xs={12} style={{ padding: "1%" }}>
+                    {'No se han realizado movimientos en este activo.'}
+             </Grid>)} 
         </div>
     );
 }
