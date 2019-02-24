@@ -65,7 +65,7 @@ export const getPersonal = query => request().get("/personal", {
 
 export const createMovimiento = movimiento => request().post("/movimiento", movimiento).then(({ data }) => data);
 
-export const getMovimiento = id => request().get("/movimiento/" + id).then(({ data }) => data);
+export const getMovimiento = id => request().get(`/movimiento/${id}`).then(({ data }) => data);
 
 export const getReporte = (filtered, report_date) => {
     return request().get("/reportes/depreciacion", {
