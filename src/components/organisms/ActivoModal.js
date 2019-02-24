@@ -15,7 +15,9 @@ class ActivoModal extends React.Component {
             activo,
             open,
             close,
-            onChange
+            onChange,
+            update,
+            hasChanged
         } = this.props;
         return (
             <Dialog
@@ -38,6 +40,9 @@ class ActivoModal extends React.Component {
                 <DialogActions>
                     <Button onClick={close} color="primary" autoFocus>
                         Cerrar
+                    </Button>
+                    <Button disabled={hasChanged} onClick={update} ariant="contained" color="primary" autoFocus>
+                        Actualizar
                     </Button>
                 </DialogActions>
             </Dialog>

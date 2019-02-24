@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import ActivosPage from "../components/pages/ActivosPage";
 
 import Page from "../hocs/Page";
-import { deleteActivo, getActivos as getActivosRequest } from "../api/activos";
+import { deleteActivo, getActivos as getActivosRequest, updateActivo } from "../api/activos";
 import confirm from "../utils/confirm";
 import { showError } from "../actions/UI";
 
@@ -35,7 +35,7 @@ class ActivosContainer extends Component {
     };
 
     close = () => {
-        this.setState({ activo: null });
+        this.setState({ activo: null , toUpdate: []});
     };
 
     showMovementModal = (activo) => {
@@ -94,6 +94,18 @@ class ActivosContainer extends Component {
         this.setState({ toUpdate: toUpdateHelper });
     };
 
+    update = () => {
+        const {activo, toUpdate}  = this.state
+        updateActivo(activo.n_activo, toUpdate)
+            .then(activo => {
+                this.setState({ activo, loading: false });
+            })
+            .catch(() => {
+                this.props.showError("Error al actualizar activo");
+                this.setState({ loading: false });
+            });
+    }
+
     containsObject(key, list) {
         let i;
         for (i = 0; i < list.length; i++) {
@@ -122,6 +134,8 @@ class ActivosContainer extends Component {
                 close={this.close}
                 showMovementModal={this.showMovementModal}
                 closeMovement={this.closeMovement}
+                update={this.update}
+                hasChanged={(this.state.toUpdate.length === 0)}
             />
         );
     };
