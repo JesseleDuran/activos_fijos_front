@@ -7,6 +7,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabe
 import Checkbox from "@material-ui/core/Checkbox";
 import { ubicacionesToOptions, ubicacionesAdministrativasToOptions } from "../../utils/functions"
 import ControlledSelect from "../molecules/Select"
+import CreateNewItemsDropdown from "../molecules/CreateNewItemsDropdown"
 
 class MovimientosForm extends React.Component {
 
@@ -34,6 +35,12 @@ class MovimientosForm extends React.Component {
 
     handleChange = field => evt => {
         this.setState({ [field]: evt.target.value }, () => this.props.onChange(this.state));
+    };
+
+    handleDropdownChange = field => evt => {
+        if(evt !== null) {
+            this.setState({ [field]: evt.value }, () => this.props.onChange(this.state));
+        }
     };
 
     render = () => {
@@ -66,13 +73,12 @@ class MovimientosForm extends React.Component {
             </Grid>}
 
             {(type === 'asignacion' || type === 'reasignacion') && <Grid item xs={12}>
-                <ControlledSelect
-                    id="standard-select-clasificacion"
-                    label="Ubicación geográfica"
-                    options={ubicacionesToOptions(ubicacionesFisicas)}
-                    onChange={this.handleChange("ubicacion_geografica")}
-                    value=""
-                />
+                    <CreateNewItemsDropdown
+                        label="Ubicación geográfica"
+                        id="standard-select-ubicacion-grografica"
+                        options={ubicacionesToOptions(ubicacionesFisicas)}
+                        onChange={this.handleDropdownChange("ubicacion_geografica")}
+                    />
             </Grid>}  
             {(type === 'asignacion' || type === 'reasignacion')  && <Grid item xs={12}>
                 <ControlledSelect
