@@ -6,13 +6,13 @@ import Typography from "@material-ui/core/Typography";
 import ChopeddText from "ChoppedText";
 
 const Text = styled.span`
-  margin: 0;
+    margin: 0;
 `;
 
 const Dot = styled.span`
-  font-weight: 800;
-  font-size: 18;
-  margin: 5px;
+    font-weight: 800;
+    font-size: 18;
+    margin: 5px;
 `;
 
 class ActivoItem extends Component {
