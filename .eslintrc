@@ -12,7 +12,8 @@
       "no-underscore-dangle": 0,
       "import/imports-first": ["error", "absolute-first"],
       "import/newline-after-import": "error",
-      "react/destructuring-assignment": [<enabled>, 'never']
+      "react/destructuring-assignment": [<enabled>, 'never'],
+      "linebreak-style": 0
     },
     "globals": {
       "window": true,

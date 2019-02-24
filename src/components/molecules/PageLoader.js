@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { DotLoader } from "react-spinners";
 import Grid from "@material-ui/core/Grid";
-import translate from "utils/translate";
-import PageTitle from "PageTitle";
+import PageTitle from "../atoms/PageTitle";
 
 const Container = styled.div`
   	position: fixed;
@@ -22,7 +21,7 @@ const PageLoader = ({ active }) =>
         	<Grid item xs={12}>
           		<DotLoader color="#16B497" loading size={180} />
         	</Grid>
-        	<PageTitle title={translate("loading")} />
+        	<PageTitle title='Cargando' />
       	</Grid>
     </Container>
 ) : null;
