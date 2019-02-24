@@ -4,7 +4,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { translateKey } from "utils/translate";
 import * as PropTypes from "prop-types";
 import SearchInput from "./SearchInput";
 
@@ -13,7 +12,6 @@ const styles = () => ({
         width: "100%",
     },
 });
-
 
 class HttpSelect extends React.Component {
     constructor(props) {
@@ -31,9 +29,7 @@ class HttpSelect extends React.Component {
     };
 
     handleChange = event => {
-        console.log("VALUE!", event.target.value);
         this.setState({ value: event.target.value });
-
         this.props.onChange(event);
     };
 

@@ -1,21 +1,19 @@
 import React from "react";
+import Checkbox from "@material-ui/core/Checkbox/Checkbox";
+import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 import { withStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { translateKey } from "utils/translate";
 import * as PropTypes from "prop-types";
 import SearchInput from "./SearchInput";
-import Checkbox from "@material-ui/core/Checkbox/Checkbox";
-import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 
 const styles = () => ({
     formControl: {
         width: "100%",
     },
 });
-
 
 class MultiSelect extends React.Component {
     constructor(props) {
@@ -29,7 +27,7 @@ class MultiSelect extends React.Component {
     }
 
     componentWillReceiveProps = nextProps => {
-        this.setState({ options: nextProps.options, value: nextProps.value });
+        this.setState({ options: nextProps.options });
     };
 
     handleChange = event => {

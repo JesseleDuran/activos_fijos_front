@@ -7,7 +7,6 @@ import TextField from "@material-ui/core/TextField";
 import Divisor from "Divisor";
 import Button from "Button";
 import PasswordInput from "PasswordInput";
-import translate from "utils/translate";
 
 const styles = theme => ({
   frame: {
@@ -54,7 +53,7 @@ class LoginForm extends Component {
           alignItems="center"
         >
           <Typography className={classes.title}>
-            {translate("login")}
+            {'Inicio de Sesión'}
           </Typography>
           <Divisor />
 
@@ -66,7 +65,7 @@ class LoginForm extends Component {
               alignItems="center"
             >
               <TextField
-                label={translate("email")}
+                label='Nombre de usuario'
                 id="required"
                 value={email}
                 onChange={this.handleChange("email")}
@@ -86,7 +85,7 @@ class LoginForm extends Component {
                 className={classes.loginButton}
                 onClick={() => onLogin(email, password)}
               >
-                {translate("getIn")}
+                {'Iniciar sesión'}
               </Button>
             </Grid>
           </form>

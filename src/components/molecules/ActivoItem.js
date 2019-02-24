@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import ChopeddText from "ChoppedText";
+import ChopeddText from "../atoms/ChoppedText";
 
 const Text = styled.span`
     margin: 0;

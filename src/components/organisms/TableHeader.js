@@ -1,14 +1,8 @@
 import React from "react";
-import translate, { translateKey } from "utils/translate";
-import Divisor from "Divisor";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Button from "Button";
-import Pagination from "Pagination";
 import SearchInput from "SearchInput";
 import Icon from "@material-ui/core/Icon/Icon";
 import IconButton from "@material-ui/core/IconButton/IconButton";
-import Table from "./Table";
 
 const Header = ({ updateFilter, onDelete, selected }) => {
   const shouldEnableDeleteBtn = selected.length > 0;
