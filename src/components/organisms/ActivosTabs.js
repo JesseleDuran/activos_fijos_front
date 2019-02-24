@@ -30,7 +30,7 @@ class ActivosTabs extends React.Component {
     };
 
     render() {
-        const { activo } = this.props;
+        const { activo, onChange } = this.props;
         const { value } = this.state;
 
         return (
@@ -47,8 +47,8 @@ class ActivosTabs extends React.Component {
                         activo={activo}
                         clasificaciones={[activo.clasificacion]}
                         marcas={[activo.marca]}
-                        ubicaciones={[{ desubifis: activo.desubifis, codubifis: activo.desubifis }]}
-                        disabled
+                        update
+                        onChange={onChange}
                     />
                     }
                 </TabContainer>}

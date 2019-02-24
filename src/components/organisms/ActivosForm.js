@@ -19,7 +19,12 @@ class ActivosForm extends React.Component {
     }
 
     handleChange = field => evt => {
-        this.setState({ [field]: evt.target.value }, () => this.props.onChange(this.state));
+        if(this.props.update) {
+            this.setState({ [field]: evt.target.value });
+            this.props.onChange(field, evt.target.value);
+        } else {
+            this.setState({ [field]: evt.target.value }, () => this.props.onChange(this.state));
+        }
     };
 
     handleCheckChange = field => evt => {
@@ -28,7 +33,7 @@ class ActivosForm extends React.Component {
 
     render = () => {
 
-        const { clasificaciones, marcas, disabled = false } = this.props;
+        const { clasificaciones, marcas, disabled = false, update = false } = this.props;
         return <Grid container spacing={24}>
             <Grid item xs={3}>
                 <TextField
@@ -180,8 +185,8 @@ class ActivosForm extends React.Component {
                 <TextField
                     id="standard-textarea"
                     label="Descripción"
-                    value={this.state.descripcion_activo}
-                    onChange={this.handleChange("descripcion_activo")}
+                    value={update ? this.state.descripcion : this.state.descripcion_activo}
+                    onChange={update ? this.handleChange("descripcion") : this.handleChange("descripcion_activo")}
                     multiline
                     disabled={disabled}
                     margin="normal"
@@ -217,6 +222,7 @@ class ActivosForm extends React.Component {
                 }
                 label={"¿Es depreciable?"}
             />
+
             {this.state.is_depreciable ?
                 <Grid item xs={3}>
                     <TextField
@@ -225,6 +231,23 @@ class ActivosForm extends React.Component {
                         value={this.state.vida_util_meses}
                         onChange={this.handleChange("vida_util_meses")}
                         type="number"
+                        disabled={disabled}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        margin="normal"
+                    />
+                </Grid> : ''
+            }
+
+            {this.props.update ?
+                <Grid item xs={3}>
+                    <TextField
+                        id="standard-condicion"
+                        label="Condición"
+                        value={this.state.condicion}
+                        onChange={this.handleChange("condicion")}
+                        type="text"
                         disabled={disabled}
                         InputLabelProps={{
                             shrink: true,

@@ -14,7 +14,8 @@ class ActivoModal extends React.Component {
         const {
             activo,
             open,
-            close
+            close,
+            onChange
         } = this.props;
         return (
             <Dialog
@@ -30,6 +31,7 @@ class ActivoModal extends React.Component {
                     <DialogContentText>
                         <ActivosTabs
                             activo={activo}
+                            onChange={onChange}
                         />
                     </DialogContentText>
                 </DialogContent>

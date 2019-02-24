@@ -5,6 +5,11 @@ export const createActivo = activo =>
         .post("/activos", activo)
         .then(({ data }) => data);
 
+export const updateActivo = (id, filtered) =>
+    request()
+        .put(`/activos/${id}`, filtered)
+        .then(({ data }) => data);        
+
 export const getActivos = ({ page = 0, size = 20, filtered, sorted }) =>
     request()
         .get("/activos", {

@@ -9,7 +9,7 @@ import ActivoModal from "../organisms/ActivoModal";
 
 const styles = theme => ({});
 
-const ActivosPage = ({ activos, page, size, pages = 100, loading = false, onChange, show, remove, activo, close }) => (
+const ActivosPage = ({ activos, page, size, pages = 100, loading = false, onChange, show, remove, activo, close, onChangeUpdate }) => (
     <Grid container>
         <div style={{ width: "100%" }}>
             <ReactTable
@@ -23,7 +23,7 @@ const ActivosPage = ({ activos, page, size, pages = 100, loading = false, onChan
                 filterable
                 manual
             />
-            <ActivoModal open={activo} activo={activo} close={close}/>
+            <ActivoModal open={activo} activo={activo} close={close} onChange={onChangeUpdate}/>
         </div>
     </Grid>
 );

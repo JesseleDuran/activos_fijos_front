@@ -23,6 +23,7 @@ class ActivosContainer extends Component {
         loading: false,
         activo: null,
         movement: null,
+        toUpdate: []
     };
 
     componentDidMount() {
@@ -86,6 +87,23 @@ class ActivosContainer extends Component {
         this.setState({ size: pageSize, page, sorted, filtered }, this.fetch);
     };
 
+    onChangeUpdate = (key, value) => {
+        let toUpdateHelper = this.state.toUpdate;
+        let contains = this.containsObject(key, toUpdateHelper);
+        contains !== false ? toUpdateHelper[contains].value = value : toUpdateHelper.push({'id': key, 'value': value });
+        this.setState({ toUpdate: toUpdateHelper });
+    };
+
+    containsObject(key, list) {
+        let i;
+        for (i = 0; i < list.length; i++) {
+            if (list[i].id === key) {
+                return i
+            }
+        }
+        return false;
+    }
+
     render = () => {
         const { activos, page, size, query, sorted, loading, activo } = this.state;
         return (
@@ -96,6 +114,7 @@ class ActivosContainer extends Component {
                 query={query}
                 sorted={sorted}
                 onChange={this.onChange}
+                onChangeUpdate={this.onChangeUpdate}
                 loading={loading}
                 show={this.show}
                 remove={this.remove}
