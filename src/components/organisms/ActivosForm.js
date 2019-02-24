@@ -7,6 +7,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabe
 import { marcasToOptions, clasificacionesToOptions } from "../../utils/functions"
 import ControlledSelect from "../molecules/Select"
 import { displayDateRightFormat } from "../../utils/dates"
+import CreateNewItemsDropdown from "../molecules/CreateNewItemsDropdown"
 
 class ActivosForm extends React.Component {
 
@@ -24,6 +25,17 @@ class ActivosForm extends React.Component {
             this.props.onChange(field, evt.target.value);
         } else {
             this.setState({ [field]: evt.target.value }, () => this.props.onChange(this.state));
+        }
+    };
+
+    handleDropdownChange = field => evt => {
+        if(evt !== null) {
+            if(this.props.update) {
+                this.setState({ [field]: evt.value });
+                this.props.onChange(field, evt.value);
+            } else {
+                this.setState({ [field]: evt.value }, () => this.props.onChange(this.state));
+            }
         }
     };
 
@@ -192,25 +204,25 @@ class ActivosForm extends React.Component {
                     margin="normal"
                 />
             </Grid>
-            
+
             <Grid item xs={3}>
-                <ControlledSelect
-                    id="standard-select-brand"
+                <CreateNewItemsDropdown
                     label="Marca"
+                    id="standard-select-brand"
                     options={marcasToOptions(marcas)}
-                    onChange={this.handleChange("marca")}
-                    value=""
+                    onChange={this.handleDropdownChange("marca")}
                 />
             </Grid>
+
             <Grid item xs={3}>
-                <ControlledSelect
-                    id="standard-select-clasificacion"
+                <CreateNewItemsDropdown
                     label="Clasificación"
+                    id="standard-select-clasificacion"
                     options={clasificacionesToOptions(clasificaciones)}
-                    onChange={this.handleChange("clasificacion")}
-                    value=""
+                    onChange={this.handleDropdownChange("clasificacion")}
                 />
             </Grid>
+            
             <FormControlLabel
                 disabled={disabled}
                 control={
