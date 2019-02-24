@@ -98,7 +98,9 @@ class ActivosContainer extends Component {
         const {activo, toUpdate}  = this.state
         updateActivo(activo.n_activo, toUpdate)
             .then(activo => {
-                this.setState({ activo, loading: false });
+                this.setState({ activo, loading: false});
+                this.close()
+                this.getActivos();
             })
             .catch(() => {
                 this.props.showError("Error al actualizar activo");
