@@ -27,7 +27,7 @@ const LoginPage = ({ classes, onLogin, error }) => (
     	<Grid container justify="center">
 			<Paper className={classes.header}>
 				<Typography className={classes.headerText}>
-					{'Bienvenido'}
+					{'Bienvenido al Sistema de Activos Fijos'}
 				</Typography>
 			</Paper>
     	</Grid>
