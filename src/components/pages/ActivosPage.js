@@ -1,4 +1,6 @@
 import React from "react";
+import { Workbook } from "react-excel-workbook";
+import Button from "@material-ui/core/es/Button/Button";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import ReactTable from "react-table";
@@ -30,6 +32,23 @@ const ActivosPage = ({ activos, size, pages = 100, loading = false, onChange, sh
                 update={update} 
                 hasChanged={hasChanged} 
             />
+            <Workbook filename="inventario.xlsx" element={<Button variant="contained" color="primary" disabled={activos.length === 0}>Descargar Inventario</Button>}>
+                <Workbook.Sheet data={activos} name="Sheet A">
+                    <Workbook.Column label="UBICACIÓN GEOGRÁFICA" value="ubicacion_geografica"/>
+                    <Workbook.Column label="UBICACIÓN ADMINISTRATIVA" value="unidad_administrativa"/>
+
+                    <Workbook.Column label="N° ACTIVO" value="n_activo"/>
+                    <Workbook.Column label="DESCRIPCIÓN" value="descripcion"/>
+                    <Workbook.Column label="MARCA" value="marca"/>
+                    <Workbook.Column label="MODELO" value="modelo"/>
+                    <Workbook.Column label="SERIAL" value="serial"/>
+                    <Workbook.Column label="CONDICIÓN" value="condicion"/>
+                    <Workbook.Column label="VIDA ÚTIL (MESES)" value="vida_util_meses"/>
+                    <Workbook.Column label="CLASIFICACIÓN" value="clasificacion"/>
+
+                    <Workbook.Column label="OBSERVACIONES" value="observaciones"/>                  
+                </Workbook.Sheet>
+            </Workbook>
         </div>
     </Grid>
 );

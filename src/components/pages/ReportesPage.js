@@ -82,14 +82,12 @@ const ReportesPage = ({
                     <Workbook.Column label="Costo" value="costo"/>
                     <Workbook.Column label="N° Orden de Compra" value="numero_orden_compra"/>
 
-
-
                     <Workbook.Column label="Incorporado" value="created_at"/>
 
                     <Workbook.Column label="Estado" value="estado_actual"/>
                     <Workbook.Column label="Clasificacion" value="clasificacion"/>
-                    <Workbook.Column label="Descripcion Ubicacion Fisica" value="desubifis"/>
-                    <Workbook.Column label="Direccion Ubicacion Fisica" value="dirubifis"/>
+                    <Workbook.Column label="Descripcion Ubicacion Fisica" value="ubicacion_geografica"/>
+                    <Workbook.Column label="Direccion Ubicacion Fisica" value="unidad_administrativa"/>
                     <Workbook.Column label="Cedula" value="cedper"/>
 
                     <Workbook.Column label="Depreciación mensual" value="depreciacion_por_mes"/>
