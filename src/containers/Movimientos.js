@@ -91,12 +91,14 @@ class MovimientosContainer extends Component {
 
         const promises = movements.map(({ id }) => getMovimiento(id));
         Promise.all(promises).then(movementsInfo => {
-            render(<Asignation movements={movementsInfo}/>);
+            if(movementsInfo[0].apellido_personal !== null) {
+                render(<Asignation movements={movementsInfo}/>);
+            }
         });
     };
 
     toPdfIfNeeded = (type, movements) => {
-        if (type === 0) {
+        if (type === 'asignacion') {
             this.renderAsignacion(movements);
         }
     };
@@ -114,6 +116,7 @@ class MovimientosContainer extends Component {
         createMovimiento(movimiento).then(res => {
             this.toPdfIfNeeded(movementType, res);
             this.setState({ ...initialState });
+            this.props.history.push("/activos");
         });
     };
 
