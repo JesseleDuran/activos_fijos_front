@@ -1,10 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid/Grid";
 import TextField from "@material-ui/core/TextField/TextField";
-import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import HttpSelect from "../molecules/HttpSelect";
-import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import { ubicacionesToOptions, ubicacionesAdministrativasToOptions } from "../../utils/functions"
 import ControlledSelect from "../molecules/Select"
 import CreateNewItemsDropdown from "../molecules/CreateNewItemsDropdown"
@@ -18,7 +15,7 @@ class MovimientosForm extends React.Component {
         };
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
+    componentWillReceiveProps(nextProps) {
         if (nextProps.type !== this.props.type)
             this.setState({
                 n_activos: null,
@@ -100,8 +97,7 @@ class MovimientosForm extends React.Component {
                     helperText="Escriba la ubicación del destino"
                     disabled={disabled}
                     margin="normal"
-                >
-                </TextField> 
+                />
             </Grid>}
 
             {(type === 'prestamo' || type === 'salida') && <Grid item xs={12}>

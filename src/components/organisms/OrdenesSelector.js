@@ -1,18 +1,17 @@
 import React from "react";
-import SearchInput from "../molecules/SearchInput";
+import { AutoSizer, List } from "react-virtualized";
+import styled from "styled-components";
 import Grid from "@material-ui/core/Grid/Grid";
 import Checkbox from "@material-ui/core/Checkbox";
-import styled from "styled-components";
-import { AutoSizer, List } from "react-virtualized";
+import SearchInput from "../molecules/SearchInput";
 import ChoppedText from "../atoms/ChoppedText";
 
 const ListContainer = styled.div`
-  width:100%;
-  height: ${props => props.height};
-  max-height: ${props => props.height};
-  overflow-y: auto;
+    width:100%;
+    height: ${props => props.height};
+    max-height: ${props => props.height};
+    overflow-y: auto;
 `;
-
 
 class OrdenesSelector extends React.Component {
 
@@ -24,7 +23,7 @@ class OrdenesSelector extends React.Component {
         };
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
+    componentWillReceiveProps(nextProps) {
         if (this.state.filtered.length === 0)
             this.setState({ filtered: nextProps.ordenes });
     }
@@ -55,7 +54,6 @@ class OrdenesSelector extends React.Component {
     };
 
     onSelect = selected => {
-        console.log(selected);
         const { onSelect, activo } = this.props;
         onSelect((activo.numero_orden_compra === selected.orden_compra && activo.numero_factura === selected.numero_factura && activo.codigo_articulo === selected.codigo_articulo) ? null : selected);
     };
@@ -67,7 +65,7 @@ class OrdenesSelector extends React.Component {
             <Grid item style={{ height: "60px" }}>
                 <SearchInput onChange={this.search}/>
             </Grid>
-            <ListContainer height={"55vh"}>
+            <ListContainer height="55vh">
                 <AutoSizer rowCount={filtered.length}>
                     {({ width, height }) => (
                         <List
@@ -93,7 +91,6 @@ class OrdenesSelector extends React.Component {
                     )}
                 </AutoSizer>
             </ListContainer>
-
         </Grid>;
 
     };

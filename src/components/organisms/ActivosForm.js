@@ -2,10 +2,8 @@ import React from "react";
 import Grid from "@material-ui/core/Grid/Grid";
 import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField/TextField";
-import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabel";
 import { marcasToOptions, clasificacionesToOptions } from "../../utils/functions"
-import ControlledSelect from "../molecules/Select"
 import { displayDateRightFormat } from "../../utils/dates"
 import CreateNewItemsDropdown from "../molecules/CreateNewItemsDropdown"
 
@@ -229,10 +227,10 @@ class ActivosForm extends React.Component {
                     <Checkbox
                         checked={this.state.is_depreciable}
                         onChange={this.handleCheckChange("is_depreciable")}
-                        value={"HEY"}
+                        value="HEY"
                     />
                 }
-                label={"¿Es depreciable?"}
+                label="¿Es depreciable?"
             />
 
             {this.state.is_depreciable ?

@@ -7,7 +7,6 @@ import Divider from "@material-ui/core/Divider";
 import { withRouter } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import * as PropTypes from "prop-types";
-import translate from "../../utils/translate";
 import SideMenuItem from "../molecules/SideMenuItem";
 import routes from "../../constants/routes";
 

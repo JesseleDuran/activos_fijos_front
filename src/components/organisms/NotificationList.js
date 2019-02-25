@@ -9,14 +9,14 @@ import Divider from '@material-ui/core/Divider';
 import Warning from '@material-ui/icons/Warning';
 import Grid from "@material-ui/core/Grid";
 
-const styles = theme => ({
-  root: {
-    width: '100%',
-  },
+const styles = () => ({
+    root: {
+        width: '100%',
+    },
 });
 
 function generateNotificationsItems(notifications) {
-    return notifications.map((i, ind) => [
+    return notifications.map((i) => [
         <ListItem button>
                 <ListItemIcon>
                     <Warning />
