@@ -45,6 +45,12 @@ function returItemByMovement(movement) {
                     primary={`${displayDateRightFormatWithTime(movement.fecha_movimiento)} | El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) mandó a reparar este activo en ${movement.ubicacion}. Observaciones o motivo: ${movement.motivo}.`} 
                 />         
             )
+        case 'salida':
+            return (
+                <ListItemText 
+                    primary={`${displayDateRightFormatWithTime(movement.fecha_movimiento)} | El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) hizo la salida de este activo a ${movement.ubicacion} hasta el día ${displayDateRightFormat(movement.tiempo_limite)}. Observaciones o motivo: ${movement.motivo}`} 
+                />          
+            )    
         default:
             return (
                 <ListItemText 

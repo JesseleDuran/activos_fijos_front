@@ -37,7 +37,7 @@ class ActivosTabs extends React.Component {
             <div>
                 <AppBar position="static">
                     <Tabs value={value} onChange={this.handleChange} centered>
-                        <Tab label="Datos" />
+                        <Tab label="Actualizar Datos" />
                         <Tab label="Historial de Movimientos" />
                     </Tabs>
                 </AppBar>
