@@ -1,20 +1,20 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/es/Button/Button";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import moment from "moment";
+import { Workbook } from "react-excel-workbook";
 import tableConfig from "../../tableConfig/reportes";
 import MultiSelect from "../molecules/MultiSelect";
-import moment from "moment";
-import Button from "@material-ui/core/es/Button/Button";
-import { Workbook } from "react-excel-workbook";
 import ControlledSelect from "../molecules/Select"
 import { ubicacionesToOptions, marcasToOptions, clasificacionesToOptions, ubicacionesAdministrativasToOptions } from "../../utils/functions"
 
-const styles = theme => ({});
+const styles = () => ({});
 
 function getEndOfMonth(monthNumber) {
-    var startDate = moment([moment().year(), monthNumber]);
+    const startDate = moment([moment().year(), monthNumber]);
     return moment(startDate).endOf('month').format('YYYY-MM-DD');
 }
 
@@ -24,7 +24,7 @@ function monthsToOptions() {
 
 const ReportesPage = ({
                           preview,
-                          page, loading = false,
+                          loading = false,
                           ubicaciones,
                           ubicacionesAdministrativas,
                           clasificaciones,
@@ -44,27 +44,27 @@ const ReportesPage = ({
     <Grid container>
         <Grid item xs={12}>
             <MultiSelect
-                label={'Ubicación geográfica'}
+                label='Ubicación geográfica'
                 options={ubicacionesToOptions(ubicaciones)}
                 values={selectedUbicaciones}
                 onChange={changeUbicaciones}/>
             <MultiSelect
-                label={'Ubicación Administrativa'}
+                label='Ubicación Administrativa'
                 options={ubicacionesAdministrativasToOptions(ubicacionesAdministrativas)}
                 values={selectedUbicacionesAdministrativas}
                 onChange={changeUbicacionesAdministrativas}/>    
             <MultiSelect 
-                label={'Marcas'}
+                label='Marcas'
                 options={marcasToOptions(marcas)}
                 values={selectedMarcas}
                 onChange={changeMarcas}/>
             <MultiSelect
-                label={'Clasificaciones'}
+                label='Clasificaciones'
                 options={clasificacionesToOptions(clasificaciones)}
                 values={selectedClasificaciones}
                 onChange={changeClasificaciones}/>
             <ControlledSelect
-                label={'Meses'}
+                label='Meses'
                 options={monthsToOptions()}
                 onChange={evt => changeFecha(evt.target.value)}
                 value=""
