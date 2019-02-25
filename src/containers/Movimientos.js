@@ -101,11 +101,6 @@ class MovimientosContainer extends Component {
         }
     };
 
-    formatData(data) {
-        data.tiempo_limite = data.tiempo_limite == "" ? null : data.tiempo_limite;
-        return data;
-    }
-
     create = () => {
         let { data, movementType } = this.state;
         data = this.formatData(data);
@@ -121,6 +116,11 @@ class MovimientosContainer extends Component {
             this.setState({ ...initialState });
         });
     };
+
+    formatData(data) {
+        data.tiempo_limite = data.tiempo_limite == "" ? null : data.tiempo_limite;
+        return data;
+    }
 
     render = () => {
         const { movementType, data, activos, selected, ubicacionesFisicas, ubicacionesAdministrativas } = this.state;

@@ -4,7 +4,7 @@ import i18n from "./i18n";
 
 export default function translate(key) {
   return (
-    <I18n ns={["defaultNamespace"]}>{(t, { i18n, ready }) => i18n.t(key)}</I18n>
+    <I18n ns={["defaultNamespace"]}>{( { i18n }) => i18n.t(key)}</I18n>
   );
 }
 

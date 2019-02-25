@@ -1,7 +1,6 @@
 import React from "react";
 import Search from "@material-ui/icons/Search";
 import Delete from "@material-ui/icons/Close";
-import Add from "@material-ui/icons/AddCircleOutline";
 import IconButton from "@material-ui/core/IconButton";
 import { displayDateRightFormat } from "../utils/dates"
 

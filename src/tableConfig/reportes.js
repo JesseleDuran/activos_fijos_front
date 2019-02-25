@@ -1,4 +1,3 @@
-import React from "react";
 import { displayDateRightFormat } from "../utils/dates"
 
 export default [

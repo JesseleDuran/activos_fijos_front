@@ -6,7 +6,6 @@ import { showError } from "../actions/UI";
 import { getBrands, getClasification, getReporte, getUbications, getUbicationsAdmin } from "../api/activos";
 import { getCodemp } from "../utils/state";
 import ReportesPage from "../components/pages/ReportesPage";
-import moment from "moment";
 
 @Page({ title: "Reportes de Depreciación" })
 class ReportesContainer extends Component {

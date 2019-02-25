@@ -8,16 +8,16 @@ import { isLoggedIn } from "../reducers/auth";
 import { getError } from "../reducers/UI";
 
 class LoginPageContainer extends Component {
-  render() {
-    const { isLoggedIn, login, error } = this.props;
-    const location = this.props.location;
-    const path = _get(location, "state.from.pathname", "/activos");
-    return isLoggedIn ? (
-      <Redirect to={path} />
-    ) : (
-      <LoginPage onLogin={login} error={error} />
-    );
-  }
+  	render() {
+    	const { isLoggedIn, login, error } = this.props;
+    	const location = this.props.location;
+    	const path = _get(location, "state.from.pathname", "/activos");
+    	return isLoggedIn ? (
+      		<Redirect to={path} />
+    	) : (
+      	<LoginPage onLogin={login} error={error} />
+   	 	);
+  	}
 }
 
 const mapStateToProps = state => ({

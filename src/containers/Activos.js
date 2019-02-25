@@ -88,8 +88,8 @@ class ActivosContainer extends Component {
     };
 
     onChangeUpdate = (key, value) => {
-        let toUpdateHelper = this.state.toUpdate;
-        let contains = this.containsObject(key, toUpdateHelper);
+        const toUpdateHelper = this.state.toUpdate;
+        const contains = this.containsObject(key, toUpdateHelper);
         contains !== false ? toUpdateHelper[contains].value = value : toUpdateHelper.push({'id': key, 'value': value });
         this.setState({ toUpdate: toUpdateHelper });
     };
@@ -108,7 +108,7 @@ class ActivosContainer extends Component {
             });
     }
 
-    containsObject(key, list) {
+    containsObject = (key, list) => {
         let i;
         for (i = 0; i < list.length; i++) {
             if (list[i].id === key) {
@@ -143,7 +143,7 @@ class ActivosContainer extends Component {
     };
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = () => ({});
 
 export default connect(
     mapStateToProps,
