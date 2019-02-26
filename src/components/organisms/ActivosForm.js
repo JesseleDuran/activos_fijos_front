@@ -6,6 +6,17 @@ import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabe
 import { marcasToOptions, clasificacionesToOptions } from "../../utils/functions"
 import { displayDateRightFormat } from "../../utils/dates"
 import CreateNewItemsDropdown from "../molecules/CreateNewItemsDropdown"
+import ControlledSelect from "../molecules/Select"
+
+const movimientosOptions = [
+    { label: 'No asignado', value: 'No asignado' }, 
+    { label: 'Asignado', value: 'Asignado' },
+    { label: 'Reasignado', value: 'Reasignado' },
+    { label: 'En préstamo', value: 'En préstamo' },
+    { label: 'En proceso de desincorporación', value: 'En proceso de desincorporación' },
+    { label: 'En reparación', value: 'En reparación' },
+    { label: 'Fuera de la empresa', value: 'Fuera de la empresa' }
+]
 
 class ActivosForm extends React.Component {
 
@@ -267,6 +278,17 @@ class ActivosForm extends React.Component {
                 </Grid> : ''
             }
 
+            {this.props.update ?
+                <Grid item xs={3}>
+                    <ControlledSelect
+                        id="standard-estatus"
+                        label="Estatus"
+                        options={movimientosOptions}
+                        onChange={this.handleChange("estatus")}
+                        value=''
+                    />
+                </Grid> : ''
+            }
         </Grid>;
 
     };
