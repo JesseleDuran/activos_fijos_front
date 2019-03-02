@@ -47,7 +47,7 @@ export default [
             {
                 Header: "Vida Útil (Meses)",
                 accessor: "vida_util_meses",
-                width: 50,
+                width: 140,
             },
             {
                 Header: "Clasificación",
@@ -70,6 +70,7 @@ export default [
                 id: "fecha_compra",
                 Header: "Fecha de Compra",
                 accessor: data => displayDateRightFormat(data.fecha_compra),
+                width: 140,
             },
             {
                 id: "fin_vida_util",
@@ -107,19 +108,27 @@ export default [
             {
                 Header: "Depreciación mensual",
                 accessor: "depreciacion_por_mes",
+                width: 170
             },
             {
                 Header: "Meses depreciados",
                 accessor: "meses_depreciados",
+                width: 160
             },
             {
-                Header: "Depreciacion acumulada",
+                Header: "Depreciación acumulada",
                 accessor: "depreciacion_acumulada_meses",
+                width: 170
             },
             {
                 Header: "Valor neto",
                 accessor: "valor_neto",
             },
+            {
+                Header: "¿Llegó a su fin de vida útil?",
+                accessor: "llego_fin",
+                width: 220
+            }
         ],
     },
 

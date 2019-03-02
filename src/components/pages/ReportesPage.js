@@ -91,6 +91,7 @@ const ReportesPage = ({
                     <Workbook.Column label="Meses Depreciados" value="meses_depreciados"/>
                     <Workbook.Column label="Depreciación acumulada" value="depreciacion_acumulada_meses"/>                 
                     <Workbook.Column label="Valor Neto" value="valor_neto"/>
+                    <Workbook.Column label="¿Llegó a su fin de vida útil?" value="llego_fin"/>
                 </Workbook.Sheet>
             </Workbook>
             <Button onClick={apply} disabled={fecha === null}>Aplicar</Button>
