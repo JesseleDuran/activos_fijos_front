@@ -280,6 +280,23 @@ class ActivosForm extends React.Component {
 
             {this.props.update ?
                 <Grid item xs={3}>
+                    <TextField
+                        id="standard-observacion"
+                        label="Observaciones"
+                        value={this.state.observaciones}
+                        onChange={this.handleChange("observaciones")}
+                        type="text"
+                        disabled={disabled}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        margin="normal"
+                    />
+                </Grid> : ''
+            }
+
+            {this.props.update ?
+                <Grid item xs={3}>
                     <ControlledSelect
                         id="standard-estatus"
                         label="Estatus"
