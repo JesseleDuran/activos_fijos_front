@@ -105,6 +105,7 @@ const ReportesPage = ({
                 className="-striped -highlight"
                 loading={loading} // Display the loading overlay when we need it
                 manual
+                sortable={false}
             />
         </div>
     </Grid>

@@ -14,9 +14,9 @@ export default (show, remove) => [
                 accessor: "n_activo",
             },
             {
-                id: "created_at",
+                id: "created_at::text", // this is done for query filter purpose 
                 Header: "Incorporación al sistema",
-                accessor: data => displayDateRightFormat(data.created_at),
+                accessor: data => displayDateRightFormat(data.created_at)
             },
             {
                 Header: "Marca",
@@ -36,6 +36,7 @@ export default (show, remove) => [
                 width: 150
             },
             {
+                id: "vida_util_meses::text",
                 Header: "Vida Útil (Meses)",
                 accessor: "vida_util_meses",
                 width: 140,
@@ -78,29 +79,34 @@ export default (show, remove) => [
                 width: 150
             },
             {
+                id: "siv_articulo.spg_cuenta",
                 Header: "Cuenta presupuestaria",
                 accessor: "cuenta_presupuestaria",
             },
             {
+                id: "soc_ordencompra.coduniadm",
                 Header: "Centro de costo",
                 accessor: "centro_costo",
             },
             {
-                id: "fecha_compra",
+                id: "cxp_rd.fecemidoc::text", // this is done for query filter purpose 
                 Header: "Fecha de Compra",
                 accessor: data => displayDateRightFormat(data.fecha_compra),
                 width: 140
             },
             {
+                id: "soc_dt_bienes.preuniart::text",
                 Header: "Costo",
                 accessor: "costo_unitario",
             },
             {
+                id: "soc_ordencompra.forpagcom",
                 Header: "Condición de pago",
                 accessor: "condicion_pago",
                 width: 140
             },
             {
+                id: "rpc_proveedor.nompro",
                 Header: "Proveedor",
                 accessor: "nombre_proveedor",
                 width: 150

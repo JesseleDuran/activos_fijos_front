@@ -22,6 +22,7 @@ const ActivosPage = ({ activos, size, pages = 100, loading = false, onChange, sh
                 loading={loading} // Display the loading overlay when we need it
                 onFetchData={onChange} // Request new data when things change
                 filterable
+                sortable={false}
                 manual
             />
             <ActivoModal 
@@ -43,7 +44,7 @@ const ActivosPage = ({ activos, size, pages = 100, loading = false, onChange, sh
                     <Workbook.Column label="MARCA" value="marca"/>
                     <Workbook.Column label="MODELO" value="modelo"/>
                     <Workbook.Column label="SERIAL" value="serial"/>
-                    <Workbook.Column label="CONDICIÓN" value="condicion"/>
+                    <Workbook.Column label="ESTADO DE USO" value="condicion"/>
                     <Workbook.Column label="VIDA ÚTIL (MESES)" value="vida_util_meses"/>
                     <Workbook.Column label="CLASIFICACIÓN" value="clasificacion"/>
 
