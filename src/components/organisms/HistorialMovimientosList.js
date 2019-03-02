@@ -8,62 +8,55 @@ import Divider from '@material-ui/core/Divider';
 import { displayDateRightFormatWithTime, displayDateRightFormat } from "../../utils/dates"
 
 const styles = () => ({
-  root: {
-    width: '100%',
-  },
+    root: {
+        width: '100%',
+    },
 });
 
-function returItemByMovement(movement) {
+function returnTextByMovement(movement) {
     switch (movement.tipo) {
         case 'asignacion':
-            return (
-                <ListItemText 
-                    primary={`${displayDateRightFormatWithTime(movement.fecha_movimiento)} | El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) asignó este activo.`} 
-                />         
-            )
+            return `El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) ASIGNÓ este activo 
+                a ${movement.nombre_personal} ${movement.apellido_personal} V-${movement.cedula_personal}
+                en la Ubic. Geográfica: ${movement.ubicacion_geografica}, 
+                Ubic. Administrativa: ${movement.ubicacion_administrativa}, 
+                Ubic. Departamento: ${movement.departamento}.`
         case 'reasignacion':
-            return (
-                <ListItemText 
-                    primary={`${displayDateRightFormatWithTime(movement.fecha_movimiento)} | El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) reasignó este activo.`} 
-                />         
-            )
-        case 'prestamo':
-            return (
-                <ListItemText 
-                    primary={`${displayDateRightFormatWithTime(movement.fecha_movimiento)} | El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) hizo el préstamo de este activo a ${movement.nombre_personal} ${movement.apellido_personal} hasta el día ${displayDateRightFormat(movement.tiempo_limite)}. Observaciones o motivo: ${movement.motivo}`} 
-                />         
-            )
+            return `El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) REASIGNÓ este activo 
+                ${movement.nombre_personal !== null ? `a ${movement.nombre_personal} ${movement.apellido_personal} V-${movement.cedula_personal}` : ``}
+                ${movement.ubicacion_geografica !== null ? `en la Ubic. Geográfica: ${movement.ubicacion_geografica}` : ``}
+                ${movement.ubicacion_administrativa !== null ? `en la Ubic. Administrativa: ${movement.ubicacion_administrativa}` : ``} 
+                ${movement.departamento !== null ? `en la Ubic. Departamento: ${movement.departamento}` : ``}`
+        case 'prestamo': 
+            return `El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) hizo el PRÉSTAMO de este activo 
+                a ${movement.nombre_personal} ${movement.apellido_personal} V-${movement.cedula_personal} hasta el día ${displayDateRightFormat(movement.tiempo_limite)}. 
+                Observaciones o motivo: ${movement.motivo}`
         case 'desincorporacion':
-            return (
-                <ListItemText 
-                    primary={`${displayDateRightFormatWithTime(movement.fecha_movimiento)} | El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) hizo la desincorporación de este activo en ${movement.ubicacion}. Observaciones o motivo: ${movement.motivo}.`} 
-                />         
-            )
+            return `El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) hizo la DESINCORPORACIÓN de este activo 
+                en ${movement.ubicacion}. Observaciones o motivo: ${movement.motivo}.`
         case 'reparacion':
-            return (
-                <ListItemText 
-                    primary={`${displayDateRightFormatWithTime(movement.fecha_movimiento)} | El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) mandó a reparar este activo en ${movement.ubicacion}. Observaciones o motivo: ${movement.motivo}.`} 
-                />         
-            )
+            return `El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) mandó a REPARAR este activo 
+                en ${movement.ubicacion}. Observaciones o motivo: ${movement.motivo}.`
         case 'salida':
-            return (
-                <ListItemText 
-                    primary={`${displayDateRightFormatWithTime(movement.fecha_movimiento)} | El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) hizo la salida de este activo a ${movement.ubicacion} hasta el día ${displayDateRightFormat(movement.tiempo_limite)}. Observaciones o motivo: ${movement.motivo}`} 
-                />          
-            )    
+            return `El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) hizo la SALIDA de este activo 
+                a ${movement.ubicacion} hasta el día ${displayDateRightFormat(movement.tiempo_limite)}. Observaciones o motivo: ${movement.motivo}`
         default:
-            return (
-                <ListItemText 
-                    primary={`${displayDateRightFormatWithTime(movement.fecha_movimiento)} | El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) Realizó la siguiente acción en este activo: ${movement.tipo}.`} 
-                />         
-            )
+            return `El usuario ${movement.nombre_usuario} ${movement.apellido_usuario} (@${movement.cod_usuario_aprobador}) Realizó la siguiente acción en este activo: ${movement.tipo}.`
     }
+}
+
+function returItemByMovement(movement) {
+    return (
+        <ListItemText 
+            primary={`${displayDateRightFormatWithTime(movement.fecha_movimiento)} | ${returnTextByMovement(movement)}`} 
+        />         
+    )
 }
 
 function generateHistorialItems(movimientos) {
     return movimientos.map((i) => [
         <ListItem button>
-                {returItemByMovement(i)}     
+            {returItemByMovement(i)}     
         </ListItem>,
         <Divider />
     ])
