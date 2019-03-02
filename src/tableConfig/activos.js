@@ -38,7 +38,7 @@ export default (show, remove) => [
             {
                 Header: "Vida Útil (Meses)",
                 accessor: "vida_util_meses",
-                width: 50,
+                width: 140,
             },
             {
                 Header: "Clasificación",
@@ -54,8 +54,9 @@ export default (show, remove) => [
                 accessor: "estatus",
             },
             {
-                Header: "Condición",
+                Header: "Estado de uso",
                 accessor: "condicion",
+                width: 120,
             },
             {
                 Header: "Observaciones",
@@ -88,6 +89,7 @@ export default (show, remove) => [
                 id: "fecha_compra",
                 Header: "Fecha de Compra",
                 accessor: data => displayDateRightFormat(data.fecha_compra),
+                width: 140
             },
             {
                 Header: "Costo",
@@ -96,6 +98,7 @@ export default (show, remove) => [
             {
                 Header: "Condición de pago",
                 accessor: "condicion_pago",
+                width: 140
             },
             {
                 Header: "Proveedor",

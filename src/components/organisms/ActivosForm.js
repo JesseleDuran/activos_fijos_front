@@ -265,7 +265,7 @@ class ActivosForm extends React.Component {
                 <Grid item xs={3}>
                     <TextField
                         id="standard-condicion"
-                        label="Condición"
+                        label="Estado de uso"
                         value={this.state.condicion}
                         onChange={this.handleChange("condicion")}
                         type="text"
