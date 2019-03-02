@@ -29,7 +29,6 @@ const ActivoKeys = {
     "numero_orden_compra": "000000000000143",
     "orden_compra": "000000000000143",
     "serial": "345-6",
-    "unidad_administrativa": "DEPARTAMENTO DE ADMINISTRACIÓN DEL PERSONAL",
     "unidades": 510,
     "vida_util_meses": "10"
 } 

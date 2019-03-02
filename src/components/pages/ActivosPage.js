@@ -35,7 +35,8 @@ const ActivosPage = ({ activos, size, pages = 100, loading = false, onChange, sh
             <Workbook filename="inventario.xlsx" element={<Button variant="contained" color="primary" disabled={activos.length === 0}>Descargar Inventario</Button>}>
                 <Workbook.Sheet data={activos} name="Sheet A">
                     <Workbook.Column label="UBICACIÓN GEOGRÁFICA" value="ubicacion_geografica"/>
-                    <Workbook.Column label="UBICACIÓN ADMINISTRATIVA" value="unidad_administrativa"/>
+                    <Workbook.Column label="UBICACIÓN ADMINISTRATIVA" value="ubicacion_administrativa"/>
+                    <Workbook.Column label="UBICACIÓN DEPARTAMENTO" value="departamento"/>
 
                     <Workbook.Column label="N° ACTIVO" value="n_activo"/>
                     <Workbook.Column label="DESCRIPCIÓN" value="descripcion"/>

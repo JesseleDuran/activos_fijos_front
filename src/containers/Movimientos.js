@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import Page from "../hocs/Page";
 import { showError } from "../actions/UI";
 import MovimientosPage from "../components/pages/MovimientosPage";
-import { createMovimiento, getMovimiento, getPersonal, getActivoByMovimiento, getUbications, getUbicationsAdmin } from "../api/activos";
+import { createMovimiento, getMovimiento, getPersonal, getActivoByMovimiento, getUbications, getUbicationsAdmin, getDepartamentos } from "../api/activos";
 import { getCodemp } from "../utils/state";
 import Asignation from "../pdf-templates/Asignation";
 import { render } from "../pdf-templates/PDFGenerator";
@@ -31,12 +31,14 @@ class MovimientosContainer extends Component {
         ...initialState,
         ubicacionesFisicas: [],
         ubicacionesAdministrativas: [],
+        departamentos: []
     };
 
     async componentWillMount() {
         const ubicacionesFisicas = await getUbications();
         const ubicacionesAdministrativas = await getUbicationsAdmin();
-        this.setState({ ...initialState, ubicacionesFisicas, ubicacionesAdministrativas }, this.getActivos);
+        const departamentos = await getDepartamentos();
+        this.setState({ ...initialState, ubicacionesFisicas, ubicacionesAdministrativas, departamentos }, this.getActivos);
     }
 
     changeType = (evt) => {
@@ -126,7 +128,7 @@ class MovimientosContainer extends Component {
     }
 
     render = () => {
-        const { movementType, data, activos, selected, ubicacionesFisicas, ubicacionesAdministrativas } = this.state;
+        const { movementType, data, activos, selected, ubicacionesFisicas, ubicacionesAdministrativas, departamentos } = this.state;
         return (
             <MovimientosPage
                 activos={activos}
@@ -140,6 +142,7 @@ class MovimientosContainer extends Component {
                 getPersonal={getPersonal}
                 ubicacionesFisicas={ubicacionesFisicas}
                 ubicacionesAdministrativas={ubicacionesAdministrativas}
+                departamentos={departamentos}
                 isCompleted={this.isCompleted}
                 create={this.create}
             />

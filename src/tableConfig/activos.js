@@ -116,7 +116,11 @@ export default (show, remove) => [
             },
             {
                 Header: "Administrativa",
-                accessor: "unidad_administrativa",
+                accessor: "ubicacion_administrativa",
+            },
+            {
+                Header: "Departamento",
+                accessor: "departamento",
             },
         ],
     },

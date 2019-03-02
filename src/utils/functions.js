@@ -11,5 +11,5 @@ export const clasificacionesToOptions = (clasificaciones) => {
 }
 
 export const ubicacionesAdministrativasToOptions = (ubicaciones) => {
-    return ubicaciones.map(u => ({ label: u.denuniadm, value: u.coduniadm }));
+    return ubicaciones.map(u => ({ label: u, value: u }));
 }

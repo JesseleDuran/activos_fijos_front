@@ -27,6 +27,7 @@ const MovimientosPage = ({
     getPersonal,
     ubicacionesFisicas,
     ubicacionesAdministrativas,
+    departamentos,
     isCompleted,
     create, }) => (
     <Paper>
@@ -56,6 +57,7 @@ const MovimientosPage = ({
                     getPersonal={getPersonal}
                     ubicacionesFisicas={ubicacionesFisicas}
                     ubicacionesAdministrativas={ubicacionesAdministrativas}
+                    departamentos={departamentos}
                 />
             </Grid>
         </Grid>

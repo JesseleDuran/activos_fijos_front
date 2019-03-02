@@ -42,7 +42,7 @@ class ReportesContainer extends Component {
 
     generateFiltered = () => {
         const { selectedMarcas, selectedUbicaciones, selectedClasificaciones, selectedUbicacionesAdministrativas } = this.state;
-        const ubicationAdmin = selectedUbicacionesAdministrativas.map(value => ({ id: "codigo_unidad_administrativa", value }));
+        const ubicationAdmin = selectedUbicacionesAdministrativas.map(value => ({ id: "ubicacion_administrativa", value }));
         const ubicationFilter = selectedUbicaciones.map(value => ({ id: "ubicacion_geografica", value }));
         const marcasFilter = selectedMarcas.map(value => ({ id: "marca", value }));
         const clasificacionFilter = selectedClasificaciones.map(value => ({ id: "clasificacion", value }));

@@ -57,6 +57,8 @@ export const getUbications = () => request().get("/ubicacionfisica").then(({ dat
 
 export const getUbicationsAdmin = () => request().get("/ubicacionadministrativa").then(({ data }) => data);
 
+export const getDepartamentos = () => request().get("/departamentos").then(({ data }) => data);
+
 export const getPersonal = query => request().get("/personal", {
     params: {
         query,

@@ -3,7 +3,6 @@ import Grid from "@material-ui/core/Grid/Grid";
 import TextField from "@material-ui/core/TextField/TextField";
 import HttpSelect from "../molecules/HttpSelect";
 import { ubicacionesToOptions, ubicacionesAdministrativasToOptions } from "../../utils/functions"
-import ControlledSelect from "../molecules/Select"
 import CreateNewItemsDropdown from "../molecules/CreateNewItemsDropdown"
 
 class MovimientosForm extends React.Component {
@@ -18,13 +17,6 @@ class MovimientosForm extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.type !== this.props.type)
             this.setState({
-                n_activos: null,
-                cod_personal_involucrado: null,
-                tiempo_limite: '',
-                motivo: '',
-                ubicacion_geografica: "",
-                codigo_unidad_administrativa: "",
-                ubicacion: ''
             });
         else
             this.setState({ ...nextProps.data });
@@ -41,7 +33,7 @@ class MovimientosForm extends React.Component {
     };
 
     render = () => {
-        const { type, getPersonal, ubicacionesFisicas, ubicacionesAdministrativas, disabled = false } = this.props;
+        const { type, getPersonal, ubicacionesFisicas, ubicacionesAdministrativas, departamentos, disabled = false } = this.props;
         return <Grid container style={{ padding: "0 5%" }}>
             <Grid item xs={12}>
                 <TextField
@@ -69,7 +61,7 @@ class MovimientosForm extends React.Component {
                     />
             </Grid>}
 
-            {(type === 'asignacion' || type === 'reasignacion') && <Grid item xs={12}>
+            {(type === 'asignacion' || type === 'reasignacion') && <Grid item xs={12} style={{ padding: "2% 0" }}>
                     <CreateNewItemsDropdown
                         label="Ubicación geográfica"
                         id="standard-select-ubicacion-grografica"
@@ -77,13 +69,20 @@ class MovimientosForm extends React.Component {
                         onChange={this.handleDropdownChange("ubicacion_geografica")}
                     />
             </Grid>}  
-            {(type === 'asignacion' || type === 'reasignacion')  && <Grid item xs={12}>
-                <ControlledSelect
+            {(type === 'asignacion' || type === 'reasignacion')  && <Grid item xs={12} style={{ padding: "2% 0" }}>
+                <CreateNewItemsDropdown
                     id="standard-select-clasificacion"
                     label="Ubicación Administrativa"
                     options={ubicacionesAdministrativasToOptions(ubicacionesAdministrativas)}
-                    onChange={this.handleChange("codigo_unidad_administrativa")}
-                    value=""
+                    onChange={this.handleDropdownChange("ubicacion_administrativa")}
+                />
+            </Grid>} 
+            {(type === 'asignacion' || type === 'reasignacion')  && <Grid item xs={12} style={{ padding: "2% 0" }}>
+                <CreateNewItemsDropdown
+                    id="standard-select-clasificacion"
+                    label="Ubicación Departamento"
+                    options={ubicacionesToOptions(departamentos)}
+                    onChange={this.handleDropdownChange("departamento")}
                 />
             </Grid>} 
             {(type === 'reparacion' || type === 'salida' || type === 'desincorporacion') && <Grid item xs={12}>

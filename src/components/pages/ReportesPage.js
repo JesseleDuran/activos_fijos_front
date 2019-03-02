@@ -73,7 +73,8 @@ const ReportesPage = ({
             <Workbook filename="reporte.xlsx" element={<Button disabled={preview.length === 0}>Descargar</Button>}>
                 <Workbook.Sheet data={preview} name="Sheet A">
                     <Workbook.Column label="Ubic. Geográfica" value="ubicacion_geografica"/>
-                    <Workbook.Column label="Ubic. Administrativa" value="unidad_administrativa"/>
+                    <Workbook.Column label="Ubic. Administrativa" value="ubicacion_administrativa"/>
+                    <Workbook.Column label="Ubic. Departamento" value="departamento"/>
                     <Workbook.Column label="Activo N°" value="n_activo"/>
                     <Workbook.Column label="Marca" value="marca"/>
                     <Workbook.Column label="Modelo" value="modelo"/>
