@@ -10,7 +10,7 @@ import Asignation from "../pdf-templates/Asignation";
 import { render } from "../pdf-templates/PDFGenerator";
 
 const fieldsFilledsByType = {
-    'asignacion': 2, 
+    'asignacion': 5, 
     'desincorporacion': 3, 
     'reasignacion': 2, 
     'prestamo': 4, 
@@ -83,7 +83,7 @@ class MovimientosContainer extends Component {
 
     isCompleted = () => {
         const notNullValues = Object.keys(this.state.data).filter(key => this.state.data[key]).length;
-        if (this.state.movementType === 'asignacion') {
+        if (this.state.movementType === 'reasignacion') {
             return notNullValues >= fieldsFilledsByType[this.state.movementType];
         }
         return notNullValues === fieldsFilledsByType[this.state.movementType];

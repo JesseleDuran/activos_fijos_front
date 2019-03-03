@@ -17,6 +17,14 @@ class MovimientosForm extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.type !== this.props.type)
             this.setState({
+                n_activos: null,
+                cod_personal_involucrado: null,
+                tiempo_limite: null,
+                motivo: null,
+                ubicacion_geografica: null,
+                ubicacion_administrativa: null,
+                ubicacion: null,
+                departamento: null
             });
         else
             this.setState({ ...nextProps.data });
