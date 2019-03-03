@@ -10,7 +10,7 @@ import ActivoModal from "../organisms/ActivoModal";
 
 const styles = () => ({});
 
-const ActivosPage = ({ activos, size, pages = 100, loading = false, onChange, show, remove, activo, close, onChangeUpdate, update, hasChanged }) => (
+const ActivosPage = ({ activos, size, pages = 100, loading = false, onChange, show, remove, activo, close, onChangeUpdate, update, hasChanged, clasificaciones, marcas }) => (
     <Grid container>
         <div style={{ width: "100%" }}>
             <ReactTable
@@ -31,7 +31,9 @@ const ActivosPage = ({ activos, size, pages = 100, loading = false, onChange, sh
                 close={close} 
                 onChange={onChangeUpdate} 
                 update={update} 
-                hasChanged={hasChanged} 
+                hasChanged={hasChanged}
+                marcas={marcas}
+                clasificaciones={clasificaciones}
             />
             <Workbook filename="inventario.xlsx" element={<Button variant="contained" color="primary" disabled={activos.length === 0}>Descargar Inventario</Button>}>
                 <Workbook.Sheet data={activos} name="Sheet A">

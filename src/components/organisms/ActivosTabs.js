@@ -30,7 +30,7 @@ class ActivosTabs extends React.Component {
     };
 
     render() {
-        const { activo, onChange } = this.props;
+        const { activo, onChange, marcas, clasificaciones } = this.props;
         const { value } = this.state;
 
         return (
@@ -45,8 +45,8 @@ class ActivosTabs extends React.Component {
                 <TabContainer>
                     {activo && <ActivosForm
                         activo={activo}
-                        clasificaciones={[activo.clasificacion]}
-                        marcas={[activo.marca]}
+                        clasificaciones={clasificaciones}
+                        marcas={marcas}
                         update
                         onChange={onChange}
                     />

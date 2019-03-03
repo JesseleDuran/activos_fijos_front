@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import ActivosPage from "../components/pages/ActivosPage";
 
 import Page from "../hocs/Page";
-import { deleteActivo, getActivos as getActivosRequest, updateActivo } from "../api/activos";
+import { deleteActivo, getActivos as getActivosRequest, updateActivo, getClasification, getBrands } from "../api/activos";
 import confirm from "../utils/confirm";
 import { showError } from "../actions/UI";
 
@@ -25,6 +25,12 @@ class ActivosContainer extends Component {
         movement: null,
         toUpdate: []
     };
+
+    async componentWillMount() {
+        const clasificaciones = await getClasification();
+        const marcas = await getBrands();
+        this.setState({ clasificaciones, marcas });
+    }
 
     componentDidMount() {
         this.getActivos();
@@ -48,7 +54,7 @@ class ActivosContainer extends Component {
 
 
     remove = item => {
-        confirm("Estas Seguro?").then(
+        confirm(`Estas seguro de querer borrar el activo ?`).then(
             () => {
                 deleteActivo(item.n_activo)
                     .then(this.getActivos)
@@ -119,10 +125,12 @@ class ActivosContainer extends Component {
     }
 
     render = () => {
-        const { activos, page, size, query, sorted, loading, activo } = this.state;
+        const { activos, page, size, query, sorted, loading, activo, clasificaciones, marcas } = this.state;
         return (
             <ActivosPage
                 activos={activos}
+                clasificaciones={clasificaciones}
+                marcas={marcas}
                 page={page}
                 size={size}
                 query={query}
