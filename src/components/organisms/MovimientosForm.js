@@ -49,7 +49,7 @@ class MovimientosForm extends React.Component {
                 <TextField
                     id="standard-number3"
                     fullWidth
-                    label="# de Activo"
+                    label="N° de Activo"
                     value={this.state.n_activos}
                     type="text"
                     disabled
