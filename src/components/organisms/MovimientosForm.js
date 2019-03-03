@@ -37,6 +37,8 @@ class MovimientosForm extends React.Component {
     handleDropdownChange = field => evt => {
         if(evt !== null) {
             this.setState({ [field]: evt.value }, () => this.props.onChange(this.state));
+        } else {
+            this.setState({ [field]: null }, () => this.props.onChange(this.state));
         }
     };
 
