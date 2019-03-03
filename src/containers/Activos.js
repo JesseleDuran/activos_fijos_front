@@ -60,7 +60,7 @@ class ActivosContainer extends Component {
                     .then(this.getActivos)
                     .catch(() => {
                         this.props.showError(
-                            "Error al Borrar, Intente de nuevo",
+                            "Error al borrar activo, intente de nuevo",
                         );
                     });
             },

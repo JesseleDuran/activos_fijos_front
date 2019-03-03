@@ -47,7 +47,11 @@ class MovimientosContainer extends Component {
 
     getActivos = () => {
         const { movementType } = this.state;
-        getActivoByMovimiento(movementType).then(activos => this.setState({ activos }));
+        getActivoByMovimiento(movementType)
+        .then(activos => this.setState({ activos }))
+        .catch(() => {
+            this.props.showError("Error al recibir activos");
+        });;
     };
 
     onSelectActivo = activo => {
@@ -96,7 +100,10 @@ class MovimientosContainer extends Component {
             if(movementsInfo[0].apellido_personal !== null) {
                 render(<Asignation movements={movementsInfo}/>);
             }
-        });
+        })
+        .catch(() => {
+            this.props.showError("Error al generar informe de Asignación");
+        });;
     };
 
     toPdfIfNeeded = (type, movements) => {
@@ -119,7 +126,10 @@ class MovimientosContainer extends Component {
             this.toPdfIfNeeded(movementType, res);
             this.setState({ ...initialState });
             this.props.history.push("/activos");
-        });
+        })
+        .catch(() => {
+            this.props.showError("Error al crear movimiento");
+        });;
     };
 
     formatData(data) {

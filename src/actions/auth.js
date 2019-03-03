@@ -25,7 +25,7 @@ export const login = (username, password) => dispatch => {
                 }),
             );
         })
-        .catch(() => dispatch(showError("Usuario o Password Incorrecta")));
+        .catch(() => dispatch(showError("Nombre de usuario o Contraseña incorrecta")));
 };
 
 export const autoAuth = () => dispatch => {

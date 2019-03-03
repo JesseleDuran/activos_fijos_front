@@ -66,6 +66,10 @@ class ReportesContainer extends Component {
         this.setState({ loading: true }, () => {
             getReporte(filtered, fecha).then(data => {
                 this.setState({ data, loading: false });
+            })
+            .catch(() => {
+                this.props.showError("Error al generar reporte");
+                this.setState({ loading: false });
             });
         });
 
