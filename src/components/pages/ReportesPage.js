@@ -72,7 +72,7 @@ const ReportesPage = ({
                 values={selectedClasificaciones}
                 onChange={changeClasificaciones}/>
             <ControlledSelect
-                label='Meses'
+                label='Mes del reporte'
                 options={monthsToOptions()}
                 onChange={evt => changeFecha(evt.target.value)}
                 value=""
