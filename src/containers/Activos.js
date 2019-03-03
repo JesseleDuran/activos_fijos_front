@@ -54,7 +54,7 @@ class ActivosContainer extends Component {
 
 
     remove = item => {
-        confirm(`Estas seguro de querer borrar el activo ?`).then(
+        confirm(`¿Estás seguro de querer borrar el activo N° ${item.n_activo}?`).then(
             () => {
                 deleteActivo(item.n_activo)
                     .then(this.getActivos)
