@@ -29,17 +29,20 @@ const ReportesPage = ({
                           ubicacionesAdministrativas,
                           clasificaciones,
                           marcas,
+                          ubicacionesDptos,
                           fecha,
                           selectedUbicaciones,
                           selectedMarcas,
                           selectedClasificaciones,
                           selectedUbicacionesAdministrativas,
+                          selectedDptos,
                           changeFecha,
                           changeMarcas,
                           changeUbicaciones,
                           changeClasificaciones,
                           changeUbicacionesAdministrativas,
-                          apply,
+                          changeDptos,
+                          apply
                       }) => (
     <Grid container>
         <Grid item xs={12}>
@@ -52,7 +55,12 @@ const ReportesPage = ({
                 label='Ubicación Administrativa'
                 options={ubicacionesAdministrativasToOptions(ubicacionesAdministrativas)}
                 values={selectedUbicacionesAdministrativas}
-                onChange={changeUbicacionesAdministrativas}/>    
+                onChange={changeUbicacionesAdministrativas}/> 
+            <MultiSelect
+                label='Ubicación Departamento'
+                options={ubicacionesToOptions(ubicacionesDptos)}
+                values={selectedDptos}
+                onChange={changeDptos}/>        
             <MultiSelect 
                 label='Marcas'
                 options={marcasToOptions(marcas)}

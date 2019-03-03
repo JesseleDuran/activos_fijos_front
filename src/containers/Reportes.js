@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Page from "../hocs/Page";
 import { showError } from "../actions/UI";
-import { getBrands, getClasification, getReporte, getUbications, getUbicationsAdmin } from "../api/activos";
+import { getBrands, getClasification, getReporte, getUbications, getUbicationsAdmin, getDepartamentos } from "../api/activos";
 import { getCodemp } from "../utils/state";
 import ReportesPage from "../components/pages/ReportesPage";
 
@@ -15,10 +15,12 @@ class ReportesContainer extends Component {
         marcas: [],
         ubicaciones: [],
         ubicacionesAdministrativas: [],
+        ubicacionesDptos: [],
         selectedMarcas: [],
         selectedUbicaciones: [],
         selectedClasificaciones: [],
         selectedUbicacionesAdministrativas: [],
+        selectedDptos: [],
         fecha: null,
         loading: false,
         data: [],
@@ -29,7 +31,8 @@ class ReportesContainer extends Component {
         const marcas = await getBrands();
         const ubicaciones = await getUbications();
         const ubicacionesAdministrativas = await getUbicationsAdmin();
-        this.setState({ clasificaciones, marcas, ubicaciones, ubicacionesAdministrativas });
+        const ubicacionesDptos = await getDepartamentos();
+        this.setState({ clasificaciones, marcas, ubicaciones, ubicacionesAdministrativas, ubicacionesDptos });
     }
 
     handleChange = property => value => {
@@ -41,16 +44,18 @@ class ReportesContainer extends Component {
     };
 
     generateFiltered = () => {
-        const { selectedMarcas, selectedUbicaciones, selectedClasificaciones, selectedUbicacionesAdministrativas } = this.state;
+        const { selectedMarcas, selectedUbicaciones, selectedClasificaciones, selectedUbicacionesAdministrativas, selectedDptos } = this.state;
         const ubicationAdmin = selectedUbicacionesAdministrativas.map(value => ({ id: "ubicacion_administrativa", value }));
         const ubicationFilter = selectedUbicaciones.map(value => ({ id: "ubicacion_geografica", value }));
         const marcasFilter = selectedMarcas.map(value => ({ id: "marca", value }));
         const clasificacionFilter = selectedClasificaciones.map(value => ({ id: "clasificacion", value }));
+        const ubicationDptos = selectedDptos.map(value => ({ id: "departamento", value }));
         return [
             ...ubicationAdmin,
             ...ubicationFilter,
             ...marcasFilter,
             ...clasificacionFilter,
+            ...ubicationDptos
         ];
     };
 
@@ -70,9 +75,9 @@ class ReportesContainer extends Component {
         const {
             data,
             clasificaciones, marcas,
-            ubicaciones, ubicacionesAdministrativas,
+            ubicaciones, ubicacionesAdministrativas, ubicacionesDptos,
             selectedMarcas, selectedUbicaciones, selectedUbicacionesAdministrativas,
-            selectedClasificaciones, loading,
+            selectedClasificaciones, selectedDptos, loading,
             fecha
         } = this.state;
         return (
@@ -82,16 +87,19 @@ class ReportesContainer extends Component {
                 ubicaciones={ubicaciones}
                 ubicacionesAdministrativas={ubicacionesAdministrativas}
                 marcas={marcas}
+                ubicacionesDptos={ubicacionesDptos}
                 fecha={fecha}
                 clasificaciones={clasificaciones}
                 selectedMarcas={selectedMarcas}
                 selectedUbicaciones={selectedUbicaciones}
                 selectedUbicacionesAdministrativas={selectedUbicacionesAdministrativas}
                 selectedClasificaciones={selectedClasificaciones}
+                selectedDptos={selectedDptos}
                 changeFecha={this.handleChangeFecha}
                 changeMarcas={this.handleChange("selectedMarcas")}
                 changeUbicaciones={this.handleChange("selectedUbicaciones")}
                 changeClasificaciones={this.handleChange("selectedClasificaciones")}
+                changeDptos={this.handleChange("selectedDptos")}
                 changeUbicacionesAdministrativas={this.handleChange("selectedUbicacionesAdministrativas")}
                 apply={this.apply}
             />
