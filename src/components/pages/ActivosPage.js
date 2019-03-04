@@ -40,7 +40,8 @@ const ActivosPage = ({ activos, size, pages = 100, loading = false, onChange, sh
                     <Workbook.Column label="UBICACIÓN GEOGRÁFICA" value="ubicacion_geografica"/>
                     <Workbook.Column label="UBICACIÓN ADMINISTRATIVA" value="ubicacion_administrativa"/>
                     <Workbook.Column label="UBICACIÓN DEPARTAMENTO" value="departamento"/>
-
+                    <Workbook.Column label="USUARIO" value={row => row.nombre_personal ? `${row.nombre_personal} ${row.apellido_personal}` : ''}/>
+                    <Workbook.Column label="CÉDULA DE USUARIO" value={row => row.cedula_personal !== null ? `V-${row.cedula_personal}` : ''}/>
                     <Workbook.Column label="N° ACTIVO" value="n_activo"/>
                     <Workbook.Column label="DESCRIPCIÓN" value="descripcion"/>
                     <Workbook.Column label="MARCA" value="marca"/>

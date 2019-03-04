@@ -131,6 +131,26 @@ export default (show, remove) => [
         ],
     },
     {
+        Header: "Usuario",
+        columns: [
+            {
+                Header: "Cédula",
+                id: "cedper",
+                accessor: data => data.cedula_personal,
+            },
+            {
+                Header: "Nombre",
+                id: "nomper",
+                accessor: data => data.nombre_personal,
+            },
+            {
+                Header: "Apellido",
+                id: "apeper",
+                accessor: data => data.apellido_personal,
+            },
+        ],
+    },
+    {
         Header: "",
         columns: [
             {
