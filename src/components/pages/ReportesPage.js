@@ -71,12 +71,14 @@ const ReportesPage = ({
                 options={clasificacionesToOptions(clasificaciones)}
                 values={selectedClasificaciones}
                 onChange={changeClasificaciones}/>
-            <ControlledSelect
-                label='Mes del reporte'
-                options={monthsToOptions()}
-                onChange={evt => changeFecha(evt.target.value)}
-                value=""
-            />
+            <Grid item xs={3}>  
+                <ControlledSelect
+                    label='Mes del reporte'
+                    options={monthsToOptions()}
+                    onChange={evt => changeFecha(evt.target.value)}
+                    value=""
+                />
+            </Grid>  
 
             <Workbook filename="reporte.xlsx" element={<Button disabled={preview.length === 0}>Descargar</Button>}>
                 <Workbook.Sheet data={preview} name="Sheet A">
