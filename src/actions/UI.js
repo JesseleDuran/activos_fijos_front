@@ -1,4 +1,3 @@
-import ErrorHandler from "ErrorHandler";
 import * as constants from "../constants/actions";
 
 export const loading = loading => dispatch => {
@@ -26,8 +25,4 @@ export const showError = error => dispatch => {
       },
     });
   }, 1000);
-};
-
-export const showRequestError = error => dispatch => {
-  dispatch(showError(ErrorHandler(error)));
 };

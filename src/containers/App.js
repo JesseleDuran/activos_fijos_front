@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { autoAuth, logout } from "../actions/auth";
+import PageLoader from "../components/molecules/PageLoader";
 import LoginPage from "./LoginPage";
-import { autoAuth, logout } from "actions/auth";
 import Route from "./Route";
 import Activos from "./Activos";
 import AuthRoute from "./AuthRoute";
-import PageLoader from "PageLoader";
 import CrearActivos from "./CrearActivos";
 import Movimientos from "./Movimientos";
 import Reportes from "./Reportes";

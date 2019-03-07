@@ -5,6 +5,11 @@ export const createActivo = activo =>
         .post("/activos", activo)
         .then(({ data }) => data);
 
+export const updateActivo = (id, filtered) =>
+    request()
+        .put(`/activos/${id}`, filtered)
+        .then(({ data }) => data);        
+
 export const getActivos = ({ page = 0, size = 20, filtered, sorted }) =>
     request()
         .get("/activos", {
@@ -46,9 +51,13 @@ export const deleteActivo = id =>
         .delete(`/activos/${id}`)
         .then(({ data }) => data);
 
-export const getOrdenes = () => request().get("/ordenescompra").then(({ data }) => data);
+export const getOrdenes = () => request().get("/ordenescomprafactura").then(({ data }) => data);
 
 export const getUbications = () => request().get("/ubicacionfisica").then(({ data }) => data);
+
+export const getUbicationsAdmin = () => request().get("/ubicacionadministrativa").then(({ data }) => data);
+
+export const getDepartamentos = () => request().get("/departamentos").then(({ data }) => data);
 
 export const getPersonal = query => request().get("/personal", {
     params: {
@@ -58,7 +67,7 @@ export const getPersonal = query => request().get("/personal", {
 
 export const createMovimiento = movimiento => request().post("/movimiento", movimiento).then(({ data }) => data);
 
-export const getMovimiento = id => request().get("/movimiento/" + id).then(({ data }) => data);
+export const getMovimiento = id => request().get(`/movimiento/${id}`).then(({ data }) => data);
 
 export const getReporte = (filtered, report_date) => {
     return request().get("/reportes/depreciacion", {

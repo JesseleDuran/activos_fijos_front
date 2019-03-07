@@ -1,5 +1,5 @@
 export const ubicacionesToOptions = (ubicaciones) => {
-    return ubicaciones.map(u => ({ label: u.desubifis, value: u.codubifis }));
+    return ubicaciones.map(u => ({ label: u, value: u }));
 }
 
 export const marcasToOptions= (marcas) => {
@@ -8,4 +8,8 @@ export const marcasToOptions= (marcas) => {
 
 export const clasificacionesToOptions = (clasificaciones) => {
     return clasificaciones.map(m => ({ label: m, value: m }));
+}
+
+export const ubicacionesAdministrativasToOptions = (ubicaciones) => {
+    return ubicaciones.map(u => ({ label: u, value: u }));
 }

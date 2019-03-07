@@ -5,38 +5,38 @@ import { getUser } from "../reducers/auth";
 import { getError } from "../reducers/UI";
 
 const Page = (settings = {}) => WrappedComponent => {
-  const {
-    // The title of the page
-    title = "",
-  } = settings;
+  	const {
+    	// The title of the page
+    	title = "",
+  	} = settings;
 
-  class PageContainer extends Component {
+class PageContainer extends Component {
     state = {
-      shouldRender: true,
+    	shouldRender: true,
     };
 
     renderWrappedComponent = () => {
-      return (
-        <HomePage {...this.props} title={title}>
-          <WrappedComponent {...this.props} />
-        </HomePage>
-      );
+      	return (
+        	<HomePage {...this.props} title={title}>
+          		<WrappedComponent {...this.props} />
+        	</HomePage>
+      	);
     };
 
     render = () => {
-      return this.renderWrappedComponent();
+      	return this.renderWrappedComponent();
     };
-  }
+}
 
-  const mapStateToProps = state => ({
+const mapStateToProps = state => ({
     user: getUser(state),
     error: getError(state),
-  });
+});
 
-  return connect(
-    mapStateToProps,
+return connect(
+	mapStateToProps,
     {},
-  )(PageContainer);
+  	)(PageContainer);
 };
 
 export default Page;

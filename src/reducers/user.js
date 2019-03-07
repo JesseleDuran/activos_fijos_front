@@ -1,26 +1,23 @@
-import { combineReducers } from "redux";
-import assign from "lodash/assign";
-import merge from "lodash/merge";
 import * as constants from "../constants/actions";
 
 const ROLES_KEY = "https://integrations-team/app_metadata";
 
 const defaultRolesObject = {
-  user: true,
-  admin: false,
+	user: true,
+  	admin: false,
 };
 
 export default (state = {}, action) => {
   switch (action.type) {
     case constants.LOGIN_SUCCESS:
-      const { user } = action.payload;
-      return {
-        ...state,
-        ...user,
-        roles: parseRoles(user[ROLES_KEY] || {}),
-      };
+    	const { user } = action.payload;
+		return {
+			...state,
+			...user,
+			roles: parseRoles(user[ROLES_KEY] || {}),
+		};
     default:
-      return state;
+    	return state;
   }
 };
 

@@ -5,15 +5,23 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
-const styles = theme => ({
+const styles = () => ({
 	formControl: {
 		width: "100%"
 	}
 });
 
+const renderOptions = options => {
+	return options.map(option => (
+		<MenuItem value={option.value} key={option.value}>
+			{option.label}
+		</MenuItem>
+	));
+};
+
 class ControlledSelect extends React.Component {
 	state = {
-		value: "",
+		value: this.props.value !== "" ? this.props.value : "",
 		open: false
 	};
 
@@ -51,13 +59,5 @@ class ControlledSelect extends React.Component {
 		);
 	}
 }
-
-const renderOptions = options => {
-	return options.map(option => (
-		<MenuItem value={option.value} key={option.value}>
-			{option.label}
-		</MenuItem>
-	));
-};
 
 export default withStyles(styles)(ControlledSelect);

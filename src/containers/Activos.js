@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import ActivosPage from "../components/pages/ActivosPage";
 
 import Page from "../hocs/Page";
-import { deleteActivo, getActivos as getActivosRequest } from "../api/activos";
+import { deleteActivo, getActivos as getActivosRequest, updateActivo, getClasification, getBrands } from "../api/activos";
 import confirm from "../utils/confirm";
 import { showError } from "../actions/UI";
 
@@ -23,7 +23,14 @@ class ActivosContainer extends Component {
         loading: false,
         activo: null,
         movement: null,
+        toUpdate: []
     };
+
+    async componentWillMount() {
+        const clasificaciones = await getClasification();
+        const marcas = await getBrands();
+        this.setState({ clasificaciones, marcas });
+    }
 
     componentDidMount() {
         this.getActivos();
@@ -34,7 +41,7 @@ class ActivosContainer extends Component {
     };
 
     close = () => {
-        this.setState({ activo: null });
+        this.setState({ activo: null , toUpdate: []});
     };
 
     showMovementModal = (activo) => {
@@ -47,13 +54,13 @@ class ActivosContainer extends Component {
 
 
     remove = item => {
-        confirm("Estas Seguro?").then(
+        confirm(`¿Estás seguro de querer borrar el activo N° ${item.n_activo}?`).then(
             () => {
                 deleteActivo(item.n_activo)
                     .then(this.getActivos)
                     .catch(() => {
                         this.props.showError(
-                            "Error al Borrar, Intente de nuevo",
+                            "Error al borrar activo, intente de nuevo",
                         );
                     });
             },
@@ -86,16 +93,50 @@ class ActivosContainer extends Component {
         this.setState({ size: pageSize, page, sorted, filtered }, this.fetch);
     };
 
+    onChangeUpdate = (key, value) => {
+        const toUpdateHelper = this.state.toUpdate;
+        const contains = this.containsObject(key, toUpdateHelper);
+        contains !== false ? toUpdateHelper[contains].value = value : toUpdateHelper.push({'id': key, 'value': value });
+        this.setState({ toUpdate: toUpdateHelper });
+    };
+
+    update = () => {
+        const {activo, toUpdate}  = this.state
+        updateActivo(activo.n_activo, toUpdate)
+            .then(activo => {
+                this.setState({ activo, loading: false});
+                this.close()
+                this.getActivos();
+            })
+            .catch(() => {
+                this.props.showError("Error al actualizar activo");
+                this.setState({ loading: false });
+            });
+    }
+
+    containsObject = (key, list) => {
+        let i;
+        for (i = 0; i < list.length; i++) {
+            if (list[i].id === key) {
+                return i
+            }
+        }
+        return false;
+    }
+
     render = () => {
-        const { activos, page, size, query, sorted, loading, activo } = this.state;
+        const { activos, page, size, query, sorted, loading, activo, clasificaciones, marcas } = this.state;
         return (
             <ActivosPage
                 activos={activos}
+                clasificaciones={clasificaciones}
+                marcas={marcas}
                 page={page}
                 size={size}
                 query={query}
                 sorted={sorted}
                 onChange={this.onChange}
+                onChangeUpdate={this.onChangeUpdate}
                 loading={loading}
                 show={this.show}
                 remove={this.remove}
@@ -103,12 +144,14 @@ class ActivosContainer extends Component {
                 close={this.close}
                 showMovementModal={this.showMovementModal}
                 closeMovement={this.closeMovement}
+                update={this.update}
+                hasChanged={(this.state.toUpdate.length === 0)}
             />
         );
     };
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = () => ({});
 
 export default connect(
     mapStateToProps,

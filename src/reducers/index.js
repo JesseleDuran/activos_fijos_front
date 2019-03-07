@@ -3,8 +3,8 @@ import auth from "./auth";
 import UI from "./UI";
 
 const rootReducer = combineReducers({
-  auth,
-  UI,
+	auth,
+    UI,
 });
 
 export default rootReducer;

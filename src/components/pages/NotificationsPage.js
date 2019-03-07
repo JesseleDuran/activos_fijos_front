@@ -1,11 +1,10 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
-import ReactTable from "react-table";
-import NotificationList from "../organisms/NotificationList"
 import Paper from "@material-ui/core/Paper/Paper";
+import NotificationList from "../organisms/NotificationList"
 
-const styles = theme => ({});
+const styles = () => ({});
 
 const NotificationsPage = ({ notifications }) => (
     <Grid container>

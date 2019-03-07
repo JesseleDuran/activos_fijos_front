@@ -2,6 +2,19 @@ import * as constants from "../constants/actions";
 import { showError } from "./UI";
 import { auth } from "../api/user";
 
+const loginSuccess = payload => dispatch => {
+    dispatch({
+        type: constants.LOGIN_SUCCESS,
+        payload,
+    });
+};
+
+export const setAuth = ({ accessToken, user }) => dispatch => {
+    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("user", JSON.stringify(user));
+    dispatch(loginSuccess({ accessToken, user }));
+};
+
 export const login = (username, password) => dispatch => {
     auth(username, password)
         .then(data => {
@@ -12,7 +25,7 @@ export const login = (username, password) => dispatch => {
                 }),
             );
         })
-        .catch(() => dispatch(showError("Usuario o Password Incorrecta")));
+        .catch(() => dispatch(showError("Nombre de usuario o Contraseña incorrecta")));
 };
 
 export const autoAuth = () => dispatch => {
@@ -23,19 +36,6 @@ export const autoAuth = () => dispatch => {
         dispatch(loginSuccess({ accessToken, user }));
         dispatch(setAuth({ accessToken, user }));
     }
-};
-
-export const setAuth = ({ accessToken, user }) => dispatch => {
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("user", JSON.stringify(user));
-    dispatch(loginSuccess({ accessToken, user }));
-};
-
-const loginSuccess = payload => dispatch => {
-    dispatch({
-        type: constants.LOGIN_SUCCESS,
-        payload,
-    });
 };
 
 export const loginFail = error => dispatch => {

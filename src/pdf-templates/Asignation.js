@@ -71,6 +71,32 @@ const styles = {
 
 
 };
+const renderRow = movement => {
+    return <tr>
+        <td style={styles.td}>01</td>
+        <td style={styles.td}>{movement.n_activo}</td>
+        <td style={styles.td}>{movement.descripcion}</td>
+        <td style={styles.td}>{movement.marca}</td>
+        <td style={styles.td}>{movement.modelo}</td>
+        <td style={styles.td}>{movement.serial}</td>
+        <td style={styles.td}>{movement.desubifis}</td>
+    </tr>;
+};
+
+const renderTable = movements => {
+    return <table style={styles.table}>
+        <tr>
+            <th style={styles.columnHead}>Cant.</th>
+            <th style={styles.columnHead}>No. Activo</th>
+            <th style={styles.columnHead}>Descripcion</th>
+            <th style={styles.columnHead}>Marca</th>
+            <th style={styles.columnHead}>Modelo</th>
+            <th style={styles.columnHead}>Serial</th>
+            <th style={styles.columnHead}>Ubicacion</th>
+        </tr>
+        {movements.map(renderRow)}
+    </table>;
+};
 
 const formatThousandDots = str => str.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const formatNames = str => str.toLowerCase().replace(/\b\w/g, l => l.toUpperCase());
@@ -79,11 +105,11 @@ const Asignation = ({ movements }) => {
     const mainData = movements[0];
     const multiple = movements.length > 1;
     const title = mainData.sexper === "F" ? "Sra" : "Sr";
-    const cedAuth = formatThousandDots(mainData.cedusu);
-    const cedPer = formatThousandDots(mainData.cedper);
+    const cedAuth = formatThousandDots(mainData.cedula_usuario);
+    const cedPer = formatThousandDots(mainData.cedula_personal);
     const cargoPer = formatNames(mainData.cargo_personal);
-    const nameUsu = formatNames(mainData.nomusu + " " + mainData.apeusu);
-    const namePer = formatNames(mainData.nomper + " " + mainData.apeper);
+    const nameUsu = formatNames(`${mainData.nombre_usuario} ${mainData.apellido_usuario}`);
+    const namePer = formatNames(`${mainData.nombre_personal} ${mainData.apellido_personal}`);
     const momentInstance = moment(mainData.created_at);
     momentInstance.locale("es");
     const activosText = multiple ? "de los activos siguientes" : "del activo siguiente";
@@ -92,6 +118,7 @@ const Asignation = ({ movements }) => {
             <img
                 style={styles.logo}
                 src="img/cvg-logo.jpg"
+                alt="Logo"
             />
         </div>
         <div>
@@ -135,36 +162,10 @@ const Asignation = ({ movements }) => {
         <div style={styles.footer}>
             <img
                 src="img/doc-footer.png"
+                alt="CVG Maderas del Orinoco"
             />
         </div>
     </div>;
-};
-
-const renderTable = movements => {
-    return <table style={styles.table}>
-        <tr>
-            <th style={styles.columnHead}>Cant.</th>
-            <th style={styles.columnHead}>No. Activo</th>
-            <th style={styles.columnHead}>Descripcion</th>
-            <th style={styles.columnHead}>Marca</th>
-            <th style={styles.columnHead}>Modelo</th>
-            <th style={styles.columnHead}>Serial</th>
-            <th style={styles.columnHead}>Ubicacion</th>
-        </tr>
-        {movements.map(renderRow)}
-    </table>;
-};
-
-const renderRow = movement => {
-    return <tr>
-        <td style={styles.td}>01</td>
-        <td style={styles.td}>{movement.n_activo}</td>
-        <td style={styles.td}>{movement.descripcion}</td>
-        <td style={styles.td}>{movement.marca}</td>
-        <td style={styles.td}>{movement.modelo}</td>
-        <td style={styles.td}>{movement.serial}</td>
-        <td style={styles.td}>{movement.desubifis}</td>
-    </tr>;
 };
 
 export default Asignation;

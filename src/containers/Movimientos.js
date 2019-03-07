@@ -4,36 +4,41 @@ import { withRouter } from "react-router-dom";
 import Page from "../hocs/Page";
 import { showError } from "../actions/UI";
 import MovimientosPage from "../components/pages/MovimientosPage";
-import { createMovimiento, getActivos, getMovimiento, getPersonal, getActivoByMovimiento } from "../api/activos";
+import { createMovimiento, getMovimiento, getPersonal, getActivoByMovimiento, getUbications, getUbicationsAdmin, getDepartamentos } from "../api/activos";
 import { getCodemp } from "../utils/state";
 import Asignation from "../pdf-templates/Asignation";
 import { render } from "../pdf-templates/PDFGenerator";
 
 const fieldsFilledsByType = {
-    'asignacion': 2, 
-    'desincorporacion': 4, 
+    'asignacion': 5, 
+    'desincorporacion': 3, 
     'reasignacion': 2, 
-    'prestamo': 3, 
-    'reparacion': 4, 
+    'prestamo': 4, 
+    'reparacion': 3, 
     'salida': 4
 };
 const initialState = {
-    movementType: null,
+    movementType: 'asignacion',
     activos: [],
     selected: [], // Activos!
-    ubicaciones: [],
     data: {},
 };
 
 @Page({ title: "Movimientos" })
 class MovimientosContainer extends Component {
 
-
     state = {
         ...initialState,
+        ubicacionesFisicas: [],
+        ubicacionesAdministrativas: [],
+        departamentos: []
     };
 
-    componentWillMount() {
+    async componentWillMount() {
+        const ubicacionesFisicas = await getUbications();
+        const ubicacionesAdministrativas = await getUbicationsAdmin();
+        const departamentos = await getDepartamentos();
+        this.setState({ ...initialState, ubicacionesFisicas, ubicacionesAdministrativas, departamentos }, this.getActivos);
     }
 
     changeType = (evt) => {
@@ -42,7 +47,11 @@ class MovimientosContainer extends Component {
 
     getActivos = () => {
         const { movementType } = this.state;
-        getActivoByMovimiento(movementType).then(activos => this.setState({ activos }));
+        getActivoByMovimiento(movementType)
+        .then(activos => this.setState({ activos }))
+        .catch(() => {
+            this.props.showError("Error al recibir activos");
+        });;
     };
 
     onSelectActivo = activo => {
@@ -78,6 +87,9 @@ class MovimientosContainer extends Component {
 
     isCompleted = () => {
         const notNullValues = Object.keys(this.state.data).filter(key => this.state.data[key]).length;
+        if (this.state.movementType === 'reasignacion') {
+            return notNullValues >= fieldsFilledsByType[this.state.movementType];
+        }
         return notNullValues === fieldsFilledsByType[this.state.movementType];
     };
 
@@ -85,19 +97,24 @@ class MovimientosContainer extends Component {
 
         const promises = movements.map(({ id }) => getMovimiento(id));
         Promise.all(promises).then(movementsInfo => {
-            render(<Asignation movements={movementsInfo}/>);
-        });
+            if(movementsInfo[0].apellido_personal !== null) {
+                render(<Asignation movements={movementsInfo}/>);
+            }
+        })
+        .catch(() => {
+            this.props.showError("Error al generar informe de Asignación");
+        });;
     };
 
     toPdfIfNeeded = (type, movements) => {
-        if (type === 0) {
+        if (type === 'asignacion') {
             this.renderAsignacion(movements);
-        } else if (type === 5) {
         }
     };
 
     create = () => {
-        const { data, movementType } = this.state;
+        let { data, movementType } = this.state;
+        data = this.formatData(data);
         const movimiento = {
             ...data,
             tipo: movementType,
@@ -108,11 +125,20 @@ class MovimientosContainer extends Component {
         createMovimiento(movimiento).then(res => {
             this.toPdfIfNeeded(movementType, res);
             this.setState({ ...initialState });
-        });
+            this.props.history.push("/activos");
+        })
+        .catch(() => {
+            this.props.showError("Error al crear movimiento");
+        });;
     };
 
+    formatData(data) {
+        data.tiempo_limite = data.tiempo_limite == "" ? null : data.tiempo_limite;
+        return data;
+    }
+
     render = () => {
-        const { movementType, data, activos, selected, ubicaciones } = this.state;
+        const { movementType, data, activos, selected, ubicacionesFisicas, ubicacionesAdministrativas, departamentos } = this.state;
         return (
             <MovimientosPage
                 activos={activos}
@@ -124,7 +150,9 @@ class MovimientosContainer extends Component {
                 selected={selected}
                 data={data}
                 getPersonal={getPersonal}
-                ubicaciones={ubicaciones}
+                ubicacionesFisicas={ubicacionesFisicas}
+                ubicacionesAdministrativas={ubicacionesAdministrativas}
+                departamentos={departamentos}
                 isCompleted={this.isCompleted}
                 create={this.create}
             />

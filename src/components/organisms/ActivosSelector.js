@@ -105,6 +105,7 @@ class ActivosSelector extends React.Component {
                     </Grid>
                 </Grid>
                 <Divisor/>
+                {(filteredList.length > 0) ? (
                 <Grid item xs={12}>
                     <ListContainer height={height}>
                         <AutoSizer rowCount={filteredList.length}>
@@ -129,7 +130,9 @@ class ActivosSelector extends React.Component {
                             )}
                         </AutoSizer>
                     </ListContainer>
-                </Grid>
+                </Grid>) : (<Grid item xs={12} style={{ padding: "1%" }}>
+                    {'No hay activos para este movimiento.'}
+                </Grid>)} 
             </Grid>
         );
     };
