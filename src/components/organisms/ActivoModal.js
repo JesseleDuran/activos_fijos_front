@@ -19,7 +19,8 @@ class ActivoModal extends React.Component {
             update,
             hasChanged, 
             clasificaciones,
-            marcas
+            marcas,
+            downloadCartaDeAsignacion
         } = this.props;
         return (
             <Dialog
@@ -42,6 +43,9 @@ class ActivoModal extends React.Component {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
+                    <Button onClick={downloadCartaDeAsignacion} color="primary" autoFocus>
+                        Imprimir acta de asignación
+                    </Button>
                     <Button onClick={close} color="primary" autoFocus>
                         Cerrar
                     </Button>
