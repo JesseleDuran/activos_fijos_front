@@ -1,7 +1,8 @@
 {
-	"name": "MapeoIntegraciones",
-	"version": "0.1.0",
-	"private": true,
+	"name": "activos_fijos_front",
+	"version": "1.0.0",
+	"description": "front del módulo de activos fijos de la empresa Maderas del Orinoco",
+	"author": "Jessele Durán",
 	"dependencies": {
 		"@material-ui/core": "^1.4.0",
 		"@material-ui/icons": "^1.1.0",
