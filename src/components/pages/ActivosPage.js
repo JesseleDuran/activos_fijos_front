@@ -43,6 +43,14 @@ const ActivosPage = ({ activos, size, pages = 100, loading = false, onChange, sh
                 filterable
                 sortable={false}
                 manual
+                  // Text
+                previousText='Anterior'
+                nextText='Siguiente'
+                loadingText='Cargando...'
+                noDataText='No activos encontrados'
+                pageText='Página'
+                ofText='de'
+                rowsText='activos'
             />
             <ActivoModal 
                 open={activo} 

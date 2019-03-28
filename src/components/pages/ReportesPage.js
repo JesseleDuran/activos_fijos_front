@@ -116,6 +116,13 @@ const ReportesPage = ({
                 loading={loading} // Display the loading overlay when we need it
                 manual
                 sortable={false}
+                previousText='Anterior'
+                nextText='Siguiente'
+                loadingText='Cargando...'
+                noDataText='No activos encontrados'
+                pageText='Página'
+                ofText='de'
+                rowsText='activos'
             />
         </div>
     </Grid>

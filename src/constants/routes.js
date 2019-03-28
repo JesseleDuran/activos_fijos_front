@@ -35,10 +35,5 @@ export default [
                 label: "Depreciación",
             },
         ]
-    },
-    {
-        to: "/transacciones",
-        icon: "swap_horiz",
-        label: "Transacciones",
-    },
+    }
 ];
