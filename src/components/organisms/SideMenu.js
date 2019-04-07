@@ -36,10 +36,10 @@ const SideMenu = ({ user, classes, history }) => {
         <Drawer variant="permanent" classes={{ paper: classes.root }} anchor="left">
             <ListItem style={{ height: "120px", padding: "16px" }}>
                 <Avatar
-                    src="http://www.cvg.gob.ve/sites/default/files/Loago%20azul%20cvg.jpg"
+                    src="https://pbs.twimg.com/profile_images/1082285064518545422/zun8W796_400x400.jpg"
                     style={{
-                        width: 60,
-                        height: 60,
+                        width: 70,
+                        height: 70,
                     }}
                 />
                 <ListItemText

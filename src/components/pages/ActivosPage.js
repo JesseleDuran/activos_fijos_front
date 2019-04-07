@@ -10,32 +10,10 @@ import ActivoModal from "../organisms/ActivoModal";
 
 const styles = () => ({});
 
-const ActivosPage = ({ activos, size, pages = 100, loading = false, onChange, show, remove, activo, close, onChangeUpdate, update, hasChanged, clasificaciones, marcas }) => (
+const ActivosPage = ({ activos, size, pages = 100, loading = false, onChange, show, remove, activo, close, onChangeUpdate, update, hasChanged, clasificaciones, marcas, downloadCartaDeAsignacion }) => (
     <Grid container>
         <div style={{ width: "100%" }}>
-            <ReactTable
-                data={activos}
-                columns={tableConfig(show, remove)}
-                defaultPageSize={size}
-                className="-striped -highlight"
-                pages={pages} // Display the total number of pages
-                loading={loading} // Display the loading overlay when we need it
-                onFetchData={onChange} // Request new data when things change
-                filterable
-                sortable={false}
-                manual
-            />
-            <ActivoModal 
-                open={activo} 
-                activo={activo} 
-                close={close} 
-                onChange={onChangeUpdate} 
-                update={update} 
-                hasChanged={hasChanged}
-                marcas={marcas}
-                clasificaciones={clasificaciones}
-            />
-            <Workbook filename="inventario.xlsx" element={<Button style={{padding: "15px"}} variant="contained" color="primary" disabled={activos.length === 0}>Descargar Inventario</Button>}>
+            <Workbook filename="inventario.xlsx" element={<Button style={{ padding: '10px', marginTop: '-45px', marginLeft: '1085px', position: 'absolute'}} variant="contained" color="primary" disabled={activos.length === 0}>Descargar Inventario</Button>}>
                 <Workbook.Sheet data={activos} name="Sheet A">
                     <Workbook.Column label="UBICACIÓN GEOGRÁFICA" value="ubicacion_geografica"/>
                     <Workbook.Column label="UBICACIÓN ADMINISTRATIVA" value="ubicacion_administrativa"/>
@@ -54,6 +32,38 @@ const ActivosPage = ({ activos, size, pages = 100, loading = false, onChange, sh
                     <Workbook.Column label="OBSERVACIONES" value="observaciones"/>                  
                 </Workbook.Sheet>
             </Workbook>
+            <ReactTable
+                data={activos}
+                columns={tableConfig(show, remove)}
+                defaultPageSize={size}
+                className="-striped -highlight"
+                pages={pages} // Display the total number of pages
+                loading={loading} // Display the loading overlay when we need it
+                onFetchData={onChange} // Request new data when things change
+                filterable
+                sortable={false}
+                manual
+                  // Text
+                previousText='Anterior'
+                nextText='Siguiente'
+                loadingText='Cargando...'
+                noDataText='No activos encontrados'
+                pageText='Página'
+                ofText='de'
+                rowsText='activos'
+            />
+            <ActivoModal 
+                open={activo} 
+                activo={activo} 
+                close={close} 
+                onChange={onChangeUpdate} 
+                update={update} 
+                hasChanged={hasChanged}
+                marcas={marcas}
+                clasificaciones={clasificaciones}
+                downloadCartaDeAsignacion={downloadCartaDeAsignacion}
+            />
+
         </div>
     </Grid>
 );

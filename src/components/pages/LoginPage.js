@@ -17,8 +17,20 @@ const styles = theme => ({
    		"text-align": "center",
   	},
   	formContainer: {
-   		padding: theme.spacing.unit * 20,
-  	},
+		paddingTop: 20,
+		paddingRight: theme.spacing.unit * 20,
+		paddingBottom: theme.spacing.unit * 20,
+		paddingLeft: theme.spacing.unit * 20
+	},
+	image:{
+		paddingTop: 20,
+		maxHeight: 100, 
+		maxWidth: 100,
+		display: 'block',
+		margin: 'auto'
+
+	}
+	  
 });
 
 const LoginPage = ({ classes, onLogin, error }) => (
@@ -27,12 +39,17 @@ const LoginPage = ({ classes, onLogin, error }) => (
     	<Grid container justify="center">
 			<Paper className={classes.header}>
 				<Typography className={classes.headerText}>
-					{'Bienvenido al Sistema de Activos Fijos'}
+					{'Bienvenido al Módulo de Activos Fijos'}
 				</Typography>
 			</Paper>
     	</Grid>
+		<img 
+			src ="http://maderasdelorinoco.gob.ve/media/com_allvideoshare/gestion-al-dia/maderas_del_orinoco.png" 
+			alt=""
+			className={classes.image}
+		/>
     	<Grid container justify="center" className={classes.formContainer}>
-      	<LoginForm onLogin={onLogin} />
+      		<LoginForm onLogin={onLogin} />
     	</Grid>
     	<ErrorSnackBar open={error !== null} message={error} />
   	</Grid>

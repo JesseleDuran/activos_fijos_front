@@ -4,9 +4,11 @@ import { withRouter } from "react-router-dom";
 import ActivosPage from "../components/pages/ActivosPage";
 
 import Page from "../hocs/Page";
-import { deleteActivo, getActivos as getActivosRequest, updateActivo, getClasification, getBrands } from "../api/activos";
+import { deleteActivo, getActivos as getActivosRequest, updateActivo, getClasification, getBrands, getMovimiento } from "../api/activos";
 import confirm from "../utils/confirm";
 import { showError } from "../actions/UI";
+import { render } from "../pdf-templates/PDFGenerator";
+import Asignation from "../pdf-templates/Asignation";
 
 const REQUEST_TIMEOUT = 1000;
 
@@ -114,6 +116,22 @@ class ActivosContainer extends Component {
             });
     }
 
+    downloadCartaDeAsignacion = () => {
+        const {activo}  = this.state
+        const listMovimientos = activo.movimientos.filter(movimiento => (movimiento.tipo === 'asignacion' || movimiento.tipo === 'reasignacion') && movimiento.nombre_personal !== null)
+        if(listMovimientos.length > 0) {
+            const promises = getMovimiento(listMovimientos[0].id);
+            promises.then(movementsInfo => {
+                if(movementsInfo.apellido_personal !== null) {
+                    render(<Asignation movements={[movementsInfo]}/>);
+                }
+            })
+            .catch(() => {
+                this.props.showError("Error al generar informe de Asignación");
+            });
+        }
+    };
+
     containsObject = (key, list) => {
         let i;
         for (i = 0; i < list.length; i++) {
@@ -146,6 +164,7 @@ class ActivosContainer extends Component {
                 closeMovement={this.closeMovement}
                 update={this.update}
                 hasChanged={(this.state.toUpdate.length === 0)}
+                downloadCartaDeAsignacion={this.downloadCartaDeAsignacion}
             />
         );
     };
